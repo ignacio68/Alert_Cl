@@ -17,7 +17,8 @@ import store from './store'
 import AppNavigator from './AppNavigator'
 
 // Componentes importados
-// import Customtoolbar from './components/Shared/CustomToolbar'
+import ThePreloader from './components/Shared/ThePreloader'
+import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
 // import AlertCmp from './components/Shared/Alert'
 
 Vue.config.productionTip = false
@@ -29,7 +30,8 @@ Vue.use(VueOnsen)
 // Object.values(OnsenComponents).forEach(component => Vue.component(component.name, component)); // For ESM
 
 // **-- Componentes --** //
-// Vue.component('custom-toolbar', Customtoolbar) // Toolbar común
+Vue.component('the-preloader', ThePreloader) // Preloader
+Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 // Vue.component('app-alert', AlertCmp) // Alerta de errores
 
 /* eslint-disable no-new */
