@@ -14,18 +14,18 @@
 
 <script>
 export default {
-	name: 'thecustomtoolbar',
+  name: 'thecustomtoolbar',
 
-	props: {
-		backLabel: {
-			type: String,
-			default: ''
-		},
-		pageTitle: {
-			type: String,
-			default: ''
-		}
-	}	
+  props: {
+    backLabel: {
+      type: String,
+      default: ''
+    },
+    pageTitle: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 

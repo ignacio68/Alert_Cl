@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-var exec = require('cordova/exec');
+var exec = require('cordova/exec')
 
-exports.isAvailable = function(success, error) {
-  exec(success, error, 'BrowserTab', 'isAvailable', []);
-};
+exports.isAvailable = function (success, error) {
+  exec(success, error, 'BrowserTab', 'isAvailable', [])
+}
 
-exports.openUrl = function(url, opt_error) {
-  var doNothing = function() {};
-  var error = (!opt_error) ? doNothing : opt_error;
-  exec(doNothing, error, 'BrowserTab', 'openUrl', [url]);
-};
+exports.openUrl = function (url, opt_error) {
+  var doNothing = function () {}
+  var error = (!opt_error) ? doNothing : opt_error
+  exec(doNothing, error, 'BrowserTab', 'openUrl', [url])
+}
 
-exports.close = function(opt_error) {
-  var doNothing = function() {};
-  var error = (!opt_error) ? doNothing : opt_error;
-  exec(doNothing, error, 'BrowserTab', 'close', []);
-};
+exports.close = function (opt_error) {
+  var doNothing = function () {}
+  var error = (!opt_error) ? doNothing : opt_error
+  exec(doNothing, error, 'BrowserTab', 'close', [])
+}

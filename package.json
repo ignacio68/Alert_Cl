@@ -12,8 +12,8 @@
         "lint": "eslint --ext .js,.vue src"
     },
     "dependencies": {
-        "cordova-android": "^7.0.0",
-        "cordova-ios": "^4.5.4",
+        "cordova-android": "7.0.0",
+        "cordova-ios": "4.5.4",
         "cordova-plugin-browsertab": "^0.2.0",
         "cordova-plugin-buildinfo": "^2.0.1",
         "cordova-plugin-compat": "^1.0.0",

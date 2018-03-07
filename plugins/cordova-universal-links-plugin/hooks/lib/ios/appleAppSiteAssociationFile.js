@@ -16,20 +16,19 @@ Additional documentation regarding apple-app-site-association file can be found 
 - https://developer.apple.com/library/ios/documentation/Security/Reference/SharedWebCredentialsRef/index.html#//apple_ref/doc/uid/TP40014989
 */
 
-
-var path = require('path');
-var mkpath = require('mkpath');
-var fs = require('fs');
-var rimraf = require('rimraf');
-var ConfigXmlHelper = require('../configXmlHelper.js');
-var IOS_TEAM_ID = '<YOUR_TEAM_ID_FROM_MEMBER_CENTER>';
-var ASSOCIATION_FILE_NAME = 'apple-app-site-association';
-var bundleId;
-var context;
+var path = require('path')
+var mkpath = require('mkpath')
+var fs = require('fs')
+var rimraf = require('rimraf')
+var ConfigXmlHelper = require('../configXmlHelper.js')
+var IOS_TEAM_ID = '<YOUR_TEAM_ID_FROM_MEMBER_CENTER>'
+var ASSOCIATION_FILE_NAME = 'apple-app-site-association'
+var bundleId
+var context
 
 module.exports = {
   generate: generate
-};
+}
 
 // region Public API
 
@@ -39,10 +38,10 @@ module.exports = {
  * @param {Object} cordovaContext - cordova context object
  * @param {Object} pluginPreferences - list of hosts from the config.xml; already parsed
  */
-function generate(cordovaContext, pluginPreferences) {
-  context = cordovaContext;
-  removeOldFiles();
-  createNewAssociationFiles(pluginPreferences);
+function generate (cordovaContext, pluginPreferences) {
+  context = cordovaContext
+  removeOldFiles()
+  createNewAssociationFiles(pluginPreferences)
 }
 
 // endregion
@@ -52,8 +51,8 @@ function generate(cordovaContext, pluginPreferences) {
 /**
  * Remove old files from ul_web_hooks/ios folder.
  */
-function removeOldFiles() {
-  rimraf.sync(getWebHookDirectory());
+function removeOldFiles () {
+  rimraf.sync(getWebHookDirectory())
 }
 
 /**
@@ -61,16 +60,16 @@ function removeOldFiles() {
  *
  * @param {Object} pluginPreferences - list of hosts from config.xml
  */
-function createNewAssociationFiles(pluginPreferences) {
-  var teamId = pluginPreferences.iosTeamId;
+function createNewAssociationFiles (pluginPreferences) {
+  var teamId = pluginPreferences.iosTeamId
   if (!teamId) {
-    teamId = IOS_TEAM_ID;
+    teamId = IOS_TEAM_ID
   }
 
-  pluginPreferences.hosts.forEach(function(host) {
-    var content = generateFileContentForHost(host, teamId);
-    saveContentToFile(host.name, content);
-  });
+  pluginPreferences.hosts.forEach(function (host) {
+    var content = generateFileContentForHost(host, teamId)
+    saveContentToFile(host.name, content)
+  })
 }
 
 /**
@@ -79,25 +78,25 @@ function createNewAssociationFiles(pluginPreferences) {
  * @param {Object} host - host information
  * @return {Object} content of the file as JSON object
  */
-function generateFileContentForHost(host, teamId) {
-  var appID = teamId + '.' + getBundleId();
-  var paths = host.paths.slice();
+function generateFileContentForHost (host, teamId) {
+  var appID = teamId + '.' + getBundleId()
+  var paths = host.paths.slice()
 
   // if paths are '*' - we should add '/' to it to support root domains.
   // https://github.com/nordnet/cordova-universal-links-plugin/issues/46
   if (paths.length == 1 && paths[0] === '*') {
-    paths.push('/');
+    paths.push('/')
   }
 
   return {
-    "applinks": {
-      "apps": [],
-      "details": [{
-        "appID": appID,
-        "paths": paths
+    'applinks': {
+      'apps': [],
+      'details': [{
+        'appID': appID,
+        'paths': paths
       }]
     }
-  };
+  }
 }
 
 /**
@@ -106,18 +105,18 @@ function generateFileContentForHost(host, teamId) {
  * @param {String} filePrefix - prefix for the generated file; usually - hostname
  * @param {Object} content - file content as JSON object
  */
-function saveContentToFile(filePrefix, content) {
-  var dirPath = getWebHookDirectory();
-  var filePath = path.join(dirPath, filePrefix + '#' + ASSOCIATION_FILE_NAME);
+function saveContentToFile (filePrefix, content) {
+  var dirPath = getWebHookDirectory()
+  var filePath = path.join(dirPath, filePrefix + '#' + ASSOCIATION_FILE_NAME)
 
   // create all directories from file path
-  createDirectoriesIfNeeded(dirPath);
+  createDirectoriesIfNeeded(dirPath)
 
   // write content to the file
   try {
-    fs.writeFileSync(filePath, JSON.stringify(content, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(content, null, 2), 'utf8')
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
@@ -126,11 +125,11 @@ function saveContentToFile(filePrefix, content) {
  *
  * @param {String} dirPath - full path to directory
  */
-function createDirectoriesIfNeeded(dirPath) {
+function createDirectoriesIfNeeded (dirPath) {
   try {
-    mkpath.sync(dirPath);
+    mkpath.sync(dirPath)
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
@@ -143,8 +142,8 @@ function createDirectoriesIfNeeded(dirPath) {
  *
  * @return {String} path to web hook directory
  */
-function getWebHookDirectory() {
-  return path.join(getProjectRoot(), 'ul_web_hooks', 'ios');
+function getWebHookDirectory () {
+  return path.join(getProjectRoot(), 'ul_web_hooks', 'ios')
 }
 
 /**
@@ -152,8 +151,8 @@ function getWebHookDirectory() {
  *
  * @return {String} absolute path to project root
  */
-function getProjectRoot() {
-  return context.opts.projectRoot;
+function getProjectRoot () {
+  return context.opts.projectRoot
 }
 
 /**
@@ -161,13 +160,13 @@ function getProjectRoot() {
  *
  * @return {String} bundle id
  */
-function getBundleId() {
+function getBundleId () {
   if (bundleId === undefined) {
-    var configXmlHelper = new ConfigXmlHelper(context);
-    bundleId = configXmlHelper.getPackageName('ios');
+    var configXmlHelper = new ConfigXmlHelper(context)
+    bundleId = configXmlHelper.getPackageName('ios')
   }
 
-  return bundleId;
+  return bundleId
 }
 
 // endregion

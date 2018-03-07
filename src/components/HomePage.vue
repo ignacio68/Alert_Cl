@@ -3,7 +3,7 @@
     <div v-if="isActive">
   	<the-preloader
       loaderBackgroundColor ="red"
-      loaderOpacity ="0.3" 
+      loaderOpacity ="0.3"
       loaderRippleWidth ="3em"
       loaderRipperHeigth ="3em">
     </the-preloader>
@@ -23,17 +23,16 @@ export default {
   name: 'home',
 
   created () {
-    setTimeout( this.isActive = !this.isActive, 5000)
+    setTimeout(this.isActive = !this.isActive, 5000)
   },
 
   data () {
     return {
-      title: "INICIO",
-      atras: "volver",
+      title: 'INICIO',
+      atras: 'volver',
       isActive: false
     }
   }
-  
 }
 </script>
 

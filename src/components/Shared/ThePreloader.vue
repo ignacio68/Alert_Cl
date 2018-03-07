@@ -1,9 +1,9 @@
 <template>
-	<div 
+	<div
 		class="loader-wrapper"
 		:style="{backgroundColor: loaderBackgroundColor, opacity: loaderOpacity}">
 		<div class="loader">
-			<v-ons-progress-circular 
+			<v-ons-progress-circular
 				class="loader loader__ripple"
 				:style="{width: loaderRippleWidth, heigth: loaderRipperHeigth}"
 				indeterminate>
@@ -13,31 +13,25 @@
 </template>
 <script>
 export default {
-  	name: 'thepreloader',
-
-  	props: {
-  		loaderBackgroundColor: {
-  			type: String,
-  			default: 'blue'
-  		},
-  		loaderOpacity: {
-  			type: String,
-  			default: '0.7'
-  		},
-  		loaderRippleWidth: {
-  			type: String,
-  			default: '4em'
-  		},
-  		loaderRipperHeigth: {
-			type: String,
-  			default: '4em'
-  		}
-  	},
-
-  	data () {
-  		return {
-  		}
-  	}
+  name: 'thepreloader',
+  props: {
+    loaderBackgroundColor: {
+      type: String,
+      default: 'blue'
+    },
+    loaderOpacity: {
+      type: String,
+      default: '0.7'
+    },
+    loaderRippleWidth: {
+      type: String,
+      default: '4em'
+    },
+    loaderRipperHeigth: {
+      type: String,
+      default: '4em'
+    }
+  }
 }
 </script>
 <style scoped>
@@ -57,7 +51,7 @@ export default {
   	left: 0;
   	bottom: 0;
   	right: 0;
-	
+
 }
 .loader__ripple {
 	width: 4em;
