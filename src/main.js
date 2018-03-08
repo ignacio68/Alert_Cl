@@ -1,46 +1,67 @@
+/**
+ * Import Global Style (.css/.scss)
+ * import './onsen-css-components.css'
+ * Onsen UI CSS components source for custom themes (requires cssnext)
+ */
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
-// import './onsen-css-components.css'; // Onsen UI CSS components source for custom themes (requires cssnext)
 
+/**
+ * Import Dependency
+ */
 import Vue from 'vue'
-// import Vuex from 'vuex'
-
 import VueOnsen from 'vue-onsenui'
-
 import * as firebase from 'firebase'
+import store from './store'
+import i18n from './locales'
 
 // import VueOnsen from 'vue-onsenui/esm'; // Cuando se utiliza ESM
 // import * as OnsenComponents from './onsen-components'; // Cuando se utiliza ESM
 
-import store from './store'
-
 import AppNavigator from './AppNavigator'
 
-// Componentes importados
+/**
+ * Import Component (.vue)
+ */
 import ThePreloader from './components/Shared/ThePreloader'
 import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
 // import AlertCmp from './components/Shared/Alert'
 
+/**
+ * Global Config
+ */
 Vue.config.productionTip = false
-
 // Vue.use(Vuex)
 Vue.use(VueOnsen)
 
-// Register components globally
+/**
+ * Register components globally
+ */
 // Object.values(OnsenComponents).forEach(component => Vue.component(component.name, component)); // For ESM
-
-// **-- Componentes --** //
 Vue.component('the-preloader', ThePreloader) // Preloader
 Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 // Vue.component('app-alert', AlertCmp) // Alerta de errores
 
+/**
+ * Get device language
+ */
+const lang = navigator.language
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n,
   store,
   render: h => h(AppNavigator),
 
   beforeCreate () {
+    this.$ons.ready(() => {
+      if (lang) {
+        console.log('el lenguaje es ' + lang)
+        i18n.locale = lang
+      }
+    })
+
     // Shortcut for Material Design
     Vue.prototype.md = this.$ons.platform.isAndroid()
 
@@ -48,6 +69,12 @@ new Vue({
     if (window.location.search.match(/iphonex/i)) {
       document.documentElement.setAttribute('onsflag-iphonex-portrait', '')
       document.documentElement.setAttribute('onsflag-iphonex-landscape', '')
+    }
+
+    // Check if we can use the internationalization API
+    if (window.Intl && typeof window.Intl === 'object') {
+    // Assume it's supported, lets localize!
+      console.log('Existe la internalizacion')
     }
   },
   created () {

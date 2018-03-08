@@ -1,0 +1,32 @@
+{
+  "pages": {
+  	"global": {
+  	  "text1": "The language is english"
+  	},
+  	"signin": {
+
+  	},
+  	"signup": {
+
+  	}
+  },
+  "components": {
+  	"input": {
+
+  	  "placeholder": [
+  	  	{ "email": "email" },
+  	    { "password": "contraseña" }
+  	  ]
+  	},
+  	"button": [
+  	  { "submit": "Submit" },
+  	  { "sigup": "Sign Up" },
+  	  { "sigin": "Sign In" },
+  	  { "signout": "Sign Out" },
+  	  { "reset": "Reset"}
+  	]
+  },
+  "errors": {
+
+  }
+}
