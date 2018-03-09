@@ -12,6 +12,10 @@
     </the-custom-toolbar>
     <div class="container">
       <p>{{ $t('lang.pages.global.text1') }}</p>
+      <p>{{ $t('lang.pages.global.text2') }}</p>
+      <p>{{ $d(date, 'long')}}</p>
+      <p>{{ $n(1000, 'currency')}}</p>
+      <p>{{ $n(1000.2356, 'decimal')}}</p>
     </div>
   </v-ons-page>
 </template>
@@ -28,7 +32,8 @@ export default {
     return {
       title: 'INICIO',
       atras: 'volver',
-      isActive: false
+      isActive: false,
+      date: new Date()
     }
   }
 }

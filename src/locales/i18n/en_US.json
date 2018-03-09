@@ -1,7 +1,8 @@
 {
   "pages": {
   	"global": {
-  	  "text1": "The language is english"
+  	  "text1": "The language is english",
+      "text2": "English is the deafault language"
   	},
   	"signin": {
 
