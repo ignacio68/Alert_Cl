@@ -14,14 +14,20 @@ export default {
     }
   },
   mutations: {
+    /* Control de la carga de los datos */
     setLoading (state, payload) {
       state.loading = payload
+      console.log('Loading es ' + state.loading)
     },
+    /* Control de errores */
     setError (state, payload) {
       state.error = payload
+      console.log('el error es: ' + state.error.message)
     },
+    /* Resetea los errores */
     clearError (state) {
       state.error = null
+      console.log('Limpio el error')
     }
   },
   actions: {
