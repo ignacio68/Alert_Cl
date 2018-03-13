@@ -5,49 +5,20 @@ export default {
   namespaced: true,
   state: {
     socialButtons: [
-      { name: 'Email', socialLogIn: 'onEmailIn', isVisible: false },
-      { name: 'Facebook', socialLogIn: 'onFacebookIn', isVisible: false },
-      { name: 'Google +', socialLogIn: 'onGoogleIn', isVisible: false },
-      { name: 'Twitter', socialLogIn: 'onTwitterIn', isVisible: false }
+      { name: 'Email', socialLogIn: 'onEmailIn' },
+      { name: 'Facebook', socialLogIn: 'onFacebookIn' },
+      { name: 'Google', socialLogIn: 'onGoogleIn' },
+      { name: 'Twitter', socialLogIn: 'onTwitterIn' }
     ],
-    socialButtonsVisible: [],
     errorMessage: ''
   },
   getters: {
     socialButtons (state) {
       return state.socialButtons
-    },
-    socialButtonsVisible (state) {
-      return state.socialButtonsVisible
     }
   },
   mutations: {
-    // Cambia el estado de visibilidad de los botones
-    isVisible (state, index) {
-      console.log('la aplicación es ' + state.socialButtons[index].name)
-      state.socialButtons[index].isVisible = !state.socialButtons[index].isVisible
-      console.log('la aplicación es visible? ' + state.socialButtons[index].isVisible)
-    },
-    // Agregamos al array 'socialButtonsVisible' los botones visibles
-    socialButtonsVisible (state) {
-      for (let i = 0, len = state.socialButtons.length; i < len; i++) {
-        if (state.socialButtons[i].isVisible === true) {
-          state.socialButtonsVisible.push(state.socialButtons[i])
-        }
-      }
-    },
-    // Reseteamos socialButtons.isVisible a "false"
-    resetSocialButtons (state) {
-      for (let i = 0, len = state.socialButtons.length; i < len; i++) {
-        state.socialButtons[i].isVisible = false
-        console.log(state.socialButtons[i].name + ' es ' + state.socialButtons[i].isVisible)
-      }
-    },
-    // Reseteamos el array socialButtonsVisible
-    clearSocialButtonsVisible (state) {
-      state.socialButtonsVisible = []
-    },
-    /**
+     /**
      * Manejo de los errores de autenticación
      * Terminar de completar, internacionalizar y sacar a otro módulo
       */
@@ -71,7 +42,7 @@ export default {
   actions: {
     /**
      * Acciones para autenticar segun el social login elegido
-     * Posibilidad de separalo en módulos para mejorar la claridad
+     * Posibilidad de separarlo en módulos para mejorar la claridad
      * del software
      */
     onEmailIn ({commit}) {
@@ -82,7 +53,7 @@ export default {
       commit('shared/setLoading', true)
       commit('shared/clearError')
       const provider = new firebase.auth.FacebookAuthProvider()
-      this.socialLogUp(provider)
+      this.socialSignUp(provider)
     },
     onGoogleIn ({commit}) {
       console.log('Estoy en onGoogleIn')
@@ -90,7 +61,7 @@ export default {
       commit('clearError')
       const provider = new firebase.auth.GoogleAuthProvider()
       // provider.addScope()
-      this.socialLogUp(provider)
+      this.socialSignUp(provider)
     },
     onTwitterIn ({commit}) {
       console.log('Estoy en onTwitterIn')
@@ -98,10 +69,10 @@ export default {
       commit('clearError')
       const provider = new firebase.auth.TwitterAuthProvider()
       // provider.addScope ()
-      this.socialLogUp(provider)
+      this.socialSignUp(provider)
     },
     // Log Up común a todos
-    socialLogUp ({commit}, provider) {
+    socialSignUp ({commit}, provider) {
       provider.addScope('public_profile')
       firebase.auth().useDeviceLanguage()
       firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción

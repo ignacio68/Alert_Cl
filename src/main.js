@@ -12,7 +12,7 @@ import 'onsenui/css/onsen-css-components.css'
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import * as firebase from 'firebase'
-import store from './store'
+import { store } from './store'
 import i18n from './locales'
 
 // import VueOnsen from 'vue-onsenui/esm'; // Cuando se utiliza ESM
@@ -28,11 +28,23 @@ import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
 // import AlertCmp from './components/Shared/Alert'
 
 /**
+ * Import Pages
+
+import TermsOfService from './pages/Shared/TermsOfService'
+import PrivacyPolicy from './pages/Shared/PrivacyPolicy'
+ */
+/**
  * Global Config
  */
 Vue.config.productionTip = false
 // Vue.use(Vuex)
 Vue.use(VueOnsen)
+
+/**
+ *  Register pages globally
+Vue.component('TermsOfService', TermsOfService)
+Vue.component('PrivacyPolicy', PrivacyPolicy)
+ */
 
 /**
  * Register components globally

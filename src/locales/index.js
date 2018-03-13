@@ -7,26 +7,27 @@ import VueI18n from 'vue-i18n'
 /**
  * Import Language
  */
-import en_us from './i18n/en_us'
+import enUs from './i18n/en_us'
 import es from './i18n/es'
 
 /**
- * Import Language
+ * Import number formats
+ */
+import { numberFormats } from './i18n/numberFormats'
+
+/**
+ * Import date formats
  */
 import { dateTimeFormats } from './i18n/dateTimeFormats'
 
 const messages = {
   en: {
-    lang: en_us
+    lang: enUs
   },
   es: {
     lang: es
   }
 }
-/**
- * Import Currency
- */
-import { numberFormats } from './i18n/numberFormats'
 
 /**
  * Config

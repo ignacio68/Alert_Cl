@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-=======
 import * as firebase from 'firebase'
 
->>>>>>> 5ce95485ab29a63a255c41847c834f63591ce834
 export default {
   strict: true,
   namespaced: true,
   state: {
-<<<<<<< HEAD
-    user: null // el usuario inicial siempre es nulo
-=======
     user: null
->>>>>>> 5ce95485ab29a63a255c41847c834f63591ce834
   },
   getters: {
     user (state) {
@@ -27,8 +20,6 @@ export default {
     }
   },
   actions: {
-<<<<<<< HEAD
-=======
     /**
      * Nuevo Usuario
      */
@@ -131,6 +122,5 @@ export default {
         console.log('No hay ningún usuario conectado')
       }
     }
->>>>>>> 5ce95485ab29a63a255c41847c834f63591ce834
   }
 }

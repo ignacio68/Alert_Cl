@@ -4,23 +4,17 @@ import Vuex from 'vuex'
 import navigator from './modules/navigator'
 import shared from './modules/shared'
 import user from './modules/user'
-<<<<<<< HEAD
-import signup from './modules/signup'
-=======
 import social from './modules/social'
->>>>>>> 5ce95485ab29a63a255c41847c834f63591ce834
+import signup from './modules/signup'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
     navigator,
     shared,
     user,
-<<<<<<< HEAD
+    social,
     signup
-=======
-    social
->>>>>>> 5ce95485ab29a63a255c41847c834f63591ce834
   }
 })
