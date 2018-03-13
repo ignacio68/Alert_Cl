@@ -5,6 +5,14 @@ export default {
     stack: [],
     options: {}
   },
+  getters: {
+    pageStack (state) {
+      return state.stack
+    },
+    options (state) {
+      return state.options
+    }
+  },
   mutations: {
     push (state, page) {
       state.stack.push(page) // Añade la página al final de la  pila
@@ -26,12 +34,6 @@ export default {
       state.options = newOptions
     }
   },
-  getters: {
-    pageStack (state) {
-      return state.stack
-    },
-    options (state) {
-      return state.options
-    }
+  actions: {
   }
 }

@@ -7,7 +7,7 @@ import VueI18n from 'vue-i18n'
 /**
  * Import Language
  */
-import en from './i18n/en_US'
+import en_us from './i18n/en_us'
 import es from './i18n/es'
 
 /**
@@ -15,6 +15,14 @@ import es from './i18n/es'
  */
 import { dateTimeFormats } from './i18n/dateTimeFormats'
 
+const messages = {
+  en: {
+    lang: en_us
+  },
+  es: {
+    lang: es
+  }
+}
 /**
  * Import Currency
  */
@@ -31,14 +39,15 @@ Vue.use(VueI18n)
 export default new VueI18n({
   locale: 'en',
   fallbackLocale: 'en',
-  messages: {
+  /* messages: {
     en: {
-      lang: en
+      lang: en_US
     },
     es: {
       lang: es
     }
-  },
+  }, */
+  messages,
   dateTimeFormats,
   numberFormats
 })

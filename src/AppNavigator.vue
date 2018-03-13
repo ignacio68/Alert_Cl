@@ -8,11 +8,16 @@
 
 <script>
   import HomePage from './pages/HomePage'
+  import SignUp from './pages/User/SignUp'
 
   export default {
     name: 'appNavigator',
     beforeCreate () {
-      this.$store.commit('navigator/push', HomePage)
+      if (this.userIsAuthenticated) {
+        this.$store.commit('navigator/push', HomePage)
+      } else {
+        this.$store.commit('navigator/push', SignUp)
+      }
     },
     data () {
       return {
@@ -24,6 +29,9 @@
       },
       options () {
         return this.$store.getters['navigator/options']
+      },
+      userIsAuthenticated () {
+        return this.$store.getters['user/user'] !== null && this.$store.getters['user/user'] !== undefined
       }
     },
     methods: {

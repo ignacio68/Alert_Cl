@@ -23,11 +23,9 @@
 <script>
 export default {
   name: 'home',
-
   // created () {
   //  setTimeout(this.isActive = !this.isActive, 5000)
   // },
-
   data () {
     return {
       title: 'INICIO',
