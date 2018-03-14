@@ -11,18 +11,23 @@
     </the-custom-toolbar>
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
-      <v-ons-list >
-        <v-ons-list-item :modifier="md ? 'nodivider' : ''"
+      <v-ons-list class="socialButtons" >
+        <v-ons-list-item
+          :modifier="md ? 'nodivider' : ''"
+          class="socialButtons__item"
           v-for="(socialButton, $index) in socialButtons" :key="socialButton.name" tappable>
           <sign-up-button
+            class="socialButtons__item-button"
             :name="socialButton.name"
             :index="$index"
-            @socialButtonEvent="socialLogIn($event)"
+            :icon="socialButton.icons"
+            :style="{ backgroundColor: socialColor($index) }"
+            @socialButtonEvent="socialLogIn($index)"
           >
           </sign-up-button>
         </v-ons-list-item>
       </v-ons-list>
-      <div class="privacy"
+      <div class="privacy">
         <i18n
           class="privacy__text"
           path="lang.pages.signup.main.text2"
@@ -71,9 +76,12 @@
       }
     },
     methods: {
+      socialColor (index) {
+        return this.socialButtons[index].color
+      },
       socialLogIn (index) {
         let socialProvider = this.socialButtons[index].socialLogIn
-        this.$store.dispatch(socialProvider)
+        this.$store.dispatch('social/dispatchLogUp', socialProvider)
       },
       toTerms () {
         this.$store.commit('navigator/push', TermsOfService)
@@ -86,17 +94,27 @@
 </script>
 
 <style scoped>
+  .socialButtons {
+    border: 1px solid blue;
+  }
+  .socialButtons__item {
+    border: 1px solid red;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+  .socialButtons__item-button{
+    border: 1px solid green;
+  }
   .mainText {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .privacy { r
+  .privacy {
     margin-top: 20px;
-  }
-  .privacy__text {
-    padding-top: 50px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .privacy__text {
   }
   .privacy__text-link {
     color: rebeccapurple;

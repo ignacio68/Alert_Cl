@@ -24,9 +24,9 @@ export default {
       state.error = payload
       console.log('el error es: ' + state.error.message)
     },
-    /* Resetea los errores */
-    clearError (state) {
-      state.error = null
+    /* Resetea los errores , el payload debe ser 'null' */
+    clearError (state, payload) {
+      state.error = payload
       console.log('Limpio el error')
     }
   },
