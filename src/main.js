@@ -67,6 +67,7 @@ new Vue({
   render: h => h(AppNavigator),
 
   beforeCreate () {
+    // Set app language
     this.$ons.ready(() => {
       if (lang) {
         console.log('el lenguaje es ' + lang)
