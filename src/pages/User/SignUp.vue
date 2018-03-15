@@ -11,26 +11,25 @@
     </the-custom-toolbar>
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
-      <v-ons-list class="socialButtons" >
+      <v-ons-list class="socialButtonsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
-          class="socialButtons__item"
+          class="socialButtonsList__item"
           v-for="(socialButton, $index) in socialButtons" :key="socialButton.name" tappable>
           <sign-up-button
-            class="socialButtons__item-button"
+            class="socialButtonsList__item-button"
             :name="socialButton.name"
             :index="$index"
             :icon="socialButton.icons"
-            :style="{ backgroundColor: socialColor($index) }"
+            :style="{ backgroundColor: socialButton.color }"
             @socialButtonEvent="socialLogIn($index)"
-          >
-          </sign-up-button>
+          />
         </v-ons-list-item>
       </v-ons-list>
       <div class="privacy">
         <i18n
           class="privacy__text"
-          path="lang.pages.signup.main.text2"
+          path="lang.pages.signup.main.text2"          
           >
           <span
             class="privacy__text-link"
@@ -76,12 +75,10 @@
       }
     },
     methods: {
-      socialColor (index) {
-        return this.socialButtons[index].color
-      },
       socialLogIn (index) {
-        let socialProvider = this.socialButtons[index].socialLogIn
-        this.$store.dispatch('social/dispatchLogUp', socialProvider)
+        this.$store.dispatch('social/dispatchLogUp', index)
+        // let socialProvider = this.socialButtons[index].socialLogIn
+        // this.$store.dispatch('social/dispatchLogUp', socialProvider)
       },
       toTerms () {
         this.$store.commit('navigator/push', TermsOfService)
@@ -94,15 +91,15 @@
 </script>
 
 <style scoped>
-  .socialButtons {
+  .socialButtonsList {
     border: 1px solid blue;
   }
-  .socialButtons__item {
+  .socialButtonsList__item {
     border: 1px solid red;
     padding-top: 1px;
     padding-bottom: 1px;
   }
-  .socialButtons__item-button{
+  .socialButtonsList__item-button{
     border: 1px solid green;
   }
   .mainText {

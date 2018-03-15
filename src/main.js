@@ -99,5 +99,12 @@ new Vue({
       storageBucket: 'alert-cliente.appspot.com',
       messagingSenderId: '256084022437'
     })
+    // If user is authenticated then autosign in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('user/autoSignIn', user)
+        console.log('El usuario es: ' + user)
+      }
+    })
   }
 })

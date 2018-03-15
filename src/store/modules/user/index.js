@@ -77,6 +77,14 @@ export default {
         )
     },
     /**
+     * Autoautenticación, el usuario ya está registrado
+     */
+    autoSignIn ({commit}, user) {
+      commit('setUser', {
+        id: user.uid
+      })
+    },
+    /**
      * Log Out de Usuario
      */
     signUserOut ({commit}) {
