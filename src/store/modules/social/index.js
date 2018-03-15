@@ -8,26 +8,18 @@ export default {
       {
         name: 'Facebook',
         color: '#3b5998',
-        icons: 'ion-social-facebook, zmdi-facebook',
-        socialLogIn: 'onFacebookIn'
+        icons: 'ion-social-facebook-outline, material:zmdi-facebook-box'
       },
       {
         name: 'Google+',
         color: '#d62d20',
-        icons: 'ion-social-google, zmdi-google',
-        socialLogIn: 'onGoogleIn'
+        icons: 'ion-social-google-outline, material:zmdi-google'
       },
       {
         name: 'Twitter',
         color: '#0084b4',
-        icons: 'ion-social-twitter, zmdi-twitter',
-        socialLogIn: 'onTwitterIn'
-      },
-      {
-        name: 'Email',
-        color: '#F9671E',
-        icons: 'ion-ios-email, zmdi-email',
-        socialLogIn: 'onEmailIn' }
+        icons: 'ion-social-twitter-outline, material:zmdi-twitter'
+      }
     ],
     errorMessage: ''
   },
@@ -64,35 +56,32 @@ export default {
      * Posibilidad de separarlo en módulos para mejorar la claridad
      * del software
      */
-    dispatchLogUp ({commit, dispatch}, logUp) {
-      dispatch(logUp)
-    },
-    onEmailIn ({commit}) {
-      console.log('Estoy en onEmailIn')
-      // commit('navigator/push', )
-    },
-    onFacebookIn ({commit, dispatch}) {
-      console.log('Estoy en onFacebookIn')
+    dispatchLogUp ({commit, dispatch, state}, index) {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
-      const provider = new firebase.auth.FacebookAuthProvider()
-      dispatch('socialSignUp', provider)
-    },
-    onGoogleIn ({commit, dispatch}) {
-      console.log('Estoy en onGoogleIn')
-      commit('shared/setLoading', true, { root: true })
-      commit('shared/clearError', null, { root: true })
-      const provider = new firebase.auth.GoogleAuthProvider()
-      // provider.addScope()
-      dispatch('socialSignUp', provider)
-    },
-    onTwitterIn ({commit, dispatch}) {
-      console.log('Estoy en onTwitterIn')
-      commit('shared/setLoading', true, { root: true })
-      commit('shared/clearError', null, { root: true })
-      const provider = new firebase.auth.TwitterAuthProvider()
-      // provider.addScope ()
-      dispatch('socialSignUp', provider)
+      const mySocialButtons = state.socialButtons
+      let name = mySocialButtons[index].name
+      console.log('la red social elegida es: ' + name)
+      switch (name) {
+        case 'Facebook' : {
+          const provider = new firebase.auth.FacebookAuthProvider()
+          // provider.addScope()
+          dispatch('socialSignUp', provider)
+          break
+        }
+        case 'Google' : {
+          const provider = new firebase.auth.GoogleAuthProvider()
+          // provider.addScope()
+          dispatch('socialSignUp', provider)
+          break
+        }
+        case 'Twitter' : {
+          const provider = new firebase.auth.TwitterAuthProvider()
+          // provider.addScope()
+          dispatch('socialSignUp', provider)
+          break
+        }
+      }
     },
     // Log Up común a todos
     socialSignUp ({commit}, provider) {

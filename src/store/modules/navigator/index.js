@@ -16,7 +16,6 @@ export default {
   mutations: {
     push (state, page) {
       state.stack.push(page) // Añade la página al final de la  pila
-      console.log('Añadida la página' + page)
     },
     pop (state) {
       if (state.stack.length > 1) {

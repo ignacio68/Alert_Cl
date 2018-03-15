@@ -67,6 +67,7 @@ new Vue({
   render: h => h(AppNavigator),
 
   beforeCreate () {
+    // Set app language
     this.$ons.ready(() => {
       if (lang) {
         console.log('el lenguaje es ' + lang)
@@ -97,6 +98,13 @@ new Vue({
       projectId: 'alert-cliente',
       storageBucket: 'alert-cliente.appspot.com',
       messagingSenderId: '256084022437'
+    })
+    // If user is authenticated then autosign in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('user/autoSignIn', user)
+        console.log('El usuario es: ' + user)
+      }
     })
   }
 })

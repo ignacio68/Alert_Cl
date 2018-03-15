@@ -11,7 +11,8 @@ export const dateTimeFormats = {
       day: 'numeric',
       weekday: 'long',
       hour: 'numeric',
-      minute: 'numeric'
+      minute: 'numeric',
+      second: 'numeric'
     }
   },
   'es': {
@@ -27,6 +28,7 @@ export const dateTimeFormats = {
       weekday: 'long',
       hour: 'numeric',
       minute: 'numeric',
+      second: 'numeric',
       hour12: true
     }
   }

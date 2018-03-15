@@ -25,13 +25,13 @@ export default {
      */
     signUserUp ({commit}, user) {
       console.log('Estoy en signUserUp')
-      commit('shared/setLoading', true)
-      commit('shared/clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       /* Crea el usuario en Firebase */
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(
           user => {
-            commit('shared/setLoading', false)
+            commit('shared/setLoading', false, { root: true })
             const newUser = {
               // Añadimos los datos del usuario prporcionados por Firebase
               id: user.uid,
@@ -46,8 +46,8 @@ export default {
         .catch(
           error => {
             console.log('Estoy en el catch de errores de signUserUp')
-            commit('shared/setLoading', false)
-            commit('shared/setError', error)
+            commit('shared/setLoading', false, { root: true })
+            commit('shared/setError', error, { root: true })
           }
         )
     },
@@ -55,13 +55,13 @@ export default {
      * Log In de Usuario
      */
     signUserIn ({commit}, user) {
-      commit('shared/setLoading', true)
-      commit('shared/clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       /* Comprueba que el usuario existe en Firebase */
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(
           user => {
-            commit('shared/setLoading', false)
+            commit('shared/setLoading', false, { root: true })
             const newUser = {
               id: user.uid
             }
@@ -70,30 +70,38 @@ export default {
         )
         .catch(
           error => {
-            commit('shared/setLoading', false)
-            commit('shared/setError', error)
+            commit('shared/setLoading', false, { root: true })
+            commit('shared/setError', error, { root: true })
             console.log(error)
           }
         )
     },
     /**
+     * Autoautenticación, el usuario ya está registrado
+     */
+    autoSignIn ({commit}, user) {
+      commit('setUser', {
+        id: user.uid
+      })
+    },
+    /**
      * Log Out de Usuario
      */
     signUserOut ({commit}) {
-      commit('shared/setLoading', true)
-      commit('shared/clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       firebase.auth().signOut()
         .then(
           result => {
-            commit('shared/setLoading', false)
-            commit('shared/clearUser')
+            commit('shared/setLoading', false, { root: true })
+            commit('shared/clearUser', null, { root: true })
             commit('social/clearSocialButtonsVisible')
           }
         )
         .catch(
           error => {
-            commit('shared/setLoading', false)
-            commit('shared/setError', error)
+            commit('shared/setLoading', false, { root: true })
+            commit('shared/setError', error, { root: true })
             console.log(error)
           }
         )

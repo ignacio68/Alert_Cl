@@ -5,10 +5,10 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
 /**
- * Import Language
+ * Import Locales
  */
-import enUs from './i18n/en_us'
-import es from './i18n/es'
+import enUs from './i18n/en_us/index'
+import es from './i18n/es/index'
 
 /**
  * Import number formats
