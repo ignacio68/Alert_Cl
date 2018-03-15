@@ -3,11 +3,12 @@
     class="signUp__button"
     modifier="large"
     ripple="true"
-    @click="parentMethod(index)"
+    @click="parentMethod()"
     >
     <v-ons-icon
       class="signUp__button-icon"
-      icon=""></v-ons-icon>
+      size="20px"
+      ></v-ons-icon>
     {{ name }}
   </v-ons-button>
 </template>
@@ -26,7 +27,7 @@
       }
     },
     methods: {
-      parentMethod (index) {
+      parentMethod () {
         this.$emit('socialButtonEvent')
       }
     }
@@ -36,11 +37,14 @@
 <style scoped>
   .signUp__button {
     background-color: limegreen;
+    color: white;
     margin-left: 20px;
     margin-right: 20px;
-    padding-left: 100px;
     text-align: left;
   }
-  signUp__button-icon {
+  .signUp__button-icon {
+    padding-right: 14px;
+    margin-right: 10px;
+    border-right: 1px solid white;
   }
 </style>

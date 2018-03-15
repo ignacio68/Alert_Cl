@@ -5,10 +5,29 @@ export default {
   namespaced: true,
   state: {
     socialButtons: [
-      { name: 'Email', socialLogIn: 'onEmailIn' },
-      { name: 'Facebook', socialLogIn: 'onFacebookIn' },
-      { name: 'Google', socialLogIn: 'onGoogleIn' },
-      { name: 'Twitter', socialLogIn: 'onTwitterIn' }
+      {
+        name: 'Facebook',
+        color: '#3b5998',
+        icons: 'ion-social-facebook, zmdi-facebook',
+        socialLogIn: 'onFacebookIn'
+      },
+      {
+        name: 'Google+',
+        color: '#d62d20',
+        icons: 'ion-social-google, zmdi-google',
+        socialLogIn: 'onGoogleIn'
+      },
+      {
+        name: 'Twitter',
+        color: '#0084b4',
+        icons: 'ion-social-twitter, zmdi-twitter',
+        socialLogIn: 'onTwitterIn'
+      },
+      {
+        name: 'Email',
+        color: '#F9671E',
+        icons: 'ion-ios-email, zmdi-email',
+        socialLogIn: 'onEmailIn' }
     ],
     errorMessage: ''
   },
@@ -45,42 +64,46 @@ export default {
      * Posibilidad de separarlo en módulos para mejorar la claridad
      * del software
      */
+    dispatchLogUp ({commit, dispatch}, logUp) {
+      dispatch(logUp)
+    },
     onEmailIn ({commit}) {
       console.log('Estoy en onEmailIn')
+      // commit('navigator/push', )
     },
-    onFacebookIn ({commit}) {
+    onFacebookIn ({commit, dispatch}) {
       console.log('Estoy en onFacebookIn')
-      commit('shared/setLoading', true)
-      commit('shared/clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       const provider = new firebase.auth.FacebookAuthProvider()
-      this.socialSignUp(provider)
+      dispatch('socialSignUp', provider)
     },
-    onGoogleIn ({commit}) {
+    onGoogleIn ({commit, dispatch}) {
       console.log('Estoy en onGoogleIn')
-      commit('setLoading', true)
-      commit('clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       const provider = new firebase.auth.GoogleAuthProvider()
       // provider.addScope()
-      this.socialSignUp(provider)
+      dispatch('socialSignUp', provider)
     },
-    onTwitterIn ({commit}) {
+    onTwitterIn ({commit, dispatch}) {
       console.log('Estoy en onTwitterIn')
-      commit('setLoading', true)
-      commit('clearError')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       const provider = new firebase.auth.TwitterAuthProvider()
       // provider.addScope ()
-      this.socialSignUp(provider)
+      dispatch('socialSignUp', provider)
     },
     // Log Up común a todos
     socialSignUp ({commit}, provider) {
-      provider.addScope('public_profile')
+      // provider.addScope('public_profile')
       firebase.auth().useDeviceLanguage()
       firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
       // firebase.auth().signInWithRedirect(provider)
       // firebase.auth().getRedirectResult()
         .then(
           result => {
-            commit('shared/setLoading', false)
+            commit('shared/setLoading', false, { root: true })
             if (result.credential) {
               // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
               let token = result.credential.accessToken
@@ -88,17 +111,15 @@ export default {
             }
             // Informacion del user
             const newUser = {
-              name: result.user.displayName,
-              email: result.user.email,
               id: result.user.uid
             }
-            commit('user/setUser', newUser)
+            commit('user/setUser', newUser, { root: true })
             console.log(newUser)
           }
         )
         .catch(
           error => {
-            commit('shared/setLoading', false)
+            commit('shared/setLoading', false, { root: true })
             // commit('setError', error)
             let errorCode = error.code
             commit('authError', errorCode)
