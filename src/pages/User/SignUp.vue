@@ -60,16 +60,16 @@
           </v-ons-list-item>
           <!-- PASSWORD INPUT -->
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
-            <user-input-password
+            <div class="left">
+              <user-input-password
               minlength="8"
+              :disableStrength="true"
               :placeholder="$t('lang.pages.signup.input.password')"
               required
-              modifier="float"
-              v-model="password"
-            >
-            </user-input-password>
+              v-model="password">
+              </user-input-password>
+            </div>
           </v-ons-list-item>
-          
         </v-ons-list>
         <v-ons-button
           class="center"
@@ -189,17 +189,18 @@
   }
   .form__input {
     border: 1px solid pink;
+    height: 50px;
   }
   .socialButtonsList {
     border: 1px solid blue;
   }
   .socialButtonsList__item {
     border: 1px solid red;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    height: 50px;
   }
   .socialButtonsList__item-button{
     border: 1px solid green;
+    height: 40px;
   }
   .mainText {
     padding-top: 20px;

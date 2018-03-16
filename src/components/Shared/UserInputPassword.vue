@@ -1,23 +1,22 @@
 <template>
   <div class="Password">
     <v-row>
-      <div class="left">
-        <v-ons-icon
-          icon="ion-locked, md-lock"
-          size="25px"
-          class="list-item__icon"></v-ons-icon>
-      </div>
-      <div class="Password__Input center">
+      <v-ons-icon
+        icon="ion-locked, md-lock"
+        size="25px"
+        style="color: black"
+        class="Password__icon">
+      </v-ons-icon>
+      <div class="Password__Input">
         <v-ons-input
           type="password"
-          class="Input"
+          
           :value="value"
           ref="input"
           @input="updatePassword($event.target.value)"
-          v-bind="$attrs"
-        >
+          v-bind="$attrs">
         </v-ons-input>
-        <slot
+        <!-- slot
           name="strength-meter"
           v-if="!disableStrength"
           :strength="this.strength">
@@ -38,16 +37,16 @@
           <div
             class="Password__Message"
             :class="strengthClass">{{ message }}</div>
-        </slot>
+        </slot-->
       </div>
-      <div class="left">
-        <v-ons-icon
-          class="Password__Togle_Icon"
-          id="icon"
-          icon="ion-eye-disabled, md-eye-off"
-          size="36px"
-          @click="togglePassword"></v-ons-icon>
-      </div>
+      <v-ons-icon
+        id="icon"
+        icon="ion-eye-disabled, md-eye-off"
+        size="25px"
+        style="color: black"
+        class="Password__Icon-toggle"
+        @click="togglePassword">
+      </v-ons-icon>
     </v-row>
   </div>
 </template>
@@ -156,6 +155,7 @@
        */
       togglePassword () {
         this.type = this.type === 'password' ? 'text' : 'password'
+        // IMPORTANTE: añadir $el para que funcione setAttribute
         this.$refs.input.$el.setAttribute('type', this.type)
       },
       getStrengthClass (strength) {
@@ -174,7 +174,24 @@
 </script>
 
 <style scoped>
+  .Password {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid grey;
+  },
+  .Password__icon {
+    float: left;
+    border: 1px solid blue;
+  },
   .Password__Input {
+    float: left;
+    border: 1px solid red;
+  },
+  .Password__Icon-toggle {
+    float: right;
+    border: 1px solid lime;
   },
   .Password__Meter {
     color: rgb(175, 175, 175);
@@ -209,9 +226,5 @@
     padding-right: .5rem;
     text-align: right;
     text-transform: uppercase;
-  },
-  .Password__Togle_Icon {
-    color: black;
   }
-
 </style>
