@@ -3,7 +3,8 @@ export default {
   namespaced: true,
   state: {
     stack: [],
-    options: {}
+    options: {},
+    index: 1 // Tabbar
   },
   getters: {
     pageStack (state) {
@@ -11,6 +12,9 @@ export default {
     },
     options (state) {
       return state.options
+    },
+    index (state) {
+      return state.index
     }
   },
   mutations: {
@@ -31,6 +35,10 @@ export default {
     },
     options (state, newOptions = {}) {
       state.options = newOptions
+    },
+    // Tabbar
+    set (state, index) {
+      state.index = index
     }
   },
   actions: {

@@ -1,6 +1,10 @@
 export default {
-  global: {
-    text1: 'El lenguaje es español'
+  homePage: {
+    toolbar: {
+      backLabel: '',
+      title: '¡¡ALERTAS!!'
+    },
+    tabbar: 'Perfil | ¡Alertas! | Buscar'
   },
   signup: {
     toolbar: {
@@ -10,7 +14,9 @@ export default {
     main: {
       text1: '¡Regístrate y comienza a recibir tus alertas favoritas!',
       text2: 'Ya tengo una cuenta',
-      text3: 'Al registrarte aceptas nuestros {terms} y la {privacy}'
+      text3: 'Al registrarte aceptas nuestros {terms} y la {privacy}',
+      terms: 'Términos de Uso',
+      privacy: 'Política de Privacidad'
     },
     input: {
       name: 'nombre',
@@ -35,6 +41,21 @@ export default {
     },
     main: {
       text: 'Política de privacidad'
+    }
+  },
+  alerts: {
+    main: {
+      text: 'PAGINA DE ALERTAS'
+    }
+  },
+  profile: {
+    main: {
+      text: 'PAGINA DEL PERFIL'
+    }
+  },
+  search: {
+    main: {
+      text: 'PAGINA DE BUSQUEDAS'
     }
   }
 }

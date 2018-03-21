@@ -1,6 +1,10 @@
 export default {
-  global: {
-    text1: 'The lenguage is english'
+  homePage: {
+    toolbar: {
+      backLabel: '',
+      title: 'ALERTS!!'
+    },
+    tabbar: 'Profile | Alerts! | Search'
   },
   signup: {
     toolbar: {
@@ -10,7 +14,9 @@ export default {
     main: {
       text1: 'Sign Up and start receiving your favorite alerts!',
       text2: 'I have a count',
-      text3: 'When you sign up you accept our {terms} & {privacy}'
+      text3: 'When you sign up you accept our {terms} & {privacy}',
+      terms: 'Terms of Use',
+      privacy: 'Privacy Politicy'
     },
     input: {
       name: 'name',
@@ -35,6 +41,21 @@ export default {
     },
     main: {
       text: 'Privacy policy'
+    }
+  },
+  alerts: {
+    main: {
+      text: 'ALERTS PAGE'
+    }
+  },
+  profile: {
+    main: {
+      text: 'PROFILE PAGE'
+    }
+  },
+  search: {
+    main: {
+      text: 'SEARCH PAGE'
     }
   }
 }

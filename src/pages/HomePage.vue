@@ -1,38 +1,80 @@
 <template>
   <v-ons-page>
-   	<the-preloader v-if="isActive"
-      loaderBackgroundColor ="red"
-      loaderOpacity ="0.3"
-      loaderRippleWidth ="3em"
-      loaderRipperHeigth ="3em">
-    </the-preloader>
     <the-custom-toolbar
-      :pageTitle="title">
+      modifier="white-content"
+      :pageTitle="$t('lang.pages.homePage.toolbar.title')">
+      <!--v-ons-toolbar-button slot="right" modifier="white-content"
+                            @click="$store.commit('splitter/toggle'); showTip(null, 'Try dragging from right edge!')"
+      >
+        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+      </v-ons-toolbar-button-->
     </the-custom-toolbar>
-    <div class="container">
-      <p>{{ $t('lang.pages.global.text1') }}</p>
-      <p>{{ $d(date, 'long')}}</p>
-      <p>{{ $n(1000, 'currency')}}</p>
-      <p>{{ $n(1000.2356, 'decimal')}}</p>
-    </div>
+
+    <v-ons-tabbar position="auto"
+                  swipeable
+                  :tabs="tabs"
+                  :index.sync="index"
+    ></v-ons-tabbar>
   </v-ons-page>
 </template>
 
 <script>
-export default {
-  name: 'home',
-  // created () {
-  //  setTimeout(this.isActive = !this.isActive, 5000)
-  // },
-  data () {
-    return {
-      title: 'PAGINA PRINCIPAL',
-      isActive: false,
-      date: new Date()
+  import Alerts from './Main/Alerts'
+  import Profile from './Main/Profile'
+  import Search from './Main/Search'
+
+  export default {
+    name: 'home',
+    data () {
+      return {
+        tabs: [
+          {
+            label: this.$tc('lang.pages.homePage.tabbar', 0),
+            icon: 'ion-camera, material:md-camera',
+            page: Profile
+          },
+          {
+            label: this.$tc('lang.pages.homePage.tabbar', 1),
+            icon: 'ion-ios-bell, material:md-notifications',
+            page: Alerts,
+            badge: 6
+          },
+          {
+            label: this.$tc('lang.pages.homePage.tabbar', 2),
+            icon: 'ion-search, material:md-search',
+            page: Search
+          }
+        ],
+        numAlerts: '8'
+      }
+    },
+    methods: {
+    },
+    computed: {
+      index: {
+        get () {
+          return this.$store.getters['navigator/index']
+        },
+        set (newValue) {
+          this.$store.commit('navigator/set', newValue)
+        }
+      }
     }
   }
-}
 </script>
 
 <style scoped>
+  /* Custom 'white-content' modifier */
+  .page--material .toolbar--white-content__center,
+  .page--material .toolbar-button--white-content,
+  .page--material :checked + .tabbar--white-content__button {
+    color: white;
+  }
+  .page--material .tabbar--white-content__button {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .page--material .tabbar--white-content__border {
+    background-color: white;
+  }
 </style>
+

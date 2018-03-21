@@ -13,13 +13,13 @@
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
       <p class="logInText">{{ $t('lang.pages.signup.main.text2') }}</p>
       <!-- LOGUP WITH EMAIL & PASSWORD -->
-      <!--form class="form" autocomplete="off"-->
+      <form class="form" autocomplete="off">
         <v-ons-list>
           <!-- NAME INPUT -->
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-person, zmdi-account"
+                icon="ion-person, material:md-account"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -40,7 +40,7 @@
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-ios-email, material:zmdi-email"
+                icon="ion-ios-email, material:md-email"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -60,7 +60,7 @@
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-locked, md-lock"
+                icon="ion-locked, material:md-lock"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -78,8 +78,13 @@
               >
               </v-ons-input>
               <div class="right">
-              <v-ons-icon
-                icon="ion-eye-disabled, md-eye-off"
+              <v-ons-icon v-if="!passwordVisible"
+                icon="ion-eye-disabled, material:md-eye-off"
+                class="list-item__icon"
+                @click="togglePassword">
+              </v-ons-icon>
+              <v-ons-icon v-if="passwordVisible"
+                icon="ion-eye, material:md-eye"
                 class="list-item__icon"
                 @click="togglePassword">
               </v-ons-icon>
@@ -104,11 +109,11 @@
           modifier="large"
           :disabled="loading"
           ripple="true"
-          @click="onSignUp"
+          @click.prevent="onSignUp"
         >
           Registrar
         </v-ons-button>
-      <!--/form-->
+      </form>
       <!-- LOGIN WITH SOCIAL BUTTONS -->
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
@@ -128,7 +133,7 @@
       <div class="privacy">
         <i18n
           class="privacy__text"
-          path="lang.pages.signup.main.text3"          
+          path="lang.pages.signup.main.text3"
           >
           <span
             class="privacy__text-link"
@@ -163,7 +168,8 @@
         name: '',
         email: '',
         password: '',
-        type: 'password'
+        type: 'password',
+        passwordVisible: false
       }
     },
     computed: {
@@ -212,27 +218,15 @@
         this.type = this.type === 'password' ? 'text' : 'password'
         // IMPORTANTE: añadir $el para que funcione setAttribute
         this.$refs.passwordInput.$el.setAttribute('type', this.type)
-        if (this.type === 'password') {
-          this.$refs.passwordInput.$el.setAttribute('icon', 'ion-eye-disabled, md-eye-off')
-        } else {
-          this.$refs.passwordInput.$el.setAttribute('icon', 'ion-ios-email, material:zmdi-email')
-        }
-        let icon = this.$refs.passwordInput.$el.getAttribute('icon')
-        console.log('El icono del password es: ' + icon)
+        this.passwordVisible = !this.passwordVisible
       }
     }
   }
 </script>
 
 <style scoped>
-  .main{
-    background-color: purple;
-  }
-  .container {
-    background-color: purple;
-  } 
   .form {
-    border: 1px solid black;
+    border: 1px solid green;
   }
   .form__input {
     border: 1px solid pink;
