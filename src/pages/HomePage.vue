@@ -7,12 +7,10 @@
       loaderRipperHeigth ="3em">
     </the-preloader>
     <the-custom-toolbar
-      :backLabel="atras"
       :pageTitle="title">
     </the-custom-toolbar>
     <div class="container">
       <p>{{ $t('lang.pages.global.text1') }}</p>
-      <p>{{ $t('lang.pages.global.text2') }}</p>
       <p>{{ $d(date, 'long')}}</p>
       <p>{{ $n(1000, 'currency')}}</p>
       <p>{{ $n(1000.2356, 'decimal')}}</p>
@@ -28,8 +26,7 @@ export default {
   // },
   data () {
     return {
-      title: 'INICIO',
-      atras: 'volver',
+      title: 'PAGINA PRINCIPAL',
       isActive: false,
       date: new Date()
     }

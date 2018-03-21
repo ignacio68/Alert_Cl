@@ -10,7 +10,6 @@
       <div class="Password__Input">
         <v-ons-input
           type="password"
-          
           :value="value"
           ref="input"
           @input="updatePassword($event.target.value)"

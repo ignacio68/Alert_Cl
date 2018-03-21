@@ -1,5 +1,5 @@
 <template>
-  <v-ons-page>
+  <v-ons-page class="main">
     <the-preloader v-if="isActive"
                    loaderBackgroundColor ="red"
                    loaderOpacity ="0.3"
@@ -13,14 +13,13 @@
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
       <p class="logInText">{{ $t('lang.pages.signup.main.text2') }}</p>
       <!-- LOGUP WITH EMAIL & PASSWORD -->
-      <form class="form">
+      <!--form class="form" autocomplete="off"-->
         <v-ons-list>
           <!-- NAME INPUT -->
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
                 icon="ion-person, zmdi-account"
-                size="30px"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -42,7 +41,6 @@
             <div class="left">
               <v-ons-icon
                 icon="ion-ios-email, material:zmdi-email"
-                size="30px"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -58,7 +56,37 @@
               </v-ons-input>
             </div>
           </v-ons-list-item>
-          <!-- PASSWORD INPUT -->
+           <!-- PASSWORD INPUT -->
+          <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
+            <div class="left">
+              <v-ons-icon
+                icon="ion-locked, md-lock"
+                class="list-item__icon">
+              </v-ons-icon>
+            </div>
+            <div class="center">
+              <v-ons-input
+                type="password"
+                input-id="password"
+                :placeholder="$t('lang.pages.signup.input.password')"
+                required
+                float
+                modifier="underbar"
+                v-model="password"
+                v-bind="$attrs"
+                ref="passwordInput"
+              >
+              </v-ons-input>
+              <div class="right">
+              <v-ons-icon
+                icon="ion-eye-disabled, md-eye-off"
+                class="list-item__icon"
+                @click="togglePassword">
+              </v-ons-icon>
+            </div>
+            </div>
+          </v-ons-list-item>
+          <!-- PASSWORD INPUT >
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <user-input-password
@@ -69,7 +97,7 @@
               v-model="password">
               </user-input-password>
             </div>
-          </v-ons-list-item>
+          </v-ons-list-item -->
         </v-ons-list>
         <v-ons-button
           class="center"
@@ -80,7 +108,7 @@
         >
           Registrar
         </v-ons-button>
-      </form>
+      <!--/form-->
       <!-- LOGIN WITH SOCIAL BUTTONS -->
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
@@ -122,19 +150,20 @@
   import SignIn from './SignIn'
   import HomePage from '../HomePage'
   import SignUpButton from '../../components/Shared/SignUpButton'
-  import UserInputPassword from '../../components/Shared/UserInputPassword'
+  // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
-      SignUpButton,
-      UserInputPassword
+      SignUpButton
+      // UserInputPassword
     },
     data () {
       return {
         isActive: false,
         name: '',
         email: '',
-        password: ''
+        password: '',
+        type: 'password'
       }
     },
     computed: {
@@ -178,12 +207,30 @@
       },
       toPrivacy () {
         this.$store.commit('navigator/push', PrivacyPolicy)
+      },
+      togglePassword () {
+        this.type = this.type === 'password' ? 'text' : 'password'
+        // IMPORTANTE: añadir $el para que funcione setAttribute
+        this.$refs.passwordInput.$el.setAttribute('type', this.type)
+        if (this.type === 'password') {
+          this.$refs.passwordInput.$el.setAttribute('icon', 'ion-eye-disabled, md-eye-off')
+        } else {
+          this.$refs.passwordInput.$el.setAttribute('icon', 'ion-ios-email, material:zmdi-email')
+        }
+        let icon = this.$refs.passwordInput.$el.getAttribute('icon')
+        console.log('El icono del password es: ' + icon)
       }
     }
   }
 </script>
 
 <style scoped>
+  .main{
+    background-color: purple;
+  }
+  .container {
+    background-color: purple;
+  } 
   .form {
     border: 1px solid black;
   }
@@ -201,6 +248,9 @@
   .socialButtonsList__item-button{
     border: 1px solid green;
     height: 40px;
+  }
+  .list-item__icon {
+    size: 25px;
   }
   .mainText {
     padding-top: 20px;

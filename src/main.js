@@ -87,7 +87,7 @@ new Vue({
     // Check if we can use the internationalization API
     if (window.Intl && typeof window.Intl === 'object') {
     // Assume it's supported, lets localize!
-      console.log('Existe la internalizacion')
+      console.log('Se  puede utilizar la internalizacion')
     }
   },
   created () {
