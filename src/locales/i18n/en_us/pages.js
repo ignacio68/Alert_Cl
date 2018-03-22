@@ -26,6 +26,18 @@ export default {
     button: 'SIGN UP'
   },
   signin: {
+    toolbar: {
+      backLabel: '',
+      title: 'LOG IN'
+    },
+    main: {
+      text1: 'LOGIN PAGE',
+      text2: 'Ya tengo una cuenta',
+      text3: 'Al registrarte aceptas nuestros {terms} y la {privacy}',
+      terms: 'Términos de Uso',
+      privacy: 'Política de Privacidad'
+    },
+    button: 'LOG IN'
   },
   service: {
     toolbar: {

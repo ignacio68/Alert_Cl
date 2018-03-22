@@ -11,7 +11,10 @@
     </the-custom-toolbar>
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
-      <p class="logInText">{{ $t('lang.pages.signup.main.text2') }}</p>
+      <p class="logInText"
+        @click="toSignIn">
+        {{ $t('lang.pages.signup.main.text2') }}
+      </p>
       <!-- LOGUP WITH EMAIL & PASSWORD -->
       <form class="form" autocomplete="off">
         <v-ons-list>
@@ -19,7 +22,7 @@
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-person, material:md-account"
+                icon="ion-person, material:zmdi-account"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -30,7 +33,6 @@
                 float
                 modifier="transparent"
                 v-model="name"
-                @click="onDismissed"
                 required
               >
               </v-ons-input>
@@ -40,13 +42,14 @@
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-ios-email, material:md-email"
+                icon="ion-ios-email, material:zmdi-email"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
             <div class="center">
               <v-ons-input
                 type="email"
+                minlength="6"
                 :placeholder="$t('lang.pages.signup.input.email')"
                 required
                 float
@@ -60,7 +63,7 @@
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
-                icon="ion-locked, material:md-lock"
+                icon="ion-locked, material:zmdi-lock"
                 class="list-item__icon">
               </v-ons-icon>
             </div>
@@ -68,6 +71,7 @@
               <v-ons-input
                 type="password"
                 input-id="password"
+                minlength="8"
                 :placeholder="$t('lang.pages.signup.input.password')"
                 required
                 float
@@ -79,12 +83,12 @@
               </v-ons-input>
               <div class="right">
               <v-ons-icon v-if="!passwordVisible"
-                icon="ion-eye-disabled, material:md-eye-off"
+                icon="ion-eye-disabled, material:zmdi-eye-off"
                 class="list-item__icon"
                 @click="togglePassword">
               </v-ons-icon>
               <v-ons-icon v-if="passwordVisible"
-                icon="ion-eye, material:md-eye"
+                icon="ion-eye, material:zmdi-eye"
                 class="list-item__icon"
                 @click="togglePassword">
               </v-ons-icon>
@@ -104,16 +108,16 @@
             </div>
           </v-ons-list-item -->
         </v-ons-list>
-        <v-ons-button
-          class="center"
-          modifier="large"
-          :disabled="loading"
-          ripple="true"
-          @click.prevent="onSignUp"
-        >
-          Registrar
-        </v-ons-button>
       </form>
+      <v-ons-button
+        class="center"
+        modifier="large"
+        :disabled="buttonActive"
+        ripple="true"
+        @click.prevent="onSignUp"
+      >
+        {{ $t('lang.pages.signup.button')}}
+      </v-ons-button>
       <!-- LOGIN WITH SOCIAL BUTTONS -->
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
@@ -190,6 +194,13 @@
       },
       privacy () {
         return this.$t('lang.pages.signup.main.privacy')
+      },
+      buttonActive () {
+        if (this.name.length >= 1 && this.email.length >= 6 && this.password.length >= 8) {
+          return false
+        } else {
+          return true
+        }
       }
     },
     methods: {

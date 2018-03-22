@@ -26,6 +26,18 @@ export default {
     button: 'REGISTRAR'
   },
   signin: {
+    toolbar: {
+      backLabel: '',
+      title: 'ACCESO'
+    },
+    main: {
+      text1: 'PAGINA DE ACCESO',
+      text2: 'Ya tengo una cuenta',
+      text3: 'Al registrarte aceptas nuestros {terms} y la {privacy}',
+      terms: 'Términos de Uso',
+      privacy: 'Política de Privacidad'
+    },
+    button: 'ACCEDER'
   },
   service: {
     toolbar: {

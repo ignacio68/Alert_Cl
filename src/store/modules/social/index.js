@@ -87,9 +87,9 @@ export default {
     socialSignUp ({commit}, provider) {
       // provider.addScope('public_profile')
       firebase.auth().useDeviceLanguage()
-      firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
-      // firebase.auth().signInWithRedirect(provider)
-      // firebase.auth().getRedirectResult()
+      // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
+      firebase.auth().signInWithRedirect(provider)
+      firebase.auth().getRedirectResult()
         .then(
           result => {
             commit('shared/setLoading', false, { root: true })
