@@ -64,19 +64,19 @@ export default {
       console.log('la red social elegida es: ' + name)
       switch (name) {
         case 'Facebook' : {
-          const provider = new firebase.auth.FacebookAuthProvider()
+          let provider = new firebase.auth.FacebookAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Google' : {
-          const provider = new firebase.auth.GoogleAuthProvider()
+          let provider = new firebase.auth.GoogleAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Twitter' : {
-          const provider = new firebase.auth.TwitterAuthProvider()
+          let provider = new firebase.auth.TwitterAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break

@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>alert_cliente</name>
+<widget android-versionCode="1" id="com.alerta.cliente" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>AlertaCliente</name>
     <description>
       Vue.js + Onsen UI + Cordova sample app
     </description>
     <author email="ignaciolopezamor@gmail.com" href="">
-      Vue.js + Onsen UI + Cordova teams
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -21,6 +20,20 @@
         <icon density="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
         <icon density="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
         <icon density="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
+        <icon density="xxhdpi" src="/res/icon/android/icon-144-xxhdpi.png" />
+        <icon density="xxxhdpi" src="/res/icon/android/icon-192-xxxhdpi.png" />
+        <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+        <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+        <splash density="land-hdpi" src="res/screen/android/screen-hdpi-landscape.png" />
+        <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+        <splash density="land-xxhdpi" src="res/screen/android/screen-xxhdpi-landscape.png" />
+        <splash density="land-xxxhdpi" src="res/screen/android/screen-xxxhdpi-landscape.png" />
+        <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+        <splash density="port-xxhdpi" src="res/screen/android/screen-xxhdpi-portrait.png" />
+        <splash density="port-xxxhdpi" src="res/screen/android/screen-xxxhdpi-portrait.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -31,8 +44,28 @@
         <host name="alert-cliente.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
+        <host name="index.html" scheme="https" />
+        <host name="cliente.alerta.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
     </universal-links>
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Fullscreen" value="true" />
     <preference name="AndroidLaunchMode" value="singleTask" />
+    <preference name="BackgroundColor" value="0xFFFF4B4B" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.alerta.clente" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^7.0.0" />
 </widget>
