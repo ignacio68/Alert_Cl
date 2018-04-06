@@ -44,10 +44,6 @@
         <host name="alert-cliente.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
-        <host name="index.html" scheme="https" />
-        <host name="cliente.alerta.com" scheme="https">
-            <path url="/__/auth/callback" />
-        </host>
     </universal-links>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Fullscreen" value="true" />
