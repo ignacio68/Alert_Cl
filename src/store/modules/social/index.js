@@ -64,24 +64,26 @@ export default {
       console.log('la red social elegida es: ' + name)
       switch (name) {
         case 'Facebook' : {
-          let provider = new firebase.auth.FacebookAuthProvider()
+          const provider = new firebase.auth.FacebookAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Google' : {
-          let provider = new firebase.auth.GoogleAuthProvider()
+          const provider = new firebase.auth.GoogleAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Twitter' : {
-          let provider = new firebase.auth.TwitterAuthProvider()
+          const provider = new firebase.auth.TwitterAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
       }
+      // provider.addScope('public_profile')
+      // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
     },
     // Log Up común a todos
     socialSignUp ({commit}, provider) {
@@ -89,32 +91,34 @@ export default {
       firebase.auth().useDeviceLanguage()
       // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
       firebase.auth().signInWithRedirect(provider)
-      firebase.auth().getRedirectResult()
-        .then(
-          result => {
-            commit('shared/setLoading', false, { root: true })
-            if (result.credential) {
-              // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
-              let token = result.credential.accessToken
-              console.log('El token es: ' + token)
-            }
-            // Informacion del user
-            const newUser = {
-              id: result.user.uid
-            }
-            commit('user/setUser', newUser, { root: true })
-            console.log(newUser)
-          }
-        )
-        .catch(
-          error => {
-            commit('shared/setLoading', false, { root: true })
-            // commit('setError', error)
-            let errorCode = error.code
-            commit('authError', errorCode)
-            console.log(errorCode)
-          }
-        )
+        .then(() => {
+          firebase.auth().getRedirectResult()
+            .then(
+              result => {
+                commit('shared/setLoading', false, { root: true })
+                if (result.credential) {
+                // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
+                  let token = result.credential.accessToken
+                  console.log('El token es: ' + token)
+                }
+                // Informacion del user
+                const newUser = {
+                  id: result.user.uid
+                }
+                commit('user/setUser', newUser, { root: true })
+                console.log(newUser)
+              }
+            )
+            .catch(
+              error => {
+                commit('shared/setLoading', false, { root: true })
+                // commit('setError', error)
+                let errorCode = error.code
+                commit('authError', errorCode)
+                console.log(errorCode)
+              }
+            )
+        })
     }
   }
 }

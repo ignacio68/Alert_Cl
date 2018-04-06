@@ -41,6 +41,7 @@
     </platform>
     <universal-links>
         <host name="localhost:8080" scheme="https" />
+        <host name="cw7sz.app.goo.gl" scheme="https" />
         <host name="alert-cliente.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
@@ -56,12 +57,12 @@
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
-        <variable name="URL_SCHEME" value="com.alerta.clente" />
+        <variable name="URL_SCHEME" value="com.alerta.cliente" />
         <variable name="ANDROID_SCHEME" value=" " />
         <variable name="ANDROID_HOST" value=" " />
         <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
-    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-universal-links-plugin" spec="https://github.com/walteram/cordova-universal-links-plugin" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^7.0.0" />
 </widget>
