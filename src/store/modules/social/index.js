@@ -82,15 +82,13 @@ export default {
           break
         }
       }
-      // provider.addScope('public_profile')
-      // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
     },
     // Log Up común a todos
     socialSignUp ({commit}, provider) {
       // provider.addScope('public_profile')
       firebase.auth().useDeviceLanguage()
-      // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
-      firebase.auth().signInWithRedirect(provider)
+      firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción
+      // firebase.auth().signInWithRedirect(provider)
         .then(() => {
           firebase.auth().getRedirectResult()
             .then(
@@ -98,7 +96,7 @@ export default {
                 commit('shared/setLoading', false, { root: true })
                 if (result.credential) {
                 // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
-                  let token = result.credential.accessToken
+                  const token = result.credential.accessToken
                   console.log('El token es: ' + token)
                 }
                 // Informacion del user
@@ -106,7 +104,7 @@ export default {
                   id: result.user.uid
                 }
                 commit('user/setUser', newUser, { root: true })
-                console.log(newUser)
+                console.log(newUser.id)
               }
             )
             .catch(

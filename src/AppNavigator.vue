@@ -12,11 +12,13 @@
 
   export default {
     name: 'appNavigator',
-    beforeCreate () {
+    beforeMount () {
       if (this.userIsAuthenticated) {
         this.$store.commit('navigator/push', HomePage)
+        console.log('El usuario está autenticado')
       } else {
         this.$store.commit('navigator/push', SignUp)
+        console.log('El usuario NO está autenticado')
       }
     },
     data () {
@@ -31,6 +33,7 @@
         return this.$store.getters['navigator/options']
       },
       userIsAuthenticated () {
+        console.log('Comprobando si el usuario está autenticado')
         return this.$store.getters['user/user'] !== null && this.$store.getters['user/user'] !== undefined
       }
     },
