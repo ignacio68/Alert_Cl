@@ -6,10 +6,10 @@ export default {
     ]
   },
   button: [
-    { submit: 'Submit' },
-    { sigup: 'Sign Up' },
-    { sigin: 'Sign In' },
-    { signout: 'Sign Out' },
+    { submit: 'Enviar' },
+    { sigup: 'Registrar' },
+    { sigin: 'Entrar' },
+    { signout: 'Desconectar' },
     { reset: 'Reset' }
   ]
 }

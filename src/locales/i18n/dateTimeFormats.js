@@ -1,5 +1,5 @@
 export const dateTimeFormats = {
-  'en-Us': {
+  'enUS': {
     short: {
       year: 'numeric',
       month: 'short',
@@ -15,7 +15,7 @@ export const dateTimeFormats = {
       second: 'numeric'
     }
   },
-  'es': {
+  'esES': {
     short: {
       year: 'numeric',
       month: 'short',

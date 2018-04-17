@@ -20,6 +20,7 @@
         this.$store.commit('navigator/push', SignUp)
         console.log('El usuario NO está autenticado')
       }
+      // this.$store.commit('navigator/push', SignUp)
     },
     data () {
       return {

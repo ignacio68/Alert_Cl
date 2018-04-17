@@ -13,7 +13,7 @@ import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import * as firebase from 'firebase'
 import { store } from './store'
-import i18n from './locales'
+import i18n from './locales/index'
 
 // import VueOnsen from 'vue-onsenui/esm'; // Cuando se utiliza ESM
 // import * as OnsenComponents from './onsen-components'; // Cuando se utiliza ESM
@@ -57,7 +57,11 @@ Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 /**
  * Get device language
  */
-const lang = navigator.language
+let val = navigator.language ||
+      navigator.languages[0] ||
+      navigator.browserLanguage ||
+      navigator.userLanguage ||
+      navigator.systemLanguage
 
 /* eslint-disable no-new */
 new Vue({
@@ -69,9 +73,10 @@ new Vue({
   beforeCreate () {
     // Set app language
     this.$ons.ready(() => {
-      if (lang) {
-        console.log('el lenguaje es ' + lang)
+      if (val) {
+        const lang = val.replace('-', '')
         i18n.locale = lang
+        console.log('el lenguaje es ' + i18n.locale)
       }
     })
 

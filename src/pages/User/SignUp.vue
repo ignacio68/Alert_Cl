@@ -15,7 +15,7 @@
         @click="toSignIn">
         {{ $t('lang.pages.signup.main.text2') }}
       </p>
-      <!-- LOGUP WITH EMAIL & PASSWORD -->
+<!-------SIGNUP WITH EMAIL & PASSWORD ------>
       <form class="form" autocomplete="off">
         <v-ons-list>
           <!-- NAME INPUT -->
@@ -118,7 +118,7 @@
       >
         {{ $t('lang.pages.signup.button')}}
       </v-ons-button>
-      <!-- LOGIN WITH SOCIAL BUTTONS -->
+<!------ LOGIN WITH SOCIAL BUTTONS ------>
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"

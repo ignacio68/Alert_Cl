@@ -1,12 +1,12 @@
 export const numberFormats = {
-  'en-Us': {
+  'enUS': {
     currency: {
       style: 'currency',
       currency: 'USD',
       currencyDisplay: 'symbol'
     }
   },
-  'es': {
+  'esES': {
     currency: {
       style: 'currency',
       currency: 'EUR',
