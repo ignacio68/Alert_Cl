@@ -29,10 +29,10 @@ import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
 
 /**
  * Import Pages
-
 import TermsOfService from './pages/Shared/TermsOfService'
 import PrivacyPolicy from './pages/Shared/PrivacyPolicy'
  */
+
 /**
  * Global Config
  */
@@ -54,15 +54,6 @@ Vue.component('the-preloader', ThePreloader) // Preloader
 Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 // Vue.component('app-alert', AlertCmp) // Alerta de errores
 
-/**
- * Get device language
- */
-let val = navigator.language ||
-      navigator.languages[0] ||
-      navigator.browserLanguage ||
-      navigator.userLanguage ||
-      navigator.systemLanguage
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -71,14 +62,18 @@ new Vue({
   render: h => h(AppNavigator),
 
   beforeCreate () {
+    console.log('main.js beforeCreate()')
+    /** this.$ons.ready(() => {
+    }) */
+
     // Set app language
-    this.$ons.ready(() => {
-      if (val) {
-        const lang = val.replace('-', '')
-        i18n.locale = lang
-        console.log('el lenguaje es ' + i18n.locale)
-      }
-    })
+    let val = navigator.language
+    if (val) {
+      // let lang = val.replace('-', '')
+      let lang = val.slice(0, 2)
+      i18n.locale = lang
+      console.log('el lenguaje es ' + i18n.locale)
+    }
 
     // Shortcut for Material Design
     Vue.prototype.md = this.$ons.platform.isAndroid()
@@ -92,10 +87,11 @@ new Vue({
     // Check if we can use the internationalization API
     if (window.Intl && typeof window.Intl === 'object') {
     // Assume it's supported, lets localize!
-      console.log('Se  puede utilizar la internalizacion')
+      console.log('Se  puede utilizar la internacionalizacion')
     }
   },
   created () {
+    console.log('main.js created()')
     firebase.initializeApp({
       apiKey: 'AIzaSyC4OtkddDOolko9H3m9gJLCI9ihq4wvFqs',
       authDomain: 'alert-cliente.firebaseapp.com',
@@ -106,9 +102,10 @@ new Vue({
     })
     // If user is authenticated then autosign in
     firebase.auth().onAuthStateChanged((user) => {
+      console.log('firebase.auth().onAuthStateChanged')
       if (user) {
         this.$store.dispatch('user/autoSignIn', user)
-        console.log('El usuario es: ' + user)
+        console.log('El usuario es: ' + user.uid)
       }
     })
   }

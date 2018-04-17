@@ -3,8 +3,7 @@ import AppNavigator from './AppNavigator'
 
 describe('AppNavigator.vue', () => {
 
-  const wrapper = shallow(AppNavigator)
-  const vm = wrapper.vm
+  let wrapper
 
   beforeEach(() => {})
 
@@ -13,7 +12,7 @@ describe('AppNavigator.vue', () => {
   })
 
   it('carga la página HomePage si el usuario SI está autenticado', () => {
-
+    wrapper = shallow(AppNavigator)
   })
 
   it('carga la página SignUp si el usuario NO está autenticado', () => {

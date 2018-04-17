@@ -21,10 +21,10 @@ import { numberFormats } from './i18n/numberFormats'
 import { dateTimeFormats } from './i18n/dateTimeFormats'
 
 const messages = {
-  enUS: {
+  en: {
     lang: enUs
   },
-  esES: {
+  es: {
     lang: esEs
   }
 }
@@ -38,7 +38,7 @@ Vue.use(VueI18n)
  * Export
  */
 export default new VueI18n({
-  fallbackLocale: 'enUS',
+  fallbackLocale: 'en',
   messages,
   dateTimeFormats,
   numberFormats

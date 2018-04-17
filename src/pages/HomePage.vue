@@ -22,9 +22,17 @@
   import Alerts from './Main/Alerts'
   import Profile from './Main/Profile'
   import Search from './Main/Search'
+  import SignUp from './User/SignUp'
 
   export default {
     name: 'home',
+    beforeMount () {
+      console.log('HomePage beforeMount()')
+      if (!this.userIsAuthenticated) {
+        this.$store.commit('navigator/push', SignUp)
+        console.log('El usuario NO está autenticado')
+      }
+    },
     data () {
       return {
         tabs: [
@@ -48,8 +56,6 @@
         numAlerts: '8'
       }
     },
-    methods: {
-    },
     computed: {
       index: {
         get () {
@@ -58,7 +64,14 @@
         set (newValue) {
           this.$store.commit('navigator/set', newValue)
         }
+      },
+      userIsAuthenticated () {
+        console.log('Comprobando si el usuario está autenticado')
+        console.log(this.$store.getters['user/user'])
+        return this.$store.getters['user/user'] !== null && this.$store.getters['user/user'] !== undefined
       }
+    },
+    methods: {
     }
   }
 </script>

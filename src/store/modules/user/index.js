@@ -1,4 +1,6 @@
 import * as firebase from 'firebase'
+import HomePage from '../../../pages/HomePage'
+import SignUp from '../../../pages/User/SignUp'
 
 export default {
   strict: true,
@@ -33,16 +35,16 @@ export default {
           user => {
             commit('shared/setLoading', false, { root: true })
             const newUser = {
-              // Añadimos los datos del usuario prporcionados por Firebase
+              // Añadimos los datos del nuevo usuario
               id: user.uid,
               name: user.displayName,
               email: user.email,
               photo: user.photoUrl
             }
-            commit('setUser', newUser) // Llamamos a la mutacion 'setUser' para añadir nuevas propiedades al user
+            commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + newUser.email)
           }
-        )
+        ).then(commit('navigator/push', HomePage, { root: true }))
         .catch(
           error => {
             console.log('Estoy en el catch de errores de signUserUp')
@@ -67,7 +69,7 @@ export default {
             }
             commit('setUser', newUser)
           }
-        )
+        ).then(commit('navigator/push', HomePage, { root: true }))
         .catch(
           error => {
             commit('shared/setLoading', false, { root: true })
@@ -95,9 +97,8 @@ export default {
           result => {
             commit('shared/setLoading', false, { root: true })
             commit('shared/clearUser', null, { root: true })
-            commit('social/clearSocialButtonsVisible')
           }
-        )
+        ).then(commit('navigator/push', SignUp, { root: true }))
         .catch(
           error => {
             commit('shared/setLoading', false, { root: true })
@@ -124,7 +125,6 @@ export default {
       */
       const activeUser = firebase.auth().currentUser
       if (activeUser != null) {
-        // commit('navigator/push', page)
         console.log(activeUser.email + ' está conectado')
       } else {
         console.log('No hay ningún usuario conectado')

@@ -157,7 +157,6 @@
   import TermsOfService from '../Shared/TermsOfService'
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import SignIn from './SignIn'
-  import HomePage from '../HomePage'
   import SignUpButton from '../../components/Shared/SignUpButton'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
@@ -212,8 +211,11 @@
       },
       onSignUp () {
         console.log('Estoy en onSignUp')
-        this.$store.dispatch('user/signUserUp', {name: this.name, email: this.email, password: this.password})
-        this.$store.commit('navigator/push', HomePage)
+        this.$store.dispatch('user/signUserUp', {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        })
       },
       onDismissed () {
         console.log('estoy en onDismissed!!')

@@ -26,9 +26,8 @@
 </template>
 
 <script>
-  import HomePage from '../HomePage'
   export default {
-    name: 'signin',
+    name: 'sign-in',
     data () {
       return {
         email: '',
@@ -47,13 +46,11 @@
     methods: {
       onSignIn () {
         console.log('Estoy en onSignIn')
-        this.$store.dispatch('user/signUserUp',
+        this.$store.dispatch('user/signUserIn',
           {
-            name: this.name,
             email: this.email,
             password: this.password
           })
-        this.$store.commit('navigator/push', HomePage)
       }
     }
   }
