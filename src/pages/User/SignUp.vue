@@ -12,7 +12,7 @@
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
       <p class="logInText"
-        @click="toSignIn">
+        @click.prevent="toSignIn">
         {{ $t('lang.pages.signup.main.text2') }}
       </p>
 <!-------SIGNUP WITH EMAIL & PASSWORD ------>
@@ -85,12 +85,12 @@
               <v-ons-icon v-if="!passwordVisible"
                 icon="ion-eye-disabled, material:zmdi-eye-off"
                 class="list-item__icon"
-                @click="togglePassword">
+                @click.prevent="togglePassword">
               </v-ons-icon>
               <v-ons-icon v-if="passwordVisible"
                 icon="ion-eye, material:zmdi-eye"
                 class="list-item__icon"
-                @click="togglePassword">
+                @click.prevent="togglePassword">
               </v-ons-icon>
             </div>
             </div>
@@ -108,6 +108,10 @@
             </div>
           </v-ons-list-item -->
         </v-ons-list>
+        <!-- ERROR -->
+        <v-ons-list-item>
+          <p v-if="error" class="error">{{ $t('lang.errors.auth.invalidDisplayName') }}</p>
+        </v-ons-list-item>
       </form>
       <v-ons-button
         class="center"
@@ -141,11 +145,11 @@
           >
           <span
             class="privacy__text-link"
-            @click="toTerms"
+            @click.prevent="toTerms"
             place="terms">{{ terms }}</span>
           <span
             class="privacy__text-link"
-            @click="toPrivacy"
+            @click.prevent="toPrivacy"
             place="privacy">{{ privacy }}</span>
         </i18n>
       </div>
@@ -278,5 +282,8 @@
   }
   .privacy__text-link {
     color: rebeccapurple;
+  }
+  .error {
+    color: red;
   }
 </style>

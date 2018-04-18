@@ -16,6 +16,7 @@ export default {
   mutations: {
     setUser (state, newUser) {
       state.user = newUser // Añade a user las propiedades del usuario registrado
+      console.log(state.user.email)
     },
     clearUser (state) {
       state.user = null
@@ -43,8 +44,9 @@ export default {
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + newUser.email)
+            commit('navigator/push', HomePage, { root: true })
           }
-        ).then(commit('navigator/push', HomePage, { root: true }))
+        )
         .catch(
           error => {
             console.log('Estoy en el catch de errores de signUserUp')
@@ -59,19 +61,23 @@ export default {
     signUserIn ({commit}, user) {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
+      console.log('Estoy en signUserIn')
       /* Comprueba que el usuario existe en Firebase */
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(
           user => {
+            console.log('signUserIn user')
             commit('shared/setLoading', false, { root: true })
             const newUser = {
               id: user.uid
             }
             commit('setUser', newUser)
+            commit('navigator/push', HomePage, { root: true })
           }
-        ).then(commit('navigator/push', HomePage, { root: true }))
+        )
         .catch(
           error => {
+            console.log('signUserIn error')
             commit('shared/setLoading', false, { root: true })
             commit('shared/setError', error, { root: true })
             console.log(error)

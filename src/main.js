@@ -12,6 +12,7 @@ import 'onsenui/css/onsen-css-components.css'
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import * as firebase from 'firebase'
+import firebaseConfig from './components/Firebase/firebaseConfig'
 import { store } from './store'
 import i18n from './locales/index'
 
@@ -28,23 +29,11 @@ import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
 // import AlertCmp from './components/Shared/Alert'
 
 /**
- * Import Pages
-import TermsOfService from './pages/Shared/TermsOfService'
-import PrivacyPolicy from './pages/Shared/PrivacyPolicy'
- */
-
-/**
  * Global Config
  */
 Vue.config.productionTip = false
 // Vue.use(Vuex)
 Vue.use(VueOnsen)
-
-/**
- *  Register pages globally
-Vue.component('TermsOfService', TermsOfService)
-Vue.component('PrivacyPolicy', PrivacyPolicy)
- */
 
 /**
  * Register components globally
@@ -54,59 +43,56 @@ Vue.component('the-preloader', ThePreloader) // Preloader
 Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 // Vue.component('app-alert', AlertCmp) // Alerta de errores
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  i18n,
-  store,
-  render: h => h(AppNavigator),
+let app
 
-  beforeCreate () {
-    console.log('main.js beforeCreate()')
-    /** this.$ons.ready(() => {
-    }) */
+firebase.initializeApp(firebaseConfig)
+firebase.auth().onAuthStateChanged((user) => {
+  console.log('firebase.auth().onAuthStateChanged')
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      i18n,
+      store,
+      render: h => h(AppNavigator),
+      beforeCreate () {
+        console.log('main.js beforeCreate()')
+        /** this.$ons.ready(() => {
+            }) */
 
-    // Set app language
-    let val = navigator.language
-    if (val) {
-      // let lang = val.replace('-', '')
-      let lang = val.slice(0, 2)
-      i18n.locale = lang
-      console.log('el lenguaje es ' + i18n.locale)
-    }
+        // Set app language
+        let val = navigator.language
+        if (val) {
+          // let lang = val.replace('-', '')
+          let lang = val.slice(0, 2)
+          i18n.locale = lang
+          console.log('el lenguaje es ' + i18n.locale)
+        }
 
-    // Shortcut for Material Design
-    Vue.prototype.md = this.$ons.platform.isAndroid()
+        // Shortcut for Material Design
+        Vue.prototype.md = this.$ons.platform.isAndroid()
 
-    // Set iPhoneX flag based on URL
-    if (window.location.search.match(/iphonex/i)) {
-      document.documentElement.setAttribute('onsflag-iphonex-portrait', '')
-      document.documentElement.setAttribute('onsflag-iphonex-landscape', '')
-    }
+        // Set iPhoneX flag based on URL
+        if (window.location.search.match(/iphonex/i)) {
+          document.documentElement.setAttribute('onsflag-iphonex-portrait', '')
+          document.documentElement.setAttribute('onsflag-iphonex-landscape', '')
+        }
 
-    // Check if we can use the internationalization API
-    if (window.Intl && typeof window.Intl === 'object') {
-    // Assume it's supported, lets localize!
-      console.log('Se  puede utilizar la internacionalizacion')
-    }
-  },
-  created () {
-    console.log('main.js created()')
-    firebase.initializeApp({
-      apiKey: 'AIzaSyC4OtkddDOolko9H3m9gJLCI9ihq4wvFqs',
-      authDomain: 'alert-cliente.firebaseapp.com',
-      databaseURL: 'https://alert-cliente.firebaseio.com',
-      projectId: 'alert-cliente',
-      storageBucket: 'alert-cliente.appspot.com',
-      messagingSenderId: '256084022437'
-    })
-    // If user is authenticated then autosign in
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log('firebase.auth().onAuthStateChanged')
-      if (user) {
-        this.$store.dispatch('user/autoSignIn', user)
-        console.log('El usuario es: ' + user.uid)
+        // Check if we can use the internationalization API
+        if (window.Intl && typeof window.Intl === 'object') {
+          // Assume it's supported, lets localize!
+          console.log('Se  puede utilizar la internacionalizacion')
+        }
+      },
+      created () {
+        console.log('main.js created()')
+        if (user) {
+          this.$store.dispatch('user/autoSignIn', user)
+          console.log('El usuario es: ' + user.email)
+        } else {
+          console.log('No existe user')
+        }
       }
     })
   }
 })
+/* eslint-disable no-new */

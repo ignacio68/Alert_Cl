@@ -3,7 +3,7 @@
     class="signUp__button"
     modifier="large"
     ripple="true"
-    @click="parentMethod()"
+    @click.prevent="parentMethod()"
     >
     <v-ons-icon
       class="signUp__button-icon"

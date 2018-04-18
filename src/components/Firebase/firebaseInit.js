@@ -1,4 +1,4 @@
 import * as firebase from 'firebase'
-imoort firebaseConfig from './firebaseConfig'
-cost firebaseApp = firebase.initializeApp(firebaseConfig)
+import firebaseConfig from './firebaseConfig'
+const firebaseApp = firebase.initializeApp(firebaseConfig)
 export default firebaseApp.firestore()
