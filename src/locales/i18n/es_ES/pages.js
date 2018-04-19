@@ -1,4 +1,10 @@
 export default {
+  welcome: {
+    header: '¡¡ENCANTADOS DE VERTE POR AQUÍ!!',
+    text: 'Para poder disfrutar de nuestros servicios necesitas tener una cuenta',
+    signup: 'REGISTRARSE',
+    signin: 'ACCEDER'
+  },
   homePage: {
     toolbar: {
       backLabel: '',

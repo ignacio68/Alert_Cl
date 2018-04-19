@@ -116,7 +116,7 @@
       <v-ons-button
         class="center"
         modifier="large"
-        :disabled="buttonActive"
+        :disabled="false"
         ripple="true"
         @click.prevent="onSignUp"
       >

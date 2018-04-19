@@ -1,4 +1,10 @@
 export default {
+  welcome: {
+    header: 'HAPPY TO SEE YOU HERE!!',
+    text: 'To enjoy our services you need have a count',
+    signup: 'SIGNUP',
+    signin: 'SIGNIN'
+  },
   homePage: {
     toolbar: {
       backLabel: '',

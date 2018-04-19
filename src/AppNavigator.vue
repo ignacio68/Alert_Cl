@@ -8,14 +8,14 @@
 
 <script>
   import HomePage from './pages/HomePage'
-  import SignUp from './pages/User/SignUp'
+  import Welcome from './pages/Shared/Welcome'
 
   export default {
     name: 'appNavigator',
     beforeMount () {
       console.log('AppNavigator beforeMount()')
       if (!this.userIsAuthenticated) {
-        this.$store.commit('navigator/push', SignUp)
+        this.$store.commit('navigator/push', Welcome)
         console.log('El usuario NO está autenticado')
       } else {
         this.$store.commit('navigator/push', HomePage)
