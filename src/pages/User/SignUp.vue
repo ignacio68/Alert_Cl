@@ -114,6 +114,7 @@
         </v-ons-list-item>
       </form>
       <v-ons-button
+        name="signUp"
         class="center"
         modifier="large"
         :disabled="false"
