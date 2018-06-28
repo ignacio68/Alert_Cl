@@ -29,7 +29,7 @@ export default {
       email: 'correo electrónico',
       password: 'contraseña'
     },
-    button: 'REGISTRAR'
+    button: 'CREAR CUENTA'
   },
   signin: {
     toolbar: {
