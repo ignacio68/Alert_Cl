@@ -1,7 +1,8 @@
 <template>
   <v-ons-page class="main">
   	<the-custom-toolbar
-      :pageTitle="$t('lang.pages.signin.toolbar.title')" >
+      :pageTitle="$t('lang.pages.signin.toolbar.title')"
+      :backLabel="volver">
     </the-custom-toolbar>
     <div class="container">
       <form class="form" autocomplete="off">
@@ -86,6 +87,7 @@
     name: 'sign-in',
     data () {
       return {
+      	volver:'',
         email: '',
         password: '',
         type: 'password',

@@ -7,7 +7,7 @@
                    loaderRipperHeigth ="3em">
     </the-preloader>
     <the-custom-toolbar
-      :backLabel="atras"
+      :backLabel="volver"
       :pageTitle="toolbarTitle" >
     </the-custom-toolbar>
     <div class="container">
@@ -21,7 +21,7 @@
     data () {
       return {
         isActive: false,
-        atras: 'VOLVER'
+        volver: ''
       }
     },
     computed: {
