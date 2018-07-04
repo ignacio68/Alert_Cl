@@ -98,13 +98,14 @@ export default {
                 // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
                   const token = result.credential.accessToken
                   console.log('El token es: ' + token)
+                // }
+                	// Informacion del user
+                	const newUser = {
+                  	id: result.user.uid
+                	}
+                	commit('user/setUser', newUser, { root: true })
+                	console.log(newUser.id)
                 }
-                // Informacion del user
-                const newUser = {
-                  id: result.user.uid
-                }
-                commit('user/setUser', newUser, { root: true })
-                console.log(newUser.id)
               }
             )
             .catch(

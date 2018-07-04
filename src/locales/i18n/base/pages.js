@@ -1,3 +1,5 @@
+// This file is the base for translation
+
 export default {
   welcome: {
     header: 'HAPPY TO SEE YOU HERE!!',
