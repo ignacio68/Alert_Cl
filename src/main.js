@@ -11,8 +11,9 @@ import 'onsenui/css/onsen-css-components.css'
  */
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
-import * as firebase from 'firebase'
-import firebaseConfig from './components/Firebase/firebaseConfig'
+// import * as firebase from 'firebase'
+// import firebaseConfig from './components/Firebase/firebaseConfig'
+const fb = require('./components/Firebase/firebaseConfig')
 import { store } from './store'
 import i18n from './locales/index'
 
@@ -45,8 +46,8 @@ Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 
 let app
 
-firebase.initializeApp(firebaseConfig)
-firebase.auth().onAuthStateChanged((user) => {
+// firebase.initializeApp(firebaseConfig)
+fb.auth().onAuthStateChanged(user => {
   console.log('firebase.auth().onAuthStateChanged')
   if (!app) {
     app = new Vue({

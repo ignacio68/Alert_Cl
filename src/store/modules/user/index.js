@@ -1,4 +1,5 @@
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
+const fb = require('../../../components/Firebase/firebaseConfig')
 import HomePage from '../../../pages/HomePage'
 import SignUp from '../../../pages/User/SignUp'
 
@@ -31,7 +32,7 @@ export default {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
       /* Crea el usuario en Firebase */
-      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+      fb.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(
           user => {
             commit('shared/setLoading', false, { root: true })
@@ -63,7 +64,7 @@ export default {
       commit('shared/clearError', null, { root: true })
       console.log('Estoy en signUserIn')
       /* Comprueba que el usuario existe en Firebase */
-      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      fb.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(
           user => {
             console.log('signUserIn user')
@@ -98,7 +99,7 @@ export default {
     signUserOut ({commit}) {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
-      firebase.auth().signOut()
+      fb.auth().signOut()
         .then(
           result => {
             commit('shared/setLoading', false, { root: true })
@@ -118,7 +119,7 @@ export default {
      */
     isActiveUser ({commit}) {
       /**
-      firebase.auth().onAuthStateChanged(
+      fb.auth().onAuthStateChanged(
         user => {
           if (user) {
             // commit('navigator/push', page)
@@ -129,7 +130,7 @@ export default {
         }
       )
       */
-      const activeUser = firebase.auth().currentUser
+      const activeUser = fb.auth().currentUser
       if (activeUser != null) {
         console.log(activeUser.email + ' está conectado')
       } else {

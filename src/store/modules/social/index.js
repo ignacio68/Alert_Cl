@@ -1,4 +1,5 @@
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
+const fb = require('../../../components/Firebase/firebaseConfig')
 
 export default {
   strict: true,
@@ -64,19 +65,19 @@ export default {
       console.log('la red social elegida es: ' + name)
       switch (name) {
         case 'Facebook' : {
-          const provider = new firebase.auth.FacebookAuthProvider()
+          const provider = new fb.auth.FacebookAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Google' : {
-          const provider = new firebase.auth.GoogleAuthProvider()
+          const provider = new fb.auth.GoogleAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
         }
         case 'Twitter' : {
-          const provider = new firebase.auth.TwitterAuthProvider()
+          const provider = new fb.auth.TwitterAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
           break
@@ -86,11 +87,11 @@ export default {
     // Log Up común a todos
     socialSignUp ({commit}, provider) {
       // provider.addScope('public_profile')
-      firebase.auth().useDeviceLanguage()
+      fb.auth().useDeviceLanguage()
       // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción en web
-      firebase.auth().signInWithRedirect(provider)
+      fb.auth().signInWithRedirect(provider)
         .then(() => {
-          firebase.auth().getRedirectResult()
+          fb.auth().getRedirectResult()
             .then(
               result => {
                 commit('shared/setLoading', false, { root: true })
