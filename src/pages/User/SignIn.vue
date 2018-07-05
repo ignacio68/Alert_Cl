@@ -6,7 +6,9 @@
     </the-custom-toolbar>
     <div class="container">
       <form class="form" autocomplete="off">
+
           <!-- EMAIL INPUT -->
+
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
@@ -27,7 +29,9 @@
               </v-ons-input>
             </div>
           </v-ons-list-item>
+
            <!-- PASSWORD INPUT -->
+           
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon

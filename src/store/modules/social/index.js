@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+// const fb = require('../../../components/Firebase/firebaseConfig')
 
 export default {
   strict: true,
@@ -67,18 +68,21 @@ export default {
           const provider = new firebase.auth.FacebookAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
+          console.log('La red social elegida es Facebook')
           break
         }
         case 'Google' : {
           const provider = new firebase.auth.GoogleAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
+          console.log('La red social elegida es Google')
           break
         }
         case 'Twitter' : {
           const provider = new firebase.auth.TwitterAuthProvider()
           // provider.addScope()
           dispatch('socialSignUp', provider)
+          console.log('La red social elegida es Twitter')
           break
         }
       }
@@ -99,9 +103,9 @@ export default {
                   const token = result.credential.accessToken
                   console.log('El token es: ' + token)
                 // }
-                	// Informacion del user
-                	const newUser = {
-                  	id: result.user.uid
+                  // Informacion del user
+                  const newUser = {
+                    id: result.user.uid
                 	}
                 	commit('user/setUser', newUser, { root: true })
                 	console.log(newUser.id)

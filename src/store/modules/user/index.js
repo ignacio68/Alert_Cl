@@ -1,6 +1,7 @@
 import * as firebase from 'firebase'
 import HomePage from '../../../pages/HomePage'
 import SignUp from '../../../pages/User/SignUp'
+// const fb = require('../../../components/Firebase/firebaseConfig')
 
 export default {
   strict: true,

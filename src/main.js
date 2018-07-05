@@ -13,6 +13,7 @@ import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import * as firebase from 'firebase'
 import firebaseConfig from './components/Firebase/firebaseConfig'
+// const fb = require('./components/Firebase/firebaseConfig')
 import { store } from './store'
 import i18n from './locales/index'
 
@@ -46,7 +47,7 @@ Vue.component('the-custom-toolbar', TheCustomtoolbar) // Toolbar común
 let app
 
 firebase.initializeApp(firebaseConfig)
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(user => {
   console.log('firebase.auth().onAuthStateChanged')
   if (!app) {
     app = new Vue({
@@ -58,15 +59,6 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log('main.js beforeCreate()')
         /** this.$ons.ready(() => {
             }) */
-
-        // Set app language
-        let val = navigator.language
-        if (val) {
-          // let lang = val.replace('-', '')
-          let lang = val.slice(0, 2)
-          i18n.locale = lang
-          console.log('el lenguaje es ' + i18n.locale)
-        }
 
         // Shortcut for Material Design
         Vue.prototype.md = this.$ons.platform.isAndroid()
@@ -81,6 +73,14 @@ firebase.auth().onAuthStateChanged((user) => {
         if (window.Intl && typeof window.Intl === 'object') {
           // Assume it's supported, lets localize!
           console.log('Se  puede utilizar la internacionalizacion')
+          // Set app language
+          let val = navigator.language
+          if (val) {
+            // let lang = val.replace('-', '')
+            let lang = val.slice(0, 2)
+            i18n.locale = lang
+            console.log('el lenguaje es ' + i18n.locale)
+          }
         }
       },
       created () {

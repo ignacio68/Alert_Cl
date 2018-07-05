@@ -15,10 +15,14 @@
         @click.prevent="toSignIn">
         {{ $t('lang.pages.signup.main.text2') }}
       </p>
+
 <!-------SIGNUP WITH EMAIL & PASSWORD ------>
+
       <form class="form" autocomplete="off">
         <v-ons-list>
+
           <!-- NAME INPUT -->
+
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
@@ -38,7 +42,9 @@
               </v-ons-input>
             </div>
           </v-ons-list-item>
+
           <!-- EMAIL INPUT -->
+
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
@@ -53,13 +59,15 @@
                 :placeholder="$t('lang.pages.signup.input.email')"
                 required
                 float
-                modifier="underbar"
+                modifier="transparent"
                 v-model="email"
               >
               </v-ons-input>
             </div>
           </v-ons-list-item>
+
            <!-- PASSWORD INPUT -->
+
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
@@ -75,7 +83,7 @@
                 :placeholder="$t('lang.pages.signup.input.password')"
                 required
                 float
-                modifier="underbar"
+                modifier="transparent"
                 v-model="password"
                 v-bind="$attrs"
                 ref="passwordInput"
@@ -95,7 +103,9 @@
             </div>
             </div>
           </v-ons-list-item>
+
           <!-- PASSWORD INPUT >
+
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <user-input-password
@@ -107,12 +117,18 @@
               </user-input-password>
             </div>
           </v-ons-list-item -->
+
         </v-ons-list>
+
         <!-- ERROR -->
+
         <v-ons-list-item>
           <p v-if="error" class="error">{{ $t('lang.errors.auth.invalidDisplayName') }}</p>
         </v-ons-list-item>
       </form>
+
+      <!-- BOTON SIGNUP -->
+
       <v-ons-button
         name="signUp"
         class="center"
@@ -123,7 +139,9 @@
       >
         {{ $t('lang.pages.signup.button')}}
       </v-ons-button>
+
 <!------ LOGIN WITH SOCIAL BUTTONS ------>
+
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
@@ -139,6 +157,9 @@
           />
         </v-ons-list-item>
       </v-ons-list>
+
+<!------ TERMS OF USE & POLICY PRIVACITY ------>
+
       <div class="privacy">
         <i18n
           class="privacy__text"
