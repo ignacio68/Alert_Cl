@@ -1,5 +1,4 @@
 import * as firebase from 'firebase'
-// const fb = require('../../../components/Firebase/firebaseConfig')
 
 export default {
   strict: true,
@@ -53,10 +52,12 @@ export default {
   },
   actions: {
     /**
-     * Acciones para autenticar segun el social login elegido
+     * Acciones para autenticar segun la red social elegida
      * Posibilidad de separarlo en módulos para mejorar la claridad
      * del software
      */
+
+    // Selecciona la red social elegida por el usuario
     dispatchLogUp ({commit, dispatch, state}, index) {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
@@ -87,39 +88,37 @@ export default {
         }
       }
     },
-    // Log Up común a todos
+
+    // SignUp - Conecta con la red social elegida para la autenticación.
     socialSignUp ({commit}, provider) {
       // provider.addScope('public_profile')
       firebase.auth().useDeviceLanguage()
       // firebase.auth().signInWithPopup(provider) // Utilizamos esta forma de acceso en producción en web
-      firebase.auth().signInWithRedirect(provider)
+      firebase.auth().signInWithRedirect(provider) // Utilizamos esta forma de acceso en móviles
         .then(() => {
           firebase.auth().getRedirectResult()
-            .then(
-              result => {
-                commit('shared/setLoading', false, { root: true })
-                if (result.credential) {
-                // Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
-                  const token = result.credential.accessToken
-                  console.log('El token es: ' + token)
-                // }
-                  // Informacion del user
-                  const newUser = {
-                    id: result.user.uid
+            .then(result => {
+                		commit('shared/setLoading', false, { root: true })
+                		if (result.credential) {
+                		// Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
+                  		const token = result.credential.accessToken
+                  		console.log('El token es: ' + token)
+                		}
+                  	// Informacion del usuario
+                  	const newUser = {
+                    	id: result.user.uid
+                		}
+                		commit('user/setUser', newUser, { root: true })
+                		console.log(newUser.id)
                 	}
-                	commit('user/setUser', newUser, { root: true })
-                	console.log(newUser.id)
-                }
-              }
             )
-            .catch(
-              error => {
-                commit('shared/setLoading', false, { root: true })
-                // commit('setError', error)
-                let errorCode = error.code
-                commit('authError', errorCode)
-                console.log(errorCode)
-              }
+            .catch(error => {
+                		commit('shared/setLoading', false, { root: true })
+                		// commit('setError', error)
+                		let errorCode = error.code
+                		commit('authError', errorCode)
+                		console.log(errorCode)
+              		}
             )
         })
     }
