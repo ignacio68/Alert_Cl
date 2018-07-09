@@ -184,11 +184,13 @@
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import SignIn from './SignIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
+  import ConfirmPassword from '../../components/Alerts/ConfirmPassword'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
-      SignUpButton
+      SignUpButton,
+      ConfirmPassword
       // UserInputPassword
     },
     data () {
@@ -198,7 +200,8 @@
         email: '',
         password: '',
         type: 'password',
-        passwordVisible: false
+        passwordVisible: false,
+        confirmPasswordDialog: true
       }
     },
     computed: {
@@ -241,7 +244,16 @@
           name: this.name,
           email: this.email,
           password: this.password
-        })
+        }) 
+        
+        	$ons.notification.alert( "te hemos enviado un mensaje")
+            /* .then (alertDialog => {
+            	alertDialog.show()
+            })
+            .catch(error => {
+            	console.log(error)
+            }) */
+        
       },
       onDismissed () {
         console.log('estoy en onDismissed!!')

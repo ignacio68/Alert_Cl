@@ -45,7 +45,7 @@ export default {
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + newUser.email)
-            commit('navigator/push', HomePage, { root: true })
+            // commit('navigator/push', HomePage, { root: true })
           }
         )
         .catch(
