@@ -1,5 +1,5 @@
 export default {
-  strict: true,
+  strict: process.env.NODE_ENV !== 'production',
   namespaced: true,
   state: {
     stack: [],

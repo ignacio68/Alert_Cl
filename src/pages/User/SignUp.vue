@@ -184,13 +184,12 @@
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import SignIn from './SignIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
-  import ConfirmPassword from '../../components/Alerts/ConfirmPassword'
+	import ConfirmPassword from '../../components/Alerts/ConfirmPassword'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
       SignUpButton,
-      ConfirmPassword
       // UserInputPassword
     },
     data () {
@@ -229,6 +228,11 @@
         } else {
           return true
         }
+      },
+      confirmPasswordAlertComp () {
+      	console.log('Estoy en confirmPasswordAlertComp')
+      	return this.$store.getters['user/confirmPasswordAlertGet']
+      	console.log('(Comp) La alerta de confirmacion del password es ' + this.$store.getters['user/confirmPasswordAlertGet'])
       }
     },
     methods: {
@@ -240,20 +244,24 @@
       },
       onSignUp () {
         console.log('Estoy en onSignUp')
-        this.$store.dispatch('user/signUserUp', {
-          name: this.name,
-          email: this.email,
-          password: this.password
+        // enviamos los datos del usuario para su registro
+        Promise.resolve(
+        	console.log('Estoy dentro del PREenvio de alertas'),
+         	this.$store.dispatch('user/signUserUp', {
+          	name: this.name,
+          	email: this.email,
+          	password: this.password
+        	})
+        )
+        // cuando está aceptado lanzamos una alerta para confirmar
+       	.then (() => {
+       		if(this.confirmPasswordAlertComp)
+       		console.log('Estoy dentro del envio de alertas')
+        	this.$ons.notification.alert('te hemos enviado un mensaje')
+        })
+        .catch (error => {
+        	console.log(error)
         }) 
-        
-        	$ons.notification.alert( "te hemos enviado un mensaje")
-            /* .then (alertDialog => {
-            	alertDialog.show()
-            })
-            .catch(error => {
-            	console.log(error)
-            }) */
-        
       },
       onDismissed () {
         console.log('estoy en onDismissed!!')

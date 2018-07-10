@@ -1,7 +1,7 @@
 import * as firebase from 'firebase'
 
 export default {
-  strict: true,
+  strict: process.env.NODE_ENV !== 'production',
   namespaced: true,
   state: {
     socialButtons: [

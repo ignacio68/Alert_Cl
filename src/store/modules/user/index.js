@@ -7,11 +7,15 @@ export default {
   strict: true,
   namespaced: true,
   state: {
-    user: null
+    user: null,
+    confirmPasswordAlert: false
   },
   getters: {
     user (state) {
       return state.user
+    },
+    confirmPasswordAlertGet (state) {
+    	return state.confirmPasswordAlert
     }
   },
   mutations: {
@@ -21,6 +25,11 @@ export default {
     },
     clearUser (state) {
       state.user = null
+    },
+    confirmPasswordAlertMut (state, payload) {
+    	console.log('Estoy en confirmPasswordAlertMut')
+    	state.confirmPasswordAlert = payload
+    	console.log('(Mut) La alerta de confirmacion del password es ' + state.confirmPasswordAlert)
     }
   },
   actions: {
@@ -29,6 +38,7 @@ export default {
      */
     signUserUp ({commit}, user) {
       console.log('Estoy en signUserUp')
+      console.log('confirmPasswordAlert es: ' + this.state.confirmPasswordAlert)
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
       /* Crea el usuario en Firebase */
@@ -41,13 +51,16 @@ export default {
               id: user.uid,
               name: user.displayName,
               email: user.email,
-              photo: user.photoUrl
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + newUser.email)
-            // commit('navigator/push', HomePage, { root: true })
           }
         )
+        .then(() => {
+        	commit('confirmPasswordAlertMut', true)
+          console.log('(Act) La alerta de confirmacion del password es ' + this.state.confirmPasswordAlert)
+          //commit('navigator/push', HomePage, { root: true })
+        })
         .catch(
           error => {
             console.log('Estoy en el catch de errores de signUserUp')
