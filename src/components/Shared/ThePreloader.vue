@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-  name: 'thepreloader',
+  name: 'the-preloader',
   props: {
     loaderBackgroundColor: {
       type: String,

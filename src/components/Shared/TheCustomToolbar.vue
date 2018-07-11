@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'thecustomtoolbar',
+  name: 'the-custom-toolbar',
 
   props: {
     backLabel: {

@@ -3,7 +3,8 @@ export default {
   namespaced: true,
   state: {
     loading: false,
-    error: null
+    error: null,
+    actionPass: false
   },
   getters: {
     loading (state) {
@@ -11,6 +12,9 @@ export default {
     },
     error (state) {
       return state.error
+    },
+    actionPass (state) {
+    	return state.actionPass
     }
   },
   mutations: {
@@ -28,6 +32,10 @@ export default {
     clearError (state, payload) {
       state.error = payload
       console.log('Limpio el error')
+    },
+    setActionPass (state, payload) {
+    	state.actionPass = payload
+    	console.log('La acción ha sido ejecutada: ' + state.actionPass)
     }
   },
   actions: {

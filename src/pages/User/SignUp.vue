@@ -127,7 +127,7 @@
         </v-ons-list-item>
       </form>
 
-      <!-- BOTON SIGNUP -->
+      <!-- BUTTON SIGNUP -->
 
       <v-ons-button
         name="signUp"
@@ -175,6 +175,15 @@
             place="privacy">{{ privacy }}</span>
         </i18n>
       </div>
+
+<!------ CONFIRM PASSWORD ALERT ------>
+			
+				<alert-confirm-password
+					@onClick="onClickAlertButton()"
+					:visible.sync="myActionPass">
+				</alert-confirm-password>
+			
+
     </div>
   </v-ons-page>
 </template>
@@ -184,37 +193,44 @@
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import SignIn from './SignIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
-	import ConfirmPassword from '../../components/Alerts/ConfirmPassword'
+	import TheAlert from '../../components/Shared/TheAlert'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
       SignUpButton,
+      alertConfirmPassword: TheAlert
       // UserInputPassword
     },
     data () {
       return {
-        isActive: false,
+        isActive: false, // Activa el PreLoader
         name: '',
         email: '',
         password: '',
         type: 'password',
         passwordVisible: false,
-        confirmPasswordDialog: true
+        isVisible: false,
+        actionPass: false
+        // alertText: $t('lang.pages.components.alertConfirmPasword.alertText'),
+        // alertButtonText: $t('lang.pages.components.alertConfirmPasword.buttonText')
       }
     },
     computed: {
       socialButtons () {
         return this.$store.getters['social/socialButtons']
-      },
+      },/*
       user () {
         return this.$store.getters['user/user']
-      },
+      },*/
       error () {
         return this.$store.getters['shared/error']
-      },
+      },/*
       loading () {
         return this.$store.getters['shared/loading']
+      },*/
+      myActionPass () {
+      	this.actionPass = this.$store.getters['shared/actionPass']
       },
       terms () {
         return this.$t('lang.pages.signup.main.terms')
@@ -222,17 +238,11 @@
       privacy () {
         return this.$t('lang.pages.signup.main.privacy')
       },
-      buttonActive () {
-        if (this.name.length >= 1 && this.email.length >= 6 && this.password.length >= 8) {
-          return false
-        } else {
-          return true
-        }
+      alertText () {
+      	return this.$t('lang.pages.components.alertConfirmPasword.alertText')
       },
-      confirmPasswordAlertComp () {
-      	console.log('Estoy en confirmPasswordAlertComp')
-      	return this.$store.getters['user/confirmPasswordAlertGet']
-      	console.log('(Comp) La alerta de confirmacion del password es ' + this.$store.getters['user/confirmPasswordAlertGet'])
+      alertButtonText() {
+      	return this.$t('lang.pages.components.alertConfirmPasword.buttonText')
       }
     },
     methods: {
@@ -245,23 +255,20 @@
       onSignUp () {
         console.log('Estoy en onSignUp')
         // enviamos los datos del usuario para su registro
-        Promise.resolve(
-        	console.log('Estoy dentro del PREenvio de alertas'),
-         	this.$store.dispatch('user/signUserUp', {
-          	name: this.name,
-          	email: this.email,
-          	password: this.password
-        	})
-        )
-        // cuando está aceptado lanzamos una alerta para confirmar
-       	.then (() => {
-       		if(this.confirmPasswordAlertComp)
-       		console.log('Estoy dentro del envio de alertas')
-        	this.$ons.notification.alert('te hemos enviado un mensaje')
+        console.log('Estoy dentro del PREenvio de alertas'),
+        this.$store.dispatch('user/signUserUp', {
+          name: this.name,
+          email: this.email,
+          password: this.password
         })
-        .catch (error => {
-        	console.log(error)
-        }) 
+        // cuando está aceptado lanzamos una alerta para confirmar
+       	/*if (this.$store.state.shared.actionPass) {
+       		console.log('Estoy dentro del envio de alertas')
+       		this.$store.commit('shared/setActionPass', false)
+        	this.$ons.notification.alert('te hemos enviado un mensaje')
+        } else {
+        	console.log('actionPass no ha sido ejecutada')
+        }*/
       },
       onDismissed () {
         console.log('estoy en onDismissed!!')
@@ -278,8 +285,13 @@
         // IMPORTANTE: añadir $el para que funcione setAttribute
         this.$refs.passwordInput.$el.setAttribute('type', this.type)
         this.passwordVisible = !this.passwordVisible
+      },
+      onClickAlertButton () {
+      	console.log('Estoy en el botón de la alerta de confirmación de password')
+      	this.$store.dispatch('shared/setActionPass', false)
+      	commit('navigator/push', HomePage, { root: true })
       }
-    }
+    },
   }
 </script>
 

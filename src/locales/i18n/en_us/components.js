@@ -11,5 +11,9 @@ export default {
     { sigin: 'Sign In' },
     { signout: 'Sign Out' },
     { reset: 'Reset' }
+  ],
+  alertConfirmPassword: [
+  	{ alertText: 'We have sent you an email to confirm the password' },
+  	{ buttonText: 'Ok'}
   ]
 }
