@@ -178,28 +178,46 @@
 
 <!------ CONFIRM PASSWORD ALERT ------>
 			
-				<alert-confirm-password
+				<!--alert-confirm-password
+					:alertText="$t('lang.components.alertConfirmPassword.alertText')"
+					:alertButtonText="$t('lang.components.alertConfirmPassword.buttonText')"
 					@onClick="onClickAlertButton()"
-					:visible.sync="myActionPass">
-				</alert-confirm-password>
-			
+					:isVisible="true">
+				</alert-confirm-password-->
+			<v-ons-alert-dialog
+					class="AlertDialog_text" 
+					modifier="rowfooter"
+					:title="$t('lang.components.alertConfirmPassword.alertText')"
+					:visible.sync="actionPass"
+			>
+				<template slot="footer">
+					<v-ons-alert-dialog-button
+					class="alertDialog_button"
+					ripple="true"
+					@click.prevent="onClickAlertButton()"
+					>
+					{{ $t('lang.components.alertConfirmPassword.buttonText') }}
+					</v-ons-alert-dialog-button>
+				</template>
+			</v-ons-alert-dialog>
 
     </div>
   </v-ons-page>
 </template>
 
 <script>
+  import HomePage from '../HomePage'
   import TermsOfService from '../Shared/TermsOfService'
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import SignIn from './SignIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
-	import TheAlert from '../../components/Shared/TheAlert'
+	// import TheAlert from '../../components/Shared/TheAlert'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
       SignUpButton,
-      alertConfirmPassword: TheAlert
+      // alertConfirmPassword: TheAlert
       // UserInputPassword
     },
     data () {
@@ -210,10 +228,7 @@
         password: '',
         type: 'password',
         passwordVisible: false,
-        isVisible: false,
-        actionPass: false
-        // alertText: $t('lang.pages.components.alertConfirmPasword.alertText'),
-        // alertButtonText: $t('lang.pages.components.alertConfirmPasword.buttonText')
+        actionPass: this.$store.state.shared.actionPass
       }
     },
     computed: {
@@ -231,18 +246,13 @@
       },*/
       myActionPass () {
       	this.actionPass = this.$store.getters['shared/actionPass']
+      	console.log('actionPass es: ' + this.actionPass)
       },
       terms () {
         return this.$t('lang.pages.signup.main.terms')
       },
       privacy () {
         return this.$t('lang.pages.signup.main.privacy')
-      },
-      alertText () {
-      	return this.$t('lang.pages.components.alertConfirmPasword.alertText')
-      },
-      alertButtonText() {
-      	return this.$t('lang.pages.components.alertConfirmPasword.buttonText')
       }
     },
     methods: {
@@ -289,7 +299,8 @@
       onClickAlertButton () {
       	console.log('Estoy en el botón de la alerta de confirmación de password')
       	this.$store.dispatch('shared/setActionPass', false)
-      	commit('navigator/push', HomePage, { root: true })
+      	this.$store.commit('navigator/push', HomePage, { root: true })
+      	this.actionPass = false
       }
     },
   }
