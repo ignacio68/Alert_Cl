@@ -8,7 +8,7 @@ export default {
   button: {
     submit: 'Enviar' ,
     sigup: 'Registrar' ,
-    sigin: 'Entrar' ,
+    login: 'Entrar' ,
     signout: 'Desconectar' ,
     reset: 'Reset' 
   },

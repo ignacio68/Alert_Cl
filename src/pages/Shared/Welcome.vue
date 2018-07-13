@@ -15,7 +15,7 @@
             class="button_signin"
             modifier=""
             ripple="true"
-            @click.prevent="toSignIn">{{ $t('lang.pages.welcome.signin')}}
+            @click.prevent="toLogIn">{{ $t('lang.pages.welcome.lognin')}}
           </v-ons-button>
         </v-ons-row>
       </v-ons-col>
@@ -24,16 +24,17 @@
 </template>
 
 <script>
-  import SignIn from '../User/SignIn'
   import SignUp from '../User/SignUp'
+  import LogIn from '../User/LogIn'
+
   export default {
     name: 'welcome',
     methods: {
       toSignUp () {
         this.$store.commit('navigator/push', SignUp)
       },
-      toSignIn () {
-        this.$store.commit('navigator/push', SignIn)
+      toLogIn () {
+        this.$store.commit('navigator/push', LogIn)
       }
     }
   }

@@ -10,9 +10,9 @@
       :pageTitle="$t('lang.pages.signup.toolbar.title')" >
     </the-custom-toolbar>
     <div class="container">
-      <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
+      <p class="mainText">{{ $t('lang.pages.lognup.main.text1') }}</p>
       <p class="logInText"
-        @click.prevent="toSignIn">
+        @click.prevent="toLogIn">
         {{ $t('lang.pages.signup.main.text2') }}
       </p>
 
@@ -209,7 +209,7 @@
   import HomePage from '../HomePage'
   import TermsOfService from '../Shared/TermsOfService'
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
-  import SignIn from './SignIn'
+  import LogIn from './LogIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
 	// import TheAlert from '../../components/Shared/TheAlert'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'

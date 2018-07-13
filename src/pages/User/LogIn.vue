@@ -1,7 +1,7 @@
 <template>
   <v-ons-page class="main">
   	<the-custom-toolbar
-      :pageTitle="$t('lang.pages.signin.toolbar.title')"
+      :pageTitle="$t('lang.pages.lognin.toolbar.title')"
       :backLabel="volver">
     </the-custom-toolbar>
     <div class="container">
@@ -78,9 +78,9 @@
         modifier="large"
         :disabled="buttonActive"
         ripple="true"
-        @click.prevent="onSignIn"
+        @click.prevent="onLognIn"
       >
-        {{ $t('lang.pages.signin.button')}}
+        {{ $t('lang.pages.lognin.button')}}
       </v-ons-button>
     </div>
   </v-ons-page>
@@ -88,7 +88,7 @@
 
 <script>
   export default {
-    name: 'sign-in',
+    name: 'log-in',
     data () {
       return {
       	volver:'',
@@ -111,9 +111,9 @@
       }
     },
     methods: {
-      onSignIn () {
-        console.log('Estoy en onSignIn')
-        this.$store.dispatch('user/signUserIn', {
+      onLognIn () {
+        console.log('Estoy en onLognIn')
+        this.$store.dispatch('user/logUserIn', {
           email: this.email,
           password: this.password
         })

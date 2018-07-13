@@ -10,7 +10,7 @@ export default {
   button: [
     { submit: 'Submit' },
     { sigup: 'Sign Up' },
-    { sigin: 'Sign In' },
+    { login: 'Sign In' },
     { signout: 'Sign Out' },
     { reset: 'Reset' }
   ]

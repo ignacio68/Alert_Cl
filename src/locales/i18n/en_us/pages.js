@@ -3,7 +3,7 @@ export default {
     header: 'HAPPY TO SEE YOU HERE!!',
     text: 'To enjoy our services you need have a count',
     signup: 'SIGNUP',
-    signin: 'SIGNIN'
+    login: 'LOGNIN'
   },
   homePage: {
     toolbar: {
@@ -31,7 +31,7 @@ export default {
     },
     button: 'SIGN UP'
   },
-  signin: {
+  login: {
     toolbar: {
       backLabel: '',
       title: 'LOG IN'

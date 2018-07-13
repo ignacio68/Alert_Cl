@@ -31,7 +31,7 @@ export default {
     },
     button: 'CREAR CUENTA'
   },
-  signin: {
+  lognin: {
     toolbar: {
       backLabel: '',
       title: 'ACCESO'
