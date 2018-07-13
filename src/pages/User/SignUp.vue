@@ -227,8 +227,7 @@
         email: '',
         password: '',
         type: 'password',
-        passwordVisible: false,
-        actionPass: this.$store.state.shared.actionPass
+        passwordVisible: false
       }
     },
     computed: {
@@ -244,8 +243,8 @@
       loading () {
         return this.$store.getters['shared/loading']
       },*/
-      myActionPass () {
-      	this.actionPass = this.$store.getters['shared/actionPass']
+      actionPass () {
+      	return this.$store.getters['shared/actionPass']
       	console.log('actionPass es: ' + this.actionPass)
       },
       terms () {
@@ -271,18 +270,10 @@
           email: this.email,
           password: this.password
         })
-        // cuando está aceptado lanzamos una alerta para confirmar
-       	/*if (this.$store.state.shared.actionPass) {
-       		console.log('Estoy dentro del envio de alertas')
-       		this.$store.commit('shared/setActionPass', false)
-        	this.$ons.notification.alert('te hemos enviado un mensaje')
-        } else {
-        	console.log('actionPass no ha sido ejecutada')
-        }*/
       },
       onDismissed () {
         console.log('estoy en onDismissed!!')
-        this.$store.dispatch('shared/clearError')
+        this.$store.dispatch('shared/clearError', null)
       },
       toTerms () {
         this.$store.commit('navigator/push', TermsOfService)
@@ -298,9 +289,8 @@
       },
       onClickAlertButton () {
       	console.log('Estoy en el botón de la alerta de confirmación de password')
-      	this.$store.dispatch('shared/setActionPass', false)
-      	this.$store.commit('navigator/push', HomePage, { root: true })
-      	this.actionPass = false
+      	this.$store.commit('shared/setActionPass', false)
+        this.$store.commit('navigator/push', HomePage, { root: true })
       }
     },
   }
