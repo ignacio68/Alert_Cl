@@ -3,7 +3,7 @@ export default {
     header: '¡¡ENCANTADOS DE VERTE POR AQUÍ!!',
     text: 'Para poder disfrutar de nuestros servicios necesitas tener una cuenta',
     signup: 'REGISTRARSE',
-    signin: 'ACCEDER'
+    lognin: 'ACCEDER'
   },
   homePage: {
     toolbar: {
@@ -31,7 +31,7 @@ export default {
     },
     button: 'CREAR CUENTA'
   },
-  lognin: {
+  login: {
     toolbar: {
       backLabel: '',
       title: 'ACCESO'

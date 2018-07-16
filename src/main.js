@@ -11,10 +11,13 @@ import 'onsenui/css/onsen-css-components.css'
  */
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
+
 import * as firebase from 'firebase'
 import firebaseConfig from './components/Firebase/firebaseConfig'
 // const fb = require('./components/Firebase/firebaseConfig')
+
 import { store } from './store'
+
 import i18n from './locales/index'
 
 // import VueOnsen from 'vue-onsenui/esm'; // Cuando se utiliza ESM

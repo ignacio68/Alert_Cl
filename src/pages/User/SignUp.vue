@@ -10,7 +10,7 @@
       :pageTitle="$t('lang.pages.signup.toolbar.title')" >
     </the-custom-toolbar>
     <div class="container">
-      <p class="mainText">{{ $t('lang.pages.lognup.main.text1') }}</p>
+      <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
       <p class="logInText"
         @click.prevent="toLogIn">
         {{ $t('lang.pages.signup.main.text2') }}
@@ -258,7 +258,7 @@
       socialLogIn (index) {
         this.$store.dispatch('social/dispatchLogUp', index)
       },
-      toSignIn () {
+      toLogIn () {
         this.$store.commit('navigator/push', SignIn)
       },
       onSignUp () {

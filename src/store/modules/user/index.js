@@ -1,4 +1,7 @@
 import * as firebase from 'firebase'
+
+// import 'firebase/auth'
+
 import HomePage from '../../../pages/HomePage'
 import SignUp from '../../../pages/User/SignUp'
 // const fb = require('../../../components/Firebase/firebaseConfig')
@@ -32,6 +35,7 @@ export default {
 			commit('shared/setLoading', true, { root: true })
      	commit('shared/setActionPass', false, { root: true })
       commit('shared/clearError', null, { root: true })
+
       /* Crea el usuario en Firebase */
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(
@@ -45,8 +49,35 @@ export default {
               email: user.email,
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
-            console.log('Hay un nuevo usuario: ' + newUser.email)
-            //commit('navigator/push', HomePage, { root: true })
+            console.log('Hay un nuevo usuario: ' + newUser.uid)
+
+            /* Cramos el objeto ActionCodeSettings que proporciona instrucciones a Firebase*/
+            const actionCodeSettings = {
+            // URL you want to redirect back to. The domain (www.example.com) for this
+            // URL must be whitelisted in the Firebase Console.
+              url: 'https://www.lopezamor.com',
+              // This must be true.
+              handleCodeInApp: true,
+              iOS: {
+                bundleId: 'com.example.ios'
+              },
+              android: {
+                packageName: 'com.example.android',
+                installApp: true,
+                minimumVersion: '12'
+              }
+            }
+          }
+        )
+        .then(
+          user => {
+            console.log('Estoy enviando el email de comprobacion de password a: ' + newUser.email)
+            firebase.auth().sendSignInLinkToEmail(user.email, actionCodeSettings)
+            .then( 
+              result => {
+                window.localStorage.setItem('emailForSingIn', newUser.email)
+              }
+            ) 
           }
         )
         .catch(
@@ -58,10 +89,11 @@ export default {
           }
         )
     },
+
     /**
      * Log In de Usuario
      */
-    signUserIn ({commit}, user) {
+    logUserIn ({commit}, user) {
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
       console.log('Estoy en signUserIn')
@@ -80,13 +112,14 @@ export default {
         )
         .catch(
           error => {
-            console.log('signUserIn error')
+            console.log('logUserIn error')
             commit('shared/setLoading', false, { root: true })
             commit('shared/setError', error, { root: true })
             console.log(error)
           }
         )
     },
+
     /**
      * Autoautenticación, el usuario ya está registrado
      */
@@ -95,6 +128,7 @@ export default {
         id: user.uid
       })
     },
+
     /**
      * Log Out de Usuario
      */
@@ -116,6 +150,7 @@ export default {
           }
         )
     },
+
     /**
      * Comprueba si hay algún usuario conectado
      */
