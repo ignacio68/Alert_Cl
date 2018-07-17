@@ -265,7 +265,7 @@
         console.log('Estoy en onSignUp')
         // enviamos los datos del usuario para su registro
         console.log('Estoy dentro del PREenvio de alertas'),
-        this.$store.dispatch('user/signUserUp', {
+        this.$store.dispatch('user/signUserUpKK', {
           name: this.name,
           email: this.email,
           password: this.password
