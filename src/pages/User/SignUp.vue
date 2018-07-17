@@ -233,19 +233,18 @@
     computed: {
       socialButtons () {
         return this.$store.getters['social/socialButtons']
-      },/*
+      },
       user () {
         return this.$store.getters['user/user']
-      },*/
+      },
       error () {
         return this.$store.getters['shared/error']
-      },/*
+      },
       loading () {
         return this.$store.getters['shared/loading']
-      },*/
+      },
       actionPass () {
       	return this.$store.getters['shared/actionPass']
-      	console.log('actionPass es: ' + this.actionPass)
       },
       terms () {
         return this.$t('lang.pages.signup.main.terms')
@@ -264,9 +263,8 @@
       onSignUp () {
         console.log('Estoy en onSignUp')
         // enviamos los datos del usuario para su registro
-        console.log('Estoy dentro del PREenvio de alertas'),
-        this.$store.dispatch('user/signUserUpKK', {
-          name: this.name,
+        this.$store.dispatch('user/signUserUp', {
+          // name: this.name,
           email: this.email,
           password: this.password
         })
