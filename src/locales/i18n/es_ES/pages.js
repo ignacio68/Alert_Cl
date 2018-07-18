@@ -37,11 +37,15 @@ export default {
       title: 'ACCESO'
     },
     main: {
-      text1: 'PAGINA DE ACCESO',
-      text2: 'Ya tengo una cuenta',
+      text1: 'He olvidado la contraseña',
+      text2: 'Necesito una cuenta',
       text3: 'Al registrarte aceptas nuestros {terms} y la {privacy}',
       terms: 'Términos de Uso',
       privacy: 'Política de Privacidad'
+    },
+    input: {
+      email: 'email',
+      password: 'contraseña'
     },
     button: 'ACCEDER'
   },

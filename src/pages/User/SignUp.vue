@@ -11,6 +11,9 @@
     </the-custom-toolbar>
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
+
+      <!-- I HAVE A USER ACCOUNT -->
+
       <p class="logInText"
         @click.prevent="toLogIn">
         {{ $t('lang.pages.signup.main.text2') }}
@@ -177,13 +180,7 @@
       </div>
 
 <!------ CONFIRM PASSWORD ALERT ------>
-			
-				<!--alert-confirm-password
-					:alertText="$t('lang.components.alertConfirmPassword.alertText')"
-					:alertButtonText="$t('lang.components.alertConfirmPassword.buttonText')"
-					@onClick="onClickAlertButton()"
-					:isVisible="true">
-				</alert-confirm-password-->
+
 			<v-ons-alert-dialog
 					class="AlertDialog_text" 
 					modifier="rowfooter"
@@ -211,13 +208,11 @@
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import LogIn from './LogIn'
   import SignUpButton from '../../components/Shared/SignUpButton'
-	// import TheAlert from '../../components/Shared/TheAlert'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
       SignUpButton,
-      // alertConfirmPassword: TheAlert
       // UserInputPassword
     },
     data () {
@@ -258,7 +253,7 @@
         this.$store.dispatch('social/dispatchLogUp', index)
       },
       toLogIn () {
-        this.$store.commit('navigator/push', SignIn)
+        this.$store.commit('navigator/push', LogIn)
       },
       onSignUp () {
         console.log('Estoy en onSignUp')

@@ -1,10 +1,13 @@
 <template>
 	<v-ons-page class="main">
 		<the-custom-toolbar
-			:pageTitle="$t('lang.pages.lognin.toolbar.title')"
+			:pageTitle="$t('lang.pages.login.toolbar.title')"
 			:backLabel="volver">
 		</the-custom-toolbar>
 		<div class="container">
+
+<!-------------------- LOG IN FORM ------------------------------------------------>
+
 			<form class="form" autocomplete="off">
 
 					<!-- EMAIL INPUT -->
@@ -20,7 +23,7 @@
 							<v-ons-input
 								type="email"
 								minlength="6"
-								:placeholder="$t('lang.pages.signup.input.email')"
+								:placeholder="$t('lang.pages.login.input.email')"
 								required
 								float
 								modifier="underbar"
@@ -44,7 +47,7 @@
 								type="password"
 								input-id="password"
 								minlength="8"
-								:placeholder="$t('lang.pages.signup.input.password')"
+								:placeholder="$t('lang.pages.login.input.password')"
 								required
 								float
 								modifier="underbar"
@@ -67,12 +70,30 @@
 						</div>
 						</div>
 					</v-ons-list-item>
+
+					<!-- FORGOT PASSWORD -->
+
+					<v-ons-list-item class="text__button">
+						<p class="forgotPassword"
+        			@click.prevent="onForgotPassword">
+        			{{ $t('lang.pages.login.main.text1') }}
+      			</p>
+					</v-ons-list-item>
+
 				</v-ons-list>
+
 				<!-- ERROR -->
+
 				<v-ons-list-item>
 					<p v-if="error" class="error">{{ $t('lang.errors.auth.invalidDisplayName') }}</p>
 				</v-ons-list-item>
+
 			</form>
+
+<!---------------------------END FORM -------------------------------------------------->
+
+      <!-- BUTTON LOGIN -->
+
 			<v-ons-button
 				class="center"
 				modifier="large"
@@ -80,13 +101,23 @@
 				ripple="true"
 				@click.prevent="onLognIn"
 			>
-				{{ $t('lang.pages.lognin.button')}}
+				{{ $t('lang.pages.login.button')}}
 			</v-ons-button>
+
+			<!-- SIGNUP BUTTON -->
+			<div>
+				<p class="text__button"
+        	@click.prevent="toSignUp">
+        	{{ $t('lang.pages.login.main.text2') }}
+      	</p>
+			</div>
+
 		</div>
 	</v-ons-page>
 </template>
 
 <script>
+	import SignUp from './SignUp'
 	export default {
 		name: 'log-in',
 		data () {
@@ -123,11 +154,20 @@
 				// IMPORTANTE: añadir $el para que funcione setAttribute
 				this.$refs.passwordInput.$el.setAttribute('type', this.type)
 				this.passwordVisible = !this.passwordVisible
-			}
+			},
+			onForgotPassword () {
+				console.log('He olvidado la contraseña')
+			},
+			toSignUp () {
+        this.$store.commit('navigator/push', SignUp)
+      }
 		}
 	}
 </script>
 
 <style scoped>
-
+.text__button {
+    border: 1px solid pink;
+    height: 50px;
+  }
 </style>
