@@ -206,7 +206,7 @@
 </template>
 
 <script>
-  import HomePage from '../HomePage'
+  import Profile from '../Main/Profile'
   import TermsOfService from '../Shared/TermsOfService'
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import LogIn from './LogIn'
@@ -288,9 +288,10 @@
       onClickAlertButton () {
       	console.log('Estoy en el botón de la alerta de confirmación de password')
       	this.$store.commit('shared/setActionPass', false)
-        this.$store.commit('navigator/push', HomePage, { root: true })
+        this.$store.commit('navigator/push', Profile, { root: true })
+        this.$store.dispatch('user/confirmPassword', this.email)
       }
-    },
+    }
   }
 </script>
 

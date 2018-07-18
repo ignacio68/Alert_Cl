@@ -99,30 +99,28 @@ export default {
       firebase.auth().signInWithRedirect(provider) // Utilizamos esta forma de acceso en móviles
         .then(() => {
           firebase.auth().getRedirectResult()
-            .then(result => {
-                		commit('shared/setLoading', false, { root: true })
-                		if (result.credential) {
-                		// Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
-                  		const token = result.credential.accessToken
-                  		console.log('El token es: ' + token)
-                		}
-                  	// Informacion del usuario
-                  	const newUser = {
-                    	id: result.user.uid
-                		}
-                		commit('user/setUser', newUser, { root: true })
-                		console.log(newUser.id)
-                	}
-            )
-            .catch(error => {
-                		commit('shared/setLoading', false, { root: true })
-                		// commit('setError', error)
-                		let errorCode = error.code
-                		commit('authError', errorCode)
-                		console.log(errorCode)
-              		}
-            )
-        })
-    }
-  }
+						.then(result => {
+							commit('shared/setLoading', false, { root: true })
+							if (result.credential) {
+								// Accedemos al Facebook Access Token, ahora podemos utilizarlo para acceder a la Facebook API
+								const token = result.credential.accessToken
+								console.log('El token es: ' + token)
+							}
+							// Informacion del usuario
+							const newUser = {
+								id: result.user.uid
+							}
+							commit('user/setUser', newUser, { root: true })
+							console.log(newUser.id)
+						})
+						.catch(error => {
+							commit('shared/setLoading', false, { root: true })
+							// commit('setError', error)
+							let errorCode = error.code
+							commit('authError', errorCode)
+							console.log(errorCode)
+						})
+			})
+		}
+	}
 }

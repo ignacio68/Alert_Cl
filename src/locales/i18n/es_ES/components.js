@@ -6,14 +6,14 @@ export default {
     }
   },
   button: {
-    submit: 'Enviar' ,
-    sigup: 'Registrar' ,
-    login: 'Entrar' ,
-    signout: 'Desconectar' ,
-    reset: 'Reset' 
+    submit: 'Enviar',
+    sigup: 'Registrar',
+    login: 'Entrar',
+    signout: 'Desconectar',
+    reset: 'Reset'
   },
   alertConfirmPassword: {
-  	alertText: 'Te hemos enviado un email para confirmar la contraseña',
-  	buttonText: 'Ok'
+		alertText: 'Te hemos enviado un email para confirmar la contraseña',
+		buttonText: 'Ok'
   }
 }

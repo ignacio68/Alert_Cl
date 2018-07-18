@@ -14,7 +14,7 @@ export default {
       return state.error
     },
     actionPass (state) {
-    	return state.actionPass
+			return state.actionPass
     }
   },
   mutations: {
@@ -34,8 +34,8 @@ export default {
       console.log('Limpio el error')
     },
     setActionPass (state, payload) {
-    	state.actionPass = payload
-    	console.log('La acción ha sido ejecutada: ' + state.actionPass)
+			state.actionPass = payload
+			console.log('La acción ha sido ejecutada: ' + state.actionPass)
     }
   },
   actions: {

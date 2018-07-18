@@ -68,7 +68,8 @@ export default {
   },
   profile: {
     main: {
-      text: 'PROFILE PAGE'
+      text: 'PROFILE PAGE',
+      button: 'OK'
     }
   },
   search: {
