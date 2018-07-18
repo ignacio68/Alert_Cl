@@ -69,7 +69,7 @@ export default {
   profile: {
     main: {
       text: 'PAGINA DEL PERFIL',
-      button: 'OK'
+      button: 'Guardar'
     }
   },
   search: {
