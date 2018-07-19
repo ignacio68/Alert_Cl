@@ -15,7 +15,7 @@ export default {
 		actionCodeSettings: {
 			// URL you want to redirect back to. The domain (www.example.com) for this
 			// URL must be whitelisted in the Firebase Console.
-			url: 'https://lopezamor.com',
+			url: 'https://www.lopezamor.com',
 			// This must be true.
 			handleCodeInApp: true,
 			iOS: {
