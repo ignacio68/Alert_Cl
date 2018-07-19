@@ -193,26 +193,27 @@
         {{ $t('lang.pages.signup.main.text2') }}
       </p>
 
+    </div>
+
 <!------ CONFIRM PASSWORD ALERT ------>
 
-			<v-ons-alert-dialog
-					class="AlertDialog_text" 
-					modifier="rowfooter"
-					:title="$t('lang.components.alertConfirmPassword.alertText')"
-					:visible.sync="actionPass"
-			>
-				<template slot="footer">
-					<v-ons-alert-dialog-button
-					class="alertDialog_button"
-					ripple="true"
-					@click.prevent="onClickAlertButton()"
-					>
-					{{ $t('lang.components.alertConfirmPassword.buttonText') }}
-					</v-ons-alert-dialog-button>
-				</template>
-			</v-ons-alert-dialog>
+    <v-ons-alert-dialog
+      class="AlertDialog_text" 
+      modifier="rowfooter"
+      :title="$t('lang.components.alertConfirmPassword.alertText')"
+      :visible.sync="actionPass"
+    >
+      <template slot="footer">
+        <v-ons-alert-dialog-button
+          class="alertDialog_button"
+          ripple="true"
+          @click.prevent="onClickAlertButton()"
+        >
+          {{ $t('lang.components.alertConfirmPassword.buttonText') }}
+        </v-ons-alert-dialog-button>
+      </template>
+    </v-ons-alert-dialog>
 
-    </div>
   </v-ons-page>
 </template>
 
