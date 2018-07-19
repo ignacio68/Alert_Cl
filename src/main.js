@@ -20,8 +20,19 @@ import { store } from './store'
 
 import i18n from './locales/index'
 
-// import VueOnsen from 'vue-onsenui/esm'; // Cuando se utiliza ESM
-// import * as OnsenComponents from './onsen-components'; // Cuando se utiliza ESM
+/* Cuando se utiliza ESM
+
+import VueOnsen from 'vue-onsenui/esm'
+import 'onsenui/esm/elements/ons-page'
+import 'onsenui/esm/elements/ons-navigator'
+import 'onsenui/esm/elements/ons-tabbar'
+import 'onsenui/esm/elements/ons-col'
+import 'onsenui/esm/elements/ons-row'
+import 'onsenui/esm/elements/ons-button'
+import 'onsenui/esm/elements/ons-list'
+import 'onsenui/esm/elements/ons-list-item'
+
+*/
 
 import AppNavigator from './AppNavigator'
 

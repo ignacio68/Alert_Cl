@@ -1,9 +1,12 @@
 export default {
   welcome: {
-    header: '¡¡ENCANTADOS DE VERTE POR AQUÍ!!',
-    text: 'Para poder disfrutar de nuestros servicios necesitas tener una cuenta',
-    signup: 'REGISTRARSE',
-    lognin: 'ACCEDER'
+    header: 'ALERT! TE DA LA BIENVENIDA',
+    text: 'En ALERT! podras recibir avisos y alertas de tus sitios preferidos',
+    text1: 'Entradas para acontecimientos',
+    text2: 'Mesas libres en restaurantes',
+    text3: 'Precios especiales en tiendas',
+    text4: 'Invitaciones para eventos ...',
+    signup: 'CONTINUAR'
   },
   homePage: {
     toolbar: {

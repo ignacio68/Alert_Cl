@@ -1,9 +1,12 @@
 export default {
   welcome: {
-    header: 'HAPPY TO SEE YOU HERE!!',
-    text: 'To enjoy our services you need have a count',
-    signup: 'SIGNUP',
-    login: 'LOGNIN'
+    header: 'WELCOME TO ALERT!',
+    text: 'You can receive advices and alerts of your favorites sites in ALERT!',
+    text1: 'Tickets for events',
+    text2: 'Free tables in restaurans',
+    text3: 'Specials prices in stores',
+    text4: 'Invitations for events ...',
+    signup: 'CONTINUE'
   },
   homePage: {
     toolbar: {
