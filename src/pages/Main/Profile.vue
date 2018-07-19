@@ -8,7 +8,7 @@
         modifier="large"
         :disabled="false"
         ripple="true"
-        @click.prevent="toHomePage"
+        @click.prevent="onSave"
       >
         {{ $t('lang.pages.profile.main.button')}}
       </v-ons-button>
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-	import HomePage from '../HomePage'
   export default {
     name: 'profile',
     methods: {
-    	toHomePage() {
-        this.$store.commit('navigator/push', HomePage)
+    	onSave() {
+        // this.$store.commit('navigator/push', HomePage)
+        console.log('Guardo los cambios')
       }
     }
   }
