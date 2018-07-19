@@ -6,18 +6,11 @@
                    loaderRippleWidth ="3em"
                    loaderRipperHeigth ="3em">
     </the-preloader>
-    <the-custom-toolbar
+    <!--the-custom-toolbar
       :pageTitle="$t('lang.pages.signup.toolbar.title')" >
-    </the-custom-toolbar>
+    </the-custom-toolbar-->
     <div class="container">
       <p class="mainText">{{ $t('lang.pages.signup.main.text1') }}</p>
-
-      <!-- I HAVE A USER ACCOUNT -->
-
-      <p class="logInText"
-        @click.prevent="toLogIn">
-        {{ $t('lang.pages.signup.main.text2') }}
-      </p>
 
 <!-------SIGNUP WITH EMAIL & PASSWORD ------>
 
@@ -26,7 +19,7 @@
 
           <!-- NAME INPUT -->
 
-          <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
+          <!--v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
             <div class="left">
               <v-ons-icon
                 icon="ion-person, material:zmdi-account"
@@ -44,7 +37,7 @@
               >
               </v-ons-input>
             </div>
-          </v-ons-list-item>
+          </v-ons-list-item-->
 
           <!-- EMAIL INPUT -->
 
@@ -132,25 +125,39 @@
 
       <!-- BUTTON SIGNUP -->
 
-      <v-ons-button
-        name="signUp"
-        class="center"
-        modifier="large"
-        :disabled="false"
-        ripple="true"
-        @click.prevent="onSignUp"
-      >
-        {{ $t('lang.pages.signup.button')}}
-      </v-ons-button>
+			<div class="sinUp">
+				 <v-ons-button
+        	name="signUpButton"
+        	class="signUp__button center"
+        	modifier="large"
+        	:disabled="false"
+        	ripple="true"
+        	@click.prevent="onSignUp"
+      	>
+        	{{ $t('lang.pages.signup.button')}}
+      	</v-ons-button>
+			</div>
 
 <!------ LOGIN WITH SOCIAL BUTTONS ------>
+
+			<div class="socialText">
+				<p class="socialText__text">{{ $t('lang.pages.signup.main.socialText') }}</p>
+			</div>
 
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="socialButtonsList__item"
           v-for="(socialButton, $index) in socialButtons" :key="socialButton.name" tappable>
-          <sign-up-button
+          <!--sign-up-button
+            class="socialButtonsList__item-button"
+            :name="socialButton.name"
+            :index="$index"
+            :icon="socialButton.icons"
+            :style="{ backgroundColor: socialButton.color }"
+            @socialButtonEvent="socialLogIn($index)"
+          /-->
+          <sign-up-button-circle
             class="socialButtonsList__item-button"
             :name="socialButton.name"
             :index="$index"
@@ -178,6 +185,13 @@
             place="privacy">{{ privacy }}</span>
         </i18n>
       </div>
+
+<!-- I HAVE A USER ACCOUNT -->
+
+      <p class="logInText"
+        @click.prevent="toLogIn">
+        {{ $t('lang.pages.signup.main.text2') }}
+      </p>
 
 <!------ CONFIRM PASSWORD ALERT ------>
 
@@ -207,12 +221,14 @@
   import TermsOfService from '../Shared/TermsOfService'
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import LogIn from './LogIn'
-  import SignUpButton from '../../components/Shared/SignUpButton'
+  // import SignUpButton from '../../components/Shared/SignUpButton'
+  import SignUpButtonCircle from '../../components/Shared/SignUpButtonCircle'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
-      SignUpButton,
+      // SignUpButton,
+      SignUpButtonCircle
       // UserInputPassword
     },
     data () {
@@ -292,22 +308,31 @@
 
 <style scoped>
   .form {
-    border: 1px solid green;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 90%;
+
   }
   .form__input {
-    border: 1px solid pink;
     height: 50px;
+    background-color: #eee;
+  }
+  .signUp {
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 80%;
+  };
+  .signUp__button {
+  	
   }
   .socialButtonsList {
-    border: 1px solid blue;
+    background-color: #eee;
   }
   .socialButtonsList__item {
-    border: 1px solid red;
-    height: 50px;
+    padding: 0;
   }
   .socialButtonsList__item-button{
-    border: 1px solid green;
-    height: 40px;
+  	display: inline;
   }
   .list-item__icon {
     size: 25px;
@@ -316,11 +341,15 @@
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    text-align: center;
   }
   .logInText {
     padding-top: 20px;
     text-align: center;
     color: red;
+  }
+  .socialText__text {
+  	text-align: center;
   }
   .privacy {
     margin-top: 20px;

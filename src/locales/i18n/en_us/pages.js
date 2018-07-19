@@ -25,7 +25,8 @@ export default {
       text2: 'I have a user account',
       text3: 'When you sign up you accept our {terms} & {privacy}',
       terms: 'Terms of Use',
-      privacy: 'Privacy Politicy'
+      privacy: 'Privacy Politicy',
+      socialText: 'You can also login with'
     },
     input: {
       name: 'name',

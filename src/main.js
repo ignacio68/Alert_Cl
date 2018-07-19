@@ -31,6 +31,10 @@ import 'onsenui/esm/elements/ons-row'
 import 'onsenui/esm/elements/ons-button'
 import 'onsenui/esm/elements/ons-list'
 import 'onsenui/esm/elements/ons-list-item'
+import 'onsenui/esm/elements/ons-icon'
+import 'onsenui/esm/elements/ons-input'
+import 'onsenui/esm/elements/ons-alert-dialog'
+import 'onsenui/esm/elements/ons-alert-dialog-button'
 
 */
 
