@@ -49,6 +49,20 @@ export default {
     },
     button: 'LOG IN'
   },
+  configuration: {
+    toolbar: 'CONFIGURATION',
+    profile: {
+      title: 'Profile',
+      name: 'user name',
+      email: 'email',
+    },
+    preferences: {
+      sports: 'Sports',
+      entertainment: 'Entertainment',
+      gastro: 'Restos',
+    },
+    button: 'Save'
+  },
   service: {
     toolbar: {
       title: 'TERMS OF SERVICE'

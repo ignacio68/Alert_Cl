@@ -53,6 +53,20 @@ export default {
     },
     button: 'ACCEDER'
   },
+  configuration: {
+    toolbar: 'CONFIGURACION',
+    profile: {
+      title: 'Perfil',
+      name: 'nombre de usuario',
+      email: 'email',
+    },
+    preferences: {
+      sports: 'Deportes',
+      entertainment: 'Entretenimiento',
+      gastro: 'Restaurantes',
+    },
+    button: 'Guardar'
+  },
   service: {
     toolbar: {
       title: 'TERMINOS DEL SERVICIO'
