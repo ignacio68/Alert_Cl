@@ -7,7 +7,7 @@ import SignUp from '../../../pages/User/SignUp'
 // const fb = require('../../../components/Firebase/firebaseConfig')
 
 export default {
-  strict: true,
+  strict: process.env.NODE_ENV !== 'production',
   namespaced: true,
   state: {
     user: null, // el usuario inicial siempre está vacio
