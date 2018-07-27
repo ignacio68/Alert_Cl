@@ -88,10 +88,13 @@ export default {
     main: {
       text: 'PROFILE PAGE',
       button: 'Save',
-      input: {
+      list: {
+      	input: {
       	name: 'name',
       	email: 'email',
       	location: 'location',
+      	},
+      	header1: 'PREFERENCES'
       }
     }
   },

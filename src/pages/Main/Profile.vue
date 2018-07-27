@@ -12,7 +12,7 @@
     		<v-ons-list class="profileList">
     			<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
     				<div class="left">
-    					<label for="textImput">{{ $t('lang.pages.profile.main.input.name') }}</label>
+    					<label for="textImput">{{ $t('lang.pages.profile.main.list.input.name') }}</label>
     				</div>
     				<div class="center">
     					<v-ons-input
@@ -28,7 +28,7 @@
 					</v-ons-list-item>
 					<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
 						<div class="left">
-    					<label for="textImput">{{ $t('lang.pages.profile.main.input.email') }}</label>
+    					<label for="textImput">{{ $t('lang.pages.profile.main.list.input.email') }}</label>
     				</div>
     				<div class="center">
     					<v-ons-input
@@ -43,7 +43,7 @@
  	  			</v-ons-list-item>
  	  			<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
 						<div class="left">
-    					<label for="textImput">{{ $t('lang.pages.profile.main.input.location') }}</label>
+    					<label for="textImput">{{ $t('lang.pages.profile.main.list.input.location') }}</label>
     				</div>
     				<div class="center">
     					<v-ons-input
@@ -57,6 +57,7 @@
     				</div>
  	  			</v-ons-list-item>
  	  			<v-ons-list-header class="profileList__header">
+						{{ $t('lang.pages.profile.main.list.header1') }}
  	  			</v-ons-list-header>
 				</v-ons-list>
     	</form>

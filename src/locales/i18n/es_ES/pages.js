@@ -92,10 +92,13 @@ export default {
     main: {
       text: 'PAGINA DEL PERFIL',
       button: 'Guardar',
-      input: {
+      list: {
+      	input: {
       	name: 'nombre',
       	email: 'email',
       	location: 'ubicación',
+      	},
+      	header1: 'PREFERENCIAS'
       }
     }
   },
