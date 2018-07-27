@@ -1,10 +1,69 @@
 <template>
   <v-ons-page>
     <div class="container">
-      <h1>{{ $t('lang.pages.profile.main.text')}}</h1>
+
+    	<div class="picture">
+    		<div class="picture__frame">
+    			<a href="" class="picture__frame-photo"/>
+    		</div>
+    	</div>
+
+    	<form>
+    		<v-ons-list class="profileList">
+    			<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
+    				<div class="left">
+    					<label for="textImput">{{ $t('lang.pages.profile.main.input.name') }}</label>
+    				</div>
+    				<div class="center">
+    					<v-ons-input
+								id="name"
+              	type="name"
+
+              	float
+              	modifier="transparent"
+              	v-model="name"
+              	required
+            	/>
+    				</div>
+					</v-ons-list-item>
+					<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
+						<div class="left">
+    					<label for="textImput">{{ $t('lang.pages.profile.main.input.email') }}</label>
+    				</div>
+    				<div class="center">
+    					<v-ons-input
+            		id="email"
+              	type="email"
+              	:placeholder="email"
+              	float
+              	modifier="transparent"
+              	disabled
+            	/>
+    				</div>
+ 	  			</v-ons-list-item>
+ 	  			<v-ons-list-item :modifier="md ? 'nodivider' : ''" class="profileList__item">
+						<div class="left">
+    					<label for="textImput">{{ $t('lang.pages.profile.main.input.location') }}</label>
+    				</div>
+    				<div class="center">
+    					<v-ons-input
+            		id="location"
+              	type="text"
+
+              	float
+              	modifier="transparent"
+              	v-model="location"
+            	/>
+    				</div>
+ 	  			</v-ons-list-item>
+ 	  			<v-ons-list-header class="profileList__header">
+ 	  			</v-ons-list-header>
+				</v-ons-list>
+    	</form>
+    	
        <v-ons-button
         name="onClick"
-        class="center"
+        class="profileButton"
         modifier="large"
         :disabled="false"
         ripple="true"
@@ -19,6 +78,18 @@
 <script>
   export default {
     name: 'profile',
+    data() {
+    	return {
+    		name: '',
+    		email: '',
+    		location: ''
+    	}
+    },
+    computed: {
+    	userEmail() {
+    		this.email = this.$store.getters['user/user.email']
+    	}
+    },
     methods: {
     	onSave() {
         // this.$store.commit('navigator/push', HomePage)
@@ -28,5 +99,28 @@
   }
 </script>
 <style scoped>
+.picture {
+	position: relative;
+	height: 150px;
+	width: 100%;
+	background-color: orange;
+}
+.picture__frame {
+	position: absolute;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	border: 2px solid white;
+  background-color: yellow;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+}
+.profileButton {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
 
 </style>

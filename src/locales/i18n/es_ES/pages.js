@@ -91,7 +91,12 @@ export default {
   profile: {
     main: {
       text: 'PAGINA DEL PERFIL',
-      button: 'Guardar'
+      button: 'Guardar',
+      input: {
+      	name: 'nombre',
+      	email: 'email',
+      	location: 'ubicación',
+      }
     }
   },
   search: {

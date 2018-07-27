@@ -87,7 +87,12 @@ export default {
   profile: {
     main: {
       text: 'PROFILE PAGE',
-      button: 'Save'
+      button: 'Save',
+      input: {
+      	name: 'name',
+      	email: 'email',
+      	location: 'location',
+      }
     }
   },
   search: {
