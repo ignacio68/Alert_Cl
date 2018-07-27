@@ -4,7 +4,7 @@
 
     	<div class="picture">
     		<div class="picture__frame">
-    			<a href="" class="picture__frame-photo"/>
+    			<img src="../../assets/user_icon.png" alt="user icon" class="picture__frame-photo"/>
     		</div>
     	</div>
 
@@ -116,7 +116,10 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-
+}
+.picture__frame-photo {
+	width:90px;
+	height: 90px;
 }
 .profileButton {
 	width: 90%;
