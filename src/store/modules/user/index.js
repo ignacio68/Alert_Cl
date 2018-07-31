@@ -37,6 +37,7 @@ export default {
     setUser (state, payload) {
       state.user = payload // Añade a user las propiedades del usuario registrado
       console.log('El id del usuario es: ' + state.user.id)
+      console.log('El email del usuario es: ' + state.user.email)
     },
     clearUser (state) {
       state.user = null // resetea el user
@@ -143,7 +144,8 @@ export default {
     */
     autoSignIn ({commit}, user) {
       commit('setUser', {
-        id: user.uid
+        id: user.uid,
+        email: user.email
       })
     },
 
@@ -176,18 +178,6 @@ export default {
     * Comprueba si hay algún usuario conectado
     */
     isActiveUser ({commit}) {
-      /**
-      firebase.auth().onAuthStateChanged(
-        user => {
-          if (user) {
-            // commit('navigator/push', page)
-            console.log(activeUser.email + ' está conectado')
-          } else {
-            console.log('No hay ningún usuario conectado')
-          }
-        }
-      )
-      */
       const activeUser = firebase.auth().currentUser
       if (activeUser != null) {
         console.log(activeUser.email + ' está conectado')
