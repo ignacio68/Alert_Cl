@@ -4,11 +4,11 @@
 		</div>
 		<div class="content">
 			<v-col>
-				<!--img 
+				<img 
 					:src="userIcon"
-					alt="user icon"
+					:alt="altIcon"
 					class="alertCard__userIcon"
-				/-->
+				>
 			</v-col>
 			<v-col>
 				<v-row>
@@ -51,6 +51,10 @@
 		name: 'the-alert',
 		props: {
 			userIcon: {
+				type: String,
+      	default: ''
+			},
+			altIcon: {
 				type: String,
       	default: ''
 			},

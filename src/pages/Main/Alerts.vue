@@ -9,6 +9,7 @@
           v-for="(alert, index) in alerts" :key="alert.userName" tappable>
           <the-alert
             :userIcon="alert.userIcon"
+            :altIcon="alert.altIcon"
             :userName="alert.userName"
             :countDown="alert.countDown"
             :alertTitle="alert.alertTitle"
@@ -40,18 +41,22 @@
       return {
         alerts: {
           RealMadrid: {
-            userIcon:"../../assets/Real-Madrid-logo-256",
+            userIcon:"Real-Madrid-logo-256.png",
+            altIcon:"Real Madrid logo",
             userName:"Real Madrid",
             countDown:2563698,
             alertTitle:"Asientos partido Real Madrid-Barcelona",
-            alertText:"Todavía quedan algunos asientos libres para el Clásico de esta tarde"
+            alertText:"Todavía quedan algunos asientos libres para el Clásico de esta tarde",
+            alertLink:"https://www.realmadrid.com/entradas"
           },
           AtleticoMadrid: {
-            userIcon:"../../assets/Atletico-Madrid-logo-256",
+            userIcon:"Atletico-Madrid-logo-256.png",
+            altIcon:"Atletico de Madrid logo",
             userName:"Atlético de Madrid",
             countDown:4589752,
             alertTitle:"Palco VIP partido Atlético-Celta",
-            alertText:"Tenemos un palco Vip en el primer anfiteatro para el partido de esta tarde. 1.000€"
+            alertText:"Tenemos un palco Vip en el primer anfiteatro para el partido de esta noche. 1.000€",
+            alertLink:"https://www.atleticodemadrid.com/entradas"
           },
         }
       }
