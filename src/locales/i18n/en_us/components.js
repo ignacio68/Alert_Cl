@@ -15,5 +15,9 @@ export default {
   alertConfirmPassword: {
     alertText: 'We have sent you an email to confirm the password',
     buttonText: 'Ok'
+  },
+  alerts: {
+    phoneButton: 'phone',
+    linkButton: 'link'
   }
 }
