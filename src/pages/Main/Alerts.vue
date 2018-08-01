@@ -16,6 +16,7 @@
             :alertText="alert.alertText"
             :phoneButton="$t('lang.components.alerts.phoneButton')"
             :linkButton="$t('lang.components.alerts.linkButton')"
+            @linkButtonEvent="toLink(alert.alertLink)"
             >
           </the-alert>
         </v-ons-list-item>
@@ -41,7 +42,7 @@
       return {
         alerts: {
           RealMadrid: {
-            userIcon:"Real-Madrid-logo-256.png",
+            userIcon:"../../assets/Real-Madrid-logo-256.png",
             altIcon:"Real Madrid logo",
             userName:"Real Madrid",
             countDown:2563698,
@@ -50,7 +51,7 @@
             alertLink:"https://www.realmadrid.com/entradas"
           },
           AtleticoMadrid: {
-            userIcon:"Atletico-Madrid-logo-256.png",
+            userIcon:"../../assets/Atletico-Madrid-logo-256.png",
             altIcon:"Atletico de Madrid logo",
             userName:"Atlético de Madrid",
             countDown:4589752,
@@ -59,6 +60,12 @@
             alertLink:"https://www.atleticodemadrid.com/entradas"
           },
         }
+      }
+    },
+    methods: {
+      toLink(link) {
+        console.log('link to:' + link)
+        window.location.href = link
       }
     }
   }
