@@ -24,9 +24,21 @@
       <v-ons-fab
         position="bottom right"
         ripple="true"
+        @click="alertVisible=true"
       >
-      <v-ons-icon icon="ion-edit, material:zmdi-email-open"></v-ons-icon>
-    </v-ons-fab>
+        <v-ons-icon icon="ion-edit, material:zmdi-email-open"></v-ons-icon>
+      </v-ons-fab>
+      <v-ons-alert-dialog 
+        modifier="rowfooter"
+        :visible.sync="alertVisible"
+        >
+        <span slot="title">ALERTA</span>
+          <p>Aquí va la alerta</p>
+        <template slot="footer">
+          <v-ons-alert-dialog-button @click="alertVisible = false">Cancel</v-ons-alert-dialog-button>
+          <v-ons-alert-dialog-button @click="alert1Visible = false">Ok</v-ons-alert-dialog-button>
+        </template>
+      </v-ons-alert-dialog>
     </div>
   </v-ons-page>
 </template>
@@ -59,7 +71,8 @@
             alertText: 'Tenemos un palco Vip en el primer anfiteatro para el partido de esta noche. 1.000€',
             alertLink: 'https://www.atleticodemadrid.com/entradas'
           }
-        }
+        },
+        alertVisible: false
       }
     },
     methods: {
