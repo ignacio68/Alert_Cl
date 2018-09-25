@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   modules: {
-  	alerts,
+    alerts,
     navigator,
     shared,
     user,

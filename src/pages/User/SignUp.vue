@@ -125,24 +125,24 @@
 
       <!-- BUTTON SIGNUP -->
 
-			<div class="sinUp">
-				 <v-ons-button
-        	name="signUpButton"
-        	class="signUp__button center"
-        	modifier="large"
-        	:disabled="false"
-        	ripple="true"
-        	@click.prevent="onSignUp"
-      	>
-        	{{ $t('lang.pages.signup.button')}}
-      	</v-ons-button>
-			</div>
+      <div class="sinUp">
+         <v-ons-button
+          name="signUpButton"
+          class="signUp__button center"
+          modifier="large"
+          :disabled="false"
+          ripple="true"
+          @click.prevent="onSignUp"
+        >
+          {{ $t('lang.pages.signup.button')}}
+        </v-ons-button>
+      </div>
 
 <!------ LOGIN WITH SOCIAL BUTTONS ------>
 
-			<div class="socialText">
-				<p class="socialText__text">{{ $t('lang.pages.signup.main.socialText') }}</p>
-			</div>
+      <div class="socialText">
+        <p class="socialText__text">{{ $t('lang.pages.signup.main.socialText') }}</p>
+      </div>
 
       <v-ons-list class="socialButtonsList">
         <v-ons-list-item
@@ -256,7 +256,7 @@
         return this.$store.getters['shared/loading']
       },
       actionPass () {
-      	return this.$store.getters['shared/actionPass']
+        return this.$store.getters['shared/actionPass']
       },
       terms () {
         return this.$t('lang.pages.signup.main.terms')
@@ -298,8 +298,8 @@
         this.passwordVisible = !this.passwordVisible
       },
       onClickAlertButton () {
-      	console.log('Estoy en el botón de la alerta de confirmación de password')
-      	this.$store.commit('shared/setActionPass', false)
+        console.log('Estoy en el botón de la alerta de confirmación de password')
+        this.$store.commit('shared/setActionPass', false)
         this.$store.commit('navigator/push', Configuration)
         this.$store.dispatch('user/confirmPassword', this.email)
       }
@@ -309,9 +309,9 @@
 
 <style scoped>
   .form {
-  	margin-left: auto;
-  	margin-right: auto;
-  	width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 
   }
   .form__input {
@@ -319,12 +319,12 @@
     background-color: #eee;
   }
   .signUp {
-  	margin-left: auto;
-  	margin-right: auto;
-  	width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
   };
   .signUp__button {
-  	
+    
   }
   .socialButtonsList {
     background-color: #eee;
@@ -333,7 +333,7 @@
     padding: 0;
   }
   .socialButtonsList__item-button{
-  	display: inline;
+    display: inline;
   }
   .list-item__icon {
     size: 25px;
@@ -350,7 +350,7 @@
     color: red;
   }
   .socialText__text {
-  	text-align: center;
+    text-align: center;
   }
   .privacy {
     margin-top: 20px;

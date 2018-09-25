@@ -10,7 +10,21 @@
       :pageTitle="toolbarTitle" >
     </the-custom-toolbar>
     <div class="container">
-      <p>Esta es la página de configuración</p>
+      <form class="configurationForm">
+        <v-ons-list class="configurationForm__list">
+          <v-ons-list-item class="configurationForm__list-item">
+            <label for="textInput" class="left configurationForm__list-item-label">nombre</label>
+            <v-ons-input 
+              class="center configurationForm__list-input"
+              id="name"
+              type="name"
+              float
+              modifier="transparent"
+              v-model="name"
+              required></v-ons-input>
+          </v-ons-list-item>
+        </v-ons-list>
+      </form>
       <v-ons-button
         name="saveButton"
         class="save__button center"
@@ -32,7 +46,8 @@
     data () {
       return {
         isActive: false,
-        volver: ''
+        volver: '',
+        name: ''
       }
     },
     computed: {
@@ -42,6 +57,7 @@
     },
     methods: {
       onSave () {
+        this.$store.dispatch('user/createUserDb', this.name)
         this.$store.commit('navigator/push', HomePage)
       }
     }

@@ -1,6 +1,6 @@
 # alert_cliente
 
-> Alert! app Cliente
+> Alert! Client app
 
 ## Build Setup
 

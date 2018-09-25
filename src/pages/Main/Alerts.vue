@@ -22,8 +22,8 @@
         </v-ons-list-item>
       </v-ons-list>
       <v-ons-fab
-      	position="bottom right"
-      	ripple="true"
+        position="bottom right"
+        ripple="true"
       >
       <v-ons-icon icon="ion-edit, material:zmdi-email-open"></v-ons-icon>
     </v-ons-fab>
@@ -42,28 +42,28 @@
       return {
         alerts: {
           RealMadrid: {
-            userIcon:"../../assets/Real-Madrid-logo-256.png",
-            altIcon:"Real Madrid logo",
-            userName:"Real Madrid",
-            countDown:2563698,
-            alertTitle:"Asientos partido Real Madrid-Barcelona",
-            alertText:"Todavía quedan algunos asientos libres para el Clásico de esta tarde",
-            alertLink:"https://www.realmadrid.com/entradas"
+            userIcon: '../../assets/Real-Madrid-logo-256.png',
+            altIcon: 'Real Madrid logo',
+            userName: 'Real Madrid',
+            countDown: 2563698,
+            alertTitle: 'Asientos partido Real Madrid-Barcelona',
+            alertText: 'Todavía quedan algunos asientos libres para el Clásico de esta tarde',
+            alertLink: 'https://www.realmadrid.com/entradas'
           },
           AtleticoMadrid: {
-            userIcon:"../../assets/Atletico-Madrid-logo-256.png",
-            altIcon:"Atletico de Madrid logo",
-            userName:"Atlético de Madrid",
-            countDown:4589752,
-            alertTitle:"Palco VIP partido Atlético-Celta",
-            alertText:"Tenemos un palco Vip en el primer anfiteatro para el partido de esta noche. 1.000€",
-            alertLink:"https://www.atleticodemadrid.com/entradas"
-          },
+            userIcon: '../../assets/Atletico-Madrid-logo-256.png',
+            altIcon: 'Atletico de Madrid logo',
+            userName: 'Atlético de Madrid',
+            countDown: 4589752,
+            alertTitle: 'Palco VIP partido Atlético-Celta',
+            alertText: 'Tenemos un palco Vip en el primer anfiteatro para el partido de esta noche. 1.000€',
+            alertLink: 'https://www.atleticodemadrid.com/entradas'
+          }
         }
       }
     },
     methods: {
-      toLink(link) {
+      toLink (link) {
         console.log('link to:' + link)
         window.location.href = link
       }
