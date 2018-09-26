@@ -54,12 +54,12 @@ export default {
     profile: {
       title: 'Profile',
       name: 'user name',
-      email: 'email',
+      email: 'email'
     },
     preferences: {
       sports: 'Sports',
       entertainment: 'Entertainment',
-      gastro: 'Restos',
+      gastro: 'Restos'
     },
     button: 'Save'
   },
@@ -89,12 +89,12 @@ export default {
       text: 'PROFILE PAGE',
       button: 'Save',
       list: {
-      	input: {
-      	name: 'name',
-      	email: 'email',
-      	location: 'location',
-      	},
-      	header1: 'PREFERENCES'
+        input: {
+          name: 'name',
+          email: 'email',
+          location: 'location'
+        },
+        header1: 'PREFERENCES'
       }
     }
   },

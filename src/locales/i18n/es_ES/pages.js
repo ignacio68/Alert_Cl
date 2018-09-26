@@ -58,12 +58,12 @@ export default {
     profile: {
       title: 'Perfil',
       name: 'nombre de usuario',
-      email: 'email',
+      email: 'email'
     },
     preferences: {
       sports: 'Deportes',
       entertainment: 'Entretenimiento',
-      gastro: 'Restaurantes',
+      gastro: 'Restaurantes'
     },
     button: 'Guardar'
   },
@@ -93,12 +93,12 @@ export default {
       text: 'PAGINA DEL PERFIL',
       button: 'Guardar',
       list: {
-      	input: {
-      	name: 'nombre',
-      	email: 'email',
-      	location: 'ubicación',
-      	},
-      	header1: 'PREFERENCIAS'
+        input: {
+          name: 'nombre',
+          email: 'email',
+          location: 'ubicación'
+        },
+        header1: 'PREFERENCIAS'
       }
     }
   },

@@ -11,7 +11,7 @@ export default {
   namespaced: true,
   state: {
     user: null, // el usuario inicial siempre está vacio
-     /* Creamos el objeto ActionCodeSettings que proporciona instrucciones a Firebase*/
+    /* Creamos el objeto ActionCodeSettings que proporciona instrucciones a Firebase */
     actionCodeSettings: {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
@@ -25,8 +25,8 @@ export default {
         packageName: 'com.example.android',
         installApp: true,
         minimumVersion: '12'
-        }
       }
+    }
   },
   getters: {
     user (state) {
@@ -64,7 +64,7 @@ export default {
               // Añadimos los datos del nuevo usuario
               id: firebaseUser.uid,
               // name: user.name,
-              email: firebaseUser.email,
+              email: firebaseUser.email
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + payload.email)
@@ -94,7 +94,7 @@ export default {
       firebase.auth().sendSignInLinkToEmail(firebaseUserEmail, state.actionCodeSettings)
         .then(
           () => {
-            console.log('Guardo el email: ' + firebaseUserEmail + ('en emailForSignIn') )
+            console.log('Guardo el email: ' + firebaseUserEmail + ('en emailForSignIn'))
             commit('shared/setLoading', false, { root: true })
             window.localStorage.setItem('emailForSingIn', firebaseUserEmail)
           }
@@ -149,6 +149,52 @@ export default {
       })
     },
 
+    /**
+    * Actualizamos la información del usuario y la base de datos
+    */
+    updatedUserInfo ({commit}, user) {
+      const userUpdated = {
+        userIcon: user.userIcon, // por el momento utilizar direcciones URL
+        userName: user.userName,
+        location: user.location, // escribir una localidad, después utilizar geolocalización
+        preferences: user.preferences
+      }
+      commit('setUser', userUpdated)
+      const userId = this.user.id
+      firebase.database().ref('users/' + userId).push(userUpdated)
+        .then((data) => {
+          const key = data.key
+          return key
+        })
+        .then(() => {
+          commit('createUser', {
+            ...userUpdated,
+            id: this.key
+          })
+          console.log(userUpdated)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+
+    /**
+    * Creamos la base de datos del usuario
+    */
+    createUserDb (newUser) {
+      const user = {
+        email: this.user.email,
+        userName: this.user.userName
+      }
+      const userId = this.user.id
+      firebase.database().ref('users/' + userId).set('user')
+        .then(() => {
+          console.log(user)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     /**
     * Log Out de Usuario
     */
