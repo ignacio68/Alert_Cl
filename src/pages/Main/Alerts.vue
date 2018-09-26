@@ -1,11 +1,10 @@
 <template>
-  <v-ons-page>
     <div class="container">
       <h1>{{ $t('lang.pages.alerts.main.text')}}</h1>
       <v-ons-list class="alertsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
-          class="socialButtonsList__item"
+          class="alertsList__item"
           v-for="(alert, index) in alerts" :key="alert.userName" tappable>
           <the-alert
             :userIcon="alert.userIcon"
@@ -22,25 +21,29 @@
         </v-ons-list-item>
       </v-ons-list>
       <v-ons-fab
+        class="alertScript"
         position="bottom right"
         ripple="true"
-        @click="alertVisible=true"
+        @click.prevent="isAlertVisible = true"
       >
-        <v-ons-icon icon="ion-edit, material:zmdi-email-open"></v-ons-icon>
+        <v-ons-icon 
+          class="alertScript__icon"
+          icon="ion-edit, material:zmdi-email-open"
+        >
+        </v-ons-icon>
       </v-ons-fab>
       <v-ons-alert-dialog 
         modifier="rowfooter"
-        :visible.sync="alertVisible"
+        :visible.sync="isAlertVisible"
         >
         <span slot="title">ALERTA</span>
           <p>Aquí va la alerta</p>
         <template slot="footer">
-          <v-ons-alert-dialog-button @click="alertVisible = false">Cancel</v-ons-alert-dialog-button>
-          <v-ons-alert-dialog-button @click="alert1Visible = false">Ok</v-ons-alert-dialog-button>
+          <v-ons-alert-dialog-button @click.prevent="isAlertVisible = false">Ok</v-ons-alert-dialog-button>
+          <v-ons-alert-dialog-button @click.prevent="isAlertVisible = false">Cancel</v-ons-alert-dialog-button>
         </template>
       </v-ons-alert-dialog>
     </div>
-  </v-ons-page>
 </template>
 
 <script>
@@ -54,16 +57,16 @@
       return {
         alerts: {
           RealMadrid: {
-            userIcon: '../../assets/Real-Madrid-logo-256.png',
+            userIcon: 'src/assets/Real-Madrid-logo-256.png',
             altIcon: 'Real Madrid logo',
             userName: 'Real Madrid',
             countDown: 2563698,
-            alertTitle: 'Asientos partido Real Madrid-Barcelona',
+            alertTitle: 'Asientos partido Real Madrid-Atlético',
             alertText: 'Todavía quedan algunos asientos libres para el Clásico de esta tarde',
             alertLink: 'https://www.realmadrid.com/entradas'
           },
           AtleticoMadrid: {
-            userIcon: '../../assets/Atletico-Madrid-logo-256.png',
+            userIcon: 'src/assets/Atletico-Madrid-logo-256.png',
             altIcon: 'Atletico de Madrid logo',
             userName: 'Atlético de Madrid',
             countDown: 4589752,
@@ -72,7 +75,7 @@
             alertLink: 'https://www.atleticodemadrid.com/entradas'
           }
         },
-        alertVisible: false
+        isAlertVisible: false
       }
     },
     methods: {
@@ -85,5 +88,10 @@
 </script>
 
 <style scoped>
-
+.alertScript {
+  background-color: dodgerblue;
+}
+.alertScript__icon {
+  color: white;
+}
 </style>

@@ -9,7 +9,7 @@
 <!-------------------- LOG IN FORM ------------------------------------------------>
 
       <form class="form" autocomplete="off">
-
+        <v-ons-list class="form-list">
           <!-- EMAIL INPUT -->
 
           <v-ons-list-item :modifier="md ? 'nodivider' : ''" class="form__input">
@@ -80,14 +80,12 @@
             </p>
           </v-ons-list-item>
 
-        </v-ons-list>
-
         <!-- ERROR -->
 
-        <v-ons-list-item>
-          <p v-if="error" class="error">{{ $t('lang.errors.auth.invalidDisplayName') }}</p>
-        </v-ons-list-item>
-
+          <v-ons-list-item>
+            <p v-if="error" class="error">{{ $t('lang.errors.auth.invalidDisplayName') }}</p>
+          </v-ons-list-item>
+        </v-ons-list>
       </form>
 
 <!---------------------------END FORM -------------------------------------------------->
