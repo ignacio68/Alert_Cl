@@ -47,7 +47,7 @@ export default {
     /**
     * Nuevo Usuario
     */
-    signUserUp ({commit, state}, payload) {
+    signUserUp ({commit, dispatch, state}, payload) {
       console.log('Estoy en signUserUp')
       commit('shared/setLoading', true, { root: true })
       commit('shared/setActionPass', false, { root: true })
@@ -66,10 +66,10 @@ export default {
               id: firebaseUser.user.uid,
               email: firebaseUser.user.email
               // name: user.name,
-              
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
             console.log('Hay un nuevo usuario: ' + newUser.email)
+            dispatch('createUserDb')
           }
         )
         .catch(
@@ -179,13 +179,16 @@ export default {
     /**
     * Creamos la base de datos del usuario
     */
-    createUserDb (newUser) {
+    createUserDb ({state}) {
+      console.log('Estoy en createUserDb')
+      // console.log(newUser)
       const user = {
-        email: this.user.email,
-        userName: this.user.userName
+        email: state.user.email
+        // userName: this.user.userName
       }
-      const userId = this.user.id
-      firebase.database().ref('users/' + userId).set('user')
+      const userId = state.user.id
+      console.log('el id del usuario es: ' + userId)
+      firebase.database().ref('users/' + userId).set(user)
         .then(() => {
           console.log(user)
         })
