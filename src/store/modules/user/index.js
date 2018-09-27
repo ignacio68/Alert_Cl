@@ -47,7 +47,7 @@ export default {
     /**
     * Nuevo Usuario
     */
-    signUserUp ({commit, dispatch, state}, payload) {
+    signUserUp ({commit, state}, payload) {
       console.log('Estoy en signUserUp')
       commit('shared/setLoading', true, { root: true })
       commit('shared/setActionPass', false, { root: true })
@@ -58,20 +58,18 @@ export default {
         .then(
           firebaseUser => {
             console.log('Estoy dentro de createUserWithEmailAndPassword')
+            console.log(firebaseUser)
             commit('shared/setLoading', false, { root: true })
             commit('shared/setActionPass', true, { root: true })
             const newUser = {
               // Añadimos los datos del nuevo usuario
-              id: firebaseUser.uid,
+              id: firebaseUser.user.uid,
+              email: firebaseUser.user.email
               // name: user.name,
-              email: firebaseUser.email
+              
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
-            console.log('Hay un nuevo usuario: ' + payload.email)
-            // let enviarEmail = function() {
-            //  (dispatch('confirmPassword', payload.email))
-            // }
-            //
+            console.log('Hay un nuevo usuario: ' + newUser.email)
           }
         )
         .catch(
