@@ -67,11 +67,12 @@ export default {
               email: firebaseUser.email
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
-            console.log('Hay un nuevo usuario: ' + payload.email)
+            console.log('Hay un nuevo usuario: ' + firebaseUser.email)
             // let enviarEmail = function() {
             //  (dispatch('confirmPassword', payload.email))
             // }
             //
+            dispatch('createUserDb', newUser)
           }
         )
         .catch(
@@ -183,10 +184,12 @@ export default {
     */
     createUserDb (newUser) {
       const user = {
-        email: this.user.email,
-        userName: this.user.userName
+        // email: this.user.email,
+        // userName: this.user.userName
+        email: newUser.email,
+        userName: newUser.userName
       }
-      const userId = this.user.id
+      const userId = newUser.id
       firebase.database().ref('users/' + userId).set('user')
         .then(() => {
           console.log(user)

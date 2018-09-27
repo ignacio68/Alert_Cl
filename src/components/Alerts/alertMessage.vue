@@ -33,6 +33,7 @@
         
       <v-ons-row>
         <div class="alertCard-buttons">
+          
           <v-ons-button 
             class="alertCard__button"
             ripple="true"
@@ -62,7 +63,7 @@
 
 <script>
   export default {
-    name: 'the-alert',
+    name: 'alert-message',
     props: {
       userIcon: {
         type: String,

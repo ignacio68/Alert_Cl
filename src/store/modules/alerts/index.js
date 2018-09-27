@@ -32,7 +32,7 @@ export default {
       commit('shared/setLoading', true, { root: true })
       firebase.database().ref('alerts').once('value')
         .then((data) => {
-          const alerts = []
+          const alerts = [] // utilizar un objeto {}
           const obj = data.val()
           for (let key in obj) {
             alerts.push({
@@ -40,7 +40,7 @@ export default {
               creatorId: obj[key].creatorId,
               userIcon: obj[key].userIcon,
               userName: obj[key].userName,
-              countDown: obj[key].countDown,
+              endDate: obj[key].endDate,
               alertTitle: obj[key].alertTitle,
               alertText: obj[key].alertText,
               alertLink: obj[key].alertLink,
@@ -64,11 +64,11 @@ export default {
         creatorId: this.$store.getters['user/user.id'],
         userIcon: payload.userIcon, // utilizar el del usuario guardado en firebase.Storage()
         userName: payload.userName, // utilizar el del usuario
-        countDown: payload.countDown, // utilizar new Date() en milisegundos
+        endDate: payload.endDate, // utilizar new Date() en milisegundos
         alertTitle: payload.alertTitle,
         alertText: payload.alertText,
         alertLink: payload.alertLink,
-        alertPhone: payload.alertPhone
+        alertPhone: payload.alertPhone // utilizar por defecto el guardado en Firebase
       }
       firebase.database().ref('alerts').push(alert)
         .then((data) => {

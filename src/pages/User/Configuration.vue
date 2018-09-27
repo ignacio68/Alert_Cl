@@ -57,7 +57,7 @@
     },
     methods: {
       onSave () {
-        this.$store.dispatch('user/createUserDb', this.name)
+        // this.$store.dispatch('user/createUserDb', this.name)
         this.$store.commit('navigator/push', HomePage)
       }
     }
