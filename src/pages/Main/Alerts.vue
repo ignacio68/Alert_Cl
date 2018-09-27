@@ -21,18 +21,7 @@
           </the-alert>
         </v-ons-list-item>
       </v-ons-list>
-      <v-ons-fab
-        class="alertScript"
-        position="bottom right"
-        ripple="true"
-        @click.prevent="isAlertVisible = true"
-      >
-        <v-ons-icon
-          class="alertScript__icon"
-          icon="ion-edit, material:zmdi-email-open"
-        >
-        </v-ons-icon>
-      </v-ons-fab>
+      
       <v-ons-alert-dialog 
         modifier="rowfooter"
         :visible.sync="isAlertVisible"
@@ -45,6 +34,18 @@
         </template>
       </v-ons-alert-dialog>
     </div>
+    <v-ons-fab
+        class="alertScript"
+        position="bottom right"
+        ripple="true"
+        @click.prevent="isAlertVisible = true"
+      >
+        <v-ons-icon
+          class="alertScript__icon"
+          icon="ion-edit, material:zmdi-email-open"
+        >
+        </v-ons-icon>
+      </v-ons-fab>
   </v-ons-page>
 </template>
 
