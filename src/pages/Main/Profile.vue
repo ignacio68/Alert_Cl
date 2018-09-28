@@ -18,6 +18,7 @@
               <v-ons-input
                 id="name"
                 type="name"
+                :placeholder="userName"
                 float
                 modifier="transparent"
                 v-model="name"
@@ -48,6 +49,7 @@
               <v-ons-input
                 id="location"
                 type="text"
+                :placeholder="userLocation"
                 float
                 modifier="transparent"
                 v-model="location"
@@ -87,12 +89,25 @@
       userEmail () {
         let userEmail = this.$store.getters['user/user']
         console.log('el email el usuario es: ' + userEmail.email)
-        return userEmail.email
+        return userEmail
+      },
+      userName () {
+        let userName = this.$store.getters['user/user']
+        console.log('el nombre de usuario es: ' + userName.userName)
+        return userName.userName
+      },
+      userLocation () {
+        let userLocation = this.$store.getters['user/user']
+        console.log('la localización del usuario es: ' + userLocation.location)
+        return userLocation.location
       }
     },
     methods: {
       onSave () {
-        // this.$store.commit('navigator/push', HomePage)
+        const user = {}
+        user.userName = this.name
+        user.location = this.location
+        this.$store.dispatch('user/updatedUserInfo', user)
         console.log('Guardo los cambios')
       }
     }

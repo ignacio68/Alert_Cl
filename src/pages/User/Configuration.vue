@@ -23,6 +23,17 @@
               v-model="name"
               required></v-ons-input>
           </v-ons-list-item>
+          <v-ons-list-item class="configurationForm__list-item">
+            <label for="textInput" class="left configurationForm__list-item-label">Ubicación</label>
+            <v-ons-input 
+              class="center configurationForm__list-input"
+              id="location"
+              type="text"
+              float
+              modifier="transparent"
+              v-model="location"
+              required></v-ons-input>
+          </v-ons-list-item>
         </v-ons-list>
       </form>
       <v-ons-button
@@ -47,7 +58,8 @@
       return {
         isActive: false,
         volver: '',
-        name: ''
+        name: '',
+        location: ''
       }
     },
     computed: {
@@ -57,7 +69,10 @@
     },
     methods: {
       onSave () {
-        // this.$store.dispatch('user/createUserDb', this.name)
+        const user = {}
+        user.userName = this.name
+        user.location = this.location
+        this.$store.dispatch('user/updatedUserInfo', user)
         this.$store.commit('navigator/push', HomePage)
       }
     }

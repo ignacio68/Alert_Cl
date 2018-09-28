@@ -36,8 +36,10 @@ export default {
   mutations: {
     setUser (state, payload) {
       state.user = payload // Añade a user las propiedades del usuario registrado
+      console.log('Estoy en setUser')
       console.log('El id del usuario es: ' + state.user.id)
       console.log('El email del usuario es: ' + state.user.email)
+      console.log(state.user)
     },
     clearUser (state) {
       state.user = null // resetea el user
@@ -47,13 +49,13 @@ export default {
     /**
     * Nuevo Usuario
     */
-    signUserUp ({commit, dispatch, state}, payload) {
+    signUserUp ({commit, dispatch}, payload) {
       console.log('Estoy en signUserUp')
       commit('shared/setLoading', true, { root: true })
       commit('shared/setActionPass', false, { root: true })
       commit('shared/clearError', null, { root: true })
 
-      /* Crea el usuario en Firebase */
+      /* Crea el nuevo usuario en Firebase */
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
         .then(
           firebaseUser => {
@@ -65,20 +67,11 @@ export default {
               // Añadimos los datos del nuevo usuario
               id: firebaseUser.user.uid,
               email: firebaseUser.user.email
-              // name: user.name,
+              // name: firebaser.user.userName,
             }
             commit('setUser', newUser) // Llamamos a 'setUser' para añadir nuevas propiedades al user
-<<<<<<< HEAD
-            console.log('Hay un nuevo usuario: ' + firebaseUser.email)
-            // let enviarEmail = function() {
-            //  (dispatch('confirmPassword', payload.email))
-            // }
-            //
-            dispatch('createUserDb', newUser)
-=======
             console.log('Hay un nuevo usuario: ' + newUser.email)
-            dispatch('createUserDb')
->>>>>>> a31509fd28933fa3310a8d853df5c1e83bfc4149
+            dispatch('createUserDb') // Añadimos los datos a la base de datos (Realtime Database)
           }
         )
         .catch(
@@ -159,28 +152,29 @@ export default {
     /**
     * Actualizamos la información del usuario y la base de datos
     */
-    updatedUserInfo ({commit}, user) {
+    updatedUserInfo ({commit, getters}, user) {
+      console.log('Estoy en updatedUserInfo')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       const userUpdated = {
-        userIcon: user.userIcon, // por el momento utilizar direcciones URL
+        // userIcon: user.userIcon, // por el momento utilizar direcciones URL
+        id: getters.user.id,
+        email: getters.user.email,
         userName: user.userName,
-        location: user.location, // escribir una localidad, después utilizar geolocalización
-        preferences: user.preferences
+        location: user.location // escribir una localidad, después utilizar geolocalización
+        // preferences: user.preferences
       }
+      console.log(userUpdated)
       commit('setUser', userUpdated)
-      const userId = this.user.id
-      firebase.database().ref('users/' + userId).push(userUpdated)
-        .then((data) => {
-          const key = data.key
-          return key
-        })
+      const userId = getters.user.id
+      firebase.database().ref('users/' + userId).set(userUpdated)
         .then(() => {
-          commit('createUser', {
-            ...userUpdated,
-            id: this.key
-          })
+          commit('shared/setLoading', false, { root: true })
           console.log(userUpdated)
         })
         .catch((error) => {
+          commit('shared/setLoading', false, { root: true })
+          commit('shared/setError', error, { root: true })
           console.log(error)
         })
     },
@@ -188,33 +182,29 @@ export default {
     /**
     * Creamos la base de datos del usuario
     */
-    createUserDb ({state}) {
+    createUserDb ({commit, state}) {
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       console.log('Estoy en createUserDb')
       // console.log(newUser)
       const user = {
-<<<<<<< HEAD
-        // email: this.user.email,
-        // userName: this.user.userName
-        email: newUser.email,
-        userName: newUser.userName
-      }
-      const userId = newUser.id
-      firebase.database().ref('users/' + userId).set('user')
-=======
         email: state.user.email
         // userName: this.user.userName
       }
       const userId = state.user.id
       console.log('el id del usuario es: ' + userId)
       firebase.database().ref('users/' + userId).set(user)
->>>>>>> a31509fd28933fa3310a8d853df5c1e83bfc4149
         .then(() => {
+          commit('shared/setLoading', false, { root: true })
           console.log(user)
         })
         .catch((error) => {
+          commit('shared/setLoading', false, { root: true })
+          commit('shared/setError', error, { root: true })
           console.log(error)
         })
     },
+
     /**
     * Log Out de Usuario
     */
