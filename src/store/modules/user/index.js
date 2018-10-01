@@ -94,9 +94,15 @@ export default {
       firebase.auth().sendSignInLinkToEmail(firebaseUserEmail, state.actionCodeSettings)
         .then(
           () => {
-            console.log('Guardo el email: ' + firebaseUserEmail + ('en emailForSignIn'))
+            console.log('Guardo el email: ' + firebaseUserEmail + ('en email'))
             commit('shared/setLoading', false, { root: true })
-            window.localStorage.setItem('emailForSingIn', firebaseUserEmail)
+            window.localStorage.setItem('email', firebaseUserEmail)
+            /* NativeStorage.setItem('emailForSingIn', firebaseUserEmail)
+              .then((result) => {
+                console.log('emailForSingIn es: ' + result)
+              }, (error) => {
+                console.log(error)
+              }) */
           }
         )
         .catch(
@@ -167,16 +173,22 @@ export default {
       console.log(userUpdated)
       commit('setUser', userUpdated)
       const userId = getters.user.id
+      // Actualizamos los datos en Firebase Realtime Database
       firebase.database().ref('users/' + userId).set(userUpdated)
         .then(() => {
           commit('shared/setLoading', false, { root: true })
-          console.log(userUpdated)
+          console.log('Actualizada en Firebase la base de datos del usuario: ' + userUpdated)
         })
         .catch((error) => {
           commit('shared/setLoading', false, { root: true })
           commit('shared/setError', error, { root: true })
           console.log(error)
         })
+      // Actualizamos los datos en Local Storage
+      window.localStorage.setItem('id', userUpdated.id)
+      window.localStorage.setItem('email', userUpdated.email)
+      window.localStorage.setItem('userName', userUpdated.userName)
+      window.localStorage.setItem('location', userUpdated.location)
     },
 
     /**

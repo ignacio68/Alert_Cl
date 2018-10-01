@@ -87,19 +87,22 @@
     },
     computed: {
       userEmail () {
-        let userEmail = this.$store.getters['user/user']
-        console.log('el email el usuario es: ' + userEmail.email)
+        // let userEmail = this.$store.getters['user/user']
+        let userEmail = window.localStorage.getItem('email')
+        console.log('el email el usuario es: ' + userEmail)
         return userEmail
       },
       userName () {
-        let userName = this.$store.getters['user/user']
-        console.log('el nombre de usuario es: ' + userName.userName)
-        return userName.userName
+        // let userName = this.$store.getters['user/user']
+        let userName = window.localStorage.getItem('userName')
+        console.log('el nombre de usuario es: ' + userName)
+        return userName
       },
       userLocation () {
-        let userLocation = this.$store.getters['user/user']
+        // let userLocation = this.$store.getters['user/user']
+        let userLocation = window.localStorage.getItem('location')
         console.log('la localización del usuario es: ' + userLocation.location)
-        return userLocation.location
+        return userLocation
       }
     },
     methods: {
