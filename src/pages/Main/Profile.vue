@@ -108,8 +108,16 @@
     methods: {
       onSave () {
         const user = {}
-        user.userName = this.name
-        user.location = this.location
+        if (name !== '') {
+          user.userName = this.name
+        } else {
+          user.name = this.userName
+        }
+        if (location !== '') {
+          user.location = this.location
+        } else {
+          user.location = this.userLocation
+        }
         this.$store.dispatch('user/updatedUserInfo', user)
         console.log('Guardo los cambios')
       }
