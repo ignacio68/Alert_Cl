@@ -108,12 +108,12 @@
     methods: {
       onSave () {
         const user = {}
-        if (name !== '') {
+        if (name !== '' || undefined) {
           user.userName = this.name
         } else {
-          user.name = this.userName
+          user.userName = this.userName
         }
-        if (location !== '') {
+        if (location !== '' || undefined) {
           user.location = this.location
         } else {
           user.location = this.userLocation

@@ -162,31 +162,29 @@ export default {
       console.log('Estoy en updatedUserInfo')
       commit('shared/setLoading', true, { root: true })
       commit('shared/clearError', null, { root: true })
-      // const userUpdated = {
+      const userUpdated = {
         // userIcon: user.userIcon, // por el momento utilizar direcciones URL
-        // userName: user.userName,
-        // location: user.location // escribir una localidad, después utilizar geolocalización
+        userName: user.userName,
+        location: user.location // escribir una localidad, después utilizar geolocalización
         // preferences: user.preferences
-      // }
+      }
       // console.log(userUpdated)
       // commit('setUser', userUpdated)
       const userId = state.user.id
       // Actualizamos los datos en Firebase Realtime Database
-      firebase.database().ref('users/' + userId).set({userName: user.userName, location: user.location})
+      firebase.database().ref('users/' + userId).update(userUpdated)
         .then(() => {
           commit('shared/setLoading', false, { root: true })
           console.log('Actualizada en Firebase la base de datos del usuario: ' + user)
+          // Actualizamos los datos en Local Storage
+          window.localStorage.setItem('userName',user.userName)
+          window.localStorage.setItem('location', user.location)
         })
         .catch((error) => {
           commit('shared/setLoading', false, { root: true })
           commit('shared/setError', error, { root: true })
           console.log(error)
         })
-      // Actualizamos los datos en Local Storage
-      // window.localStorage.setItem('id', userUpdated.id)
-      // window.localStorage.setItem('email', userUpdated.email)
-      window.localStorage.setItem('userName',user.userName)
-      window.localStorage.setItem('location', user.location)
     },
 
     /**
@@ -197,16 +195,17 @@ export default {
       commit('shared/clearError', null, { root: true })
       console.log('Estoy en createUserDb')
       // console.log(newUser)
-      /* const user = {
+      const user = {
         email: newUser.email,
-        userName: '',
-        location: ''
-      } */
+      }
       const userId = newUser.id
       console.log('el id del usuario es: ' + userId)
-      firebase.database().ref('users/' + userId).set({email: newUser.email})
+      firebase.database().ref('users/' + userId).set(user)
         .then(() => {
           commit('shared/setLoading', false, { root: true })
+          // Actualizamos los datos en Local Storage
+          window.localStorage.setItem('id', userId)
+          window.localStorage.setItem('email', user.email)
           console.log(newUser.email)
         })
         .catch((error) => {
