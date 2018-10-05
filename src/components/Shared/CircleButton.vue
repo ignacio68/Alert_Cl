@@ -7,9 +7,8 @@
     >
     <v-ons-icon
       class="signUp__button-icon"
-      size="20px"
-      ></v-ons-icon>
-    {{ name }}
+      size="30px"
+    ></v-ons-icon>
   </v-ons-button>
 </template>
 
@@ -36,15 +35,17 @@
 
 <style scoped>
   .signUp__button {
+  	display: block;
+  	height: 50px;
+  	width: 50px;
+  	border-radius: 50%;
+  	border: 2px solid white;
     background-color: limegreen;
     color: white;
-    margin-left: 20px;
-    margin-right: 20px;
-    text-align: left;
   }
   .signUp__button-icon {
-    padding-right: 14px;
-    margin-right: 10px;
-    border-right: 1px solid white;
+  	position: absolute;
+  	left: 10px;
+  	top: 10px;
   }
 </style>

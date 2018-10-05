@@ -177,7 +177,7 @@ export default {
           commit('shared/setLoading', false, { root: true })
           console.log('Actualizada en Firebase la base de datos del usuario: ' + user)
           // Actualizamos los datos en Local Storage
-          window.localStorage.setItem('userName',user.userName)
+          window.localStorage.setItem('userName', user.userName)
           window.localStorage.setItem('location', user.location)
         })
         .catch((error) => {
@@ -195,17 +195,19 @@ export default {
       commit('shared/clearError', null, { root: true })
       console.log('Estoy en createUserDb')
       // console.log(newUser)
-      const user = {
-        email: newUser.email,
-      }
+      /* const user = {
+        email: newUser.email
+      } */
       const userId = newUser.id
       console.log('el id del usuario es: ' + userId)
-      firebase.database().ref('users/' + userId).set(user)
+      firebase.database().ref('users/' + userId).set({email: newUser.email})
         .then(() => {
           commit('shared/setLoading', false, { root: true })
           // Actualizamos los datos en Local Storage
           window.localStorage.setItem('id', userId)
           window.localStorage.setItem('email', user.email)
+          window.localStorage.setItem('userName', '')
+          window.localStorage.setItem('location', '')
           console.log(newUser.email)
         })
         .catch((error) => {

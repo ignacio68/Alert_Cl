@@ -125,7 +125,7 @@
 
       <!-- BUTTON SIGNUP -->
 
-      <div class="sinUp">
+      <div class="signUp">
          <v-ons-button
           name="signUpButton"
           class="signUp__button center"
@@ -141,32 +141,27 @@
 <!------ LOGIN WITH SOCIAL BUTTONS ------>
 
       <div class="socialText">
-        <p class="socialText__text">{{ $t('lang.pages.signup.main.socialText') }}</p>
+        <p class="socialButtons__text">{{ $t('lang.pages.signup.main.socialText') }}</p>
+      	<v-ons-row class="socialButtons__list">
+	        <!--sign-up-button
+	          class="socialButtonsList__item-button"
+	          :name="socialButton.name"
+	          :index="$index"
+	          :icon="socialButton.icons"
+	          :style="{ backgroundColor: socialButton.color }"
+	          @socialButtonEvent="socialLogIn($index)"
+	        /-->
+	        <circle-button
+            v-for="(socialButton, $index) in socialButtons" :key="socialButton.name"
+	          class="socialButtons__list-button"
+	          :name="socialButton.name"
+	          :index="$index"
+	          :icon="socialButton.icons"
+	          :style="{ backgroundColor: socialButton.color }"
+	          @socialButtonEvent="socialLogIn($index)"
+	        />
+        </v-ons-row>
       </div>
-
-      <v-ons-list class="socialButtonsList">
-        <v-ons-list-item
-          :modifier="md ? 'nodivider' : ''"
-          class="socialButtonsList__item"
-          v-for="(socialButton, $index) in socialButtons" :key="socialButton.name" tappable>
-          <!--sign-up-button
-            class="socialButtonsList__item-button"
-            :name="socialButton.name"
-            :index="$index"
-            :icon="socialButton.icons"
-            :style="{ backgroundColor: socialButton.color }"
-            @socialButtonEvent="socialLogIn($index)"
-          /-->
-          <sign-up-button-circle
-            class="socialButtonsList__item-button"
-            :name="socialButton.name"
-            :index="$index"
-            :icon="socialButton.icons"
-            :style="{ backgroundColor: socialButton.color }"
-            @socialButtonEvent="socialLogIn($index)"
-          />
-        </v-ons-list-item>
-      </v-ons-list>
 
 <!------ TERMS OF USE & POLICY PRIVACITY ------>
 
@@ -223,13 +218,13 @@
   import PrivacyPolicy from '../Shared/PrivacyPolicy'
   import LogIn from './LogIn'
   // import SignUpButton from '../../components/Shared/SignUpButton'
-  import SignUpButtonCircle from '../../components/Shared/SignUpButtonCircle'
+  import CircleButton from '../../components/Shared/CircleButton'
   // import UserInputPassword from '../../components/Shared/UserInputPassword'
   export default {
     name: 'sign-up',
     components: {
       // SignUpButton,
-      SignUpButtonCircle
+      CircleButton
       // UserInputPassword
     },
     data () {
@@ -326,15 +321,6 @@
   .signUp__button {
     
   }
-  .socialButtonsList {
-    background-color: #eee;
-  }
-  .socialButtonsList__item {
-    padding: 0;
-  }
-  .socialButtonsList__item-button{
-    display: inline;
-  }
   .list-item__icon {
     size: 25px;
   }
@@ -349,8 +335,20 @@
     text-align: center;
     color: red;
   }
-  .socialText__text {
+  .socialButtons__text {
     text-align: center;
+  }
+  .socialButtons__list {
+    background-color: #eee;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+  .socialButtons__list-button{
+    display: inline;
+    padding: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .privacy {
     margin-top: 20px;
