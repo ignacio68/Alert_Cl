@@ -2,11 +2,12 @@
   <v-ons-page>
     <div class="container">
       <h1>{{ $t('lang.pages.alerts.main.text')}}</h1>
-      <v-ons-list class="alertsList">
+      <!-- Alerts list -->
+      <!--v-ons-list class="alertsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="alertsList__item"
-          v-for="(alert, index) in alerts" :key="alert.userName">
+          v-for="(alert) in alerts" :key="alert.id">
           <alert-message
             :userIcon="alert.userIcon"
             :altIcon="alert.userName + ' icon'"
@@ -21,7 +22,7 @@
             >
           </alert-message>
         </v-ons-list-item>
-      </v-ons-list>
+      </v-ons-list-->
     </div>
 
     <v-ons-alert-dialog 
@@ -37,17 +38,17 @@
     </v-ons-alert-dialog>
 
     <v-ons-fab
-        class="alertScript"
-        position="bottom right"
-        ripple="true"
-        @click.prevent="isAlertVisible = true"
+      class="alertScript"
+      position="bottom right"
+      ripple="true"
+      @click.prevent="isAlertVisible = true"
       >
         <v-ons-icon
           class="alertScript__icon"
           icon="ion-edit, material:zmdi-email-open"
         >
         </v-ons-icon>
-      </v-ons-fab>
+    </v-ons-fab>
   </v-ons-page>
 </template>
 

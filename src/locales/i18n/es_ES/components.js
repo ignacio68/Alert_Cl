@@ -13,11 +13,17 @@ export default {
     reset: 'Reset'
   },
   alertConfirmPassword: {
-    alertText: 'Te hemos enviado un email para confirmar la contraseña',
-    buttonText: 'Ok'
+    alertText: 'Te hemos enviado un email para confirmar la contraseña'
   },
   alerts: {
     phoneButton: 'llamar',
     linkButton: 'acceder'
+  },
+  alertScript: {
+    pageTitle: 'Mi Alerta!',
+    title: 'Título',
+    text: 'Texto',
+    end: 'Caducidad',
+    link: 'Link'
   }
 }

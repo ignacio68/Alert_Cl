@@ -205,7 +205,7 @@ export default {
           commit('shared/setLoading', false, { root: true })
           // Actualizamos los datos en Local Storage
           window.localStorage.setItem('id', userId)
-          window.localStorage.setItem('email', user.email)
+          window.localStorage.setItem('email', newUser.email)
           window.localStorage.setItem('userName', '')
           window.localStorage.setItem('location', '')
           console.log(newUser.email)

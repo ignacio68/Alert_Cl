@@ -12,48 +12,48 @@
           <h3 class="alertCard__userName">{{ userName }}</h3>
         </v-ons-col>
       </v-ons-row-->
-      <h1>MI ALERTA</h1>
+      <p class="title__text">{{ $t('lang.components.alertScript.pageTitle')}}</p>
     </div>
 
     <div class="content">
-      <v-ons-list class="alertList">
+      <!--v-ons-list class="alertList">
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">Título</label>
+          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.title')}}</label>
           <input 
                 class="alertList__item-title"
                 type="text"
                 id="alertTitle"
-                v-model.text="alertTitle"
+                v-model="alertTitle"
                 >
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">Texto</label>
+          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.text')}}</label>
           <textarea 
                 class="alertList__item-text"
                 type="text"
                 id="alertText"
-                v-model.text="alertText"
+                v-model="alertText"
                 ></textarea>
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">Caducidad</label>
+          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.end')}}</label>
           <input 
                 class="alertList__item-endDate"
                 type="date"
                 id="endDate"
-                v-model.text="endDate"
+                v-model="endDate"
                 >
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">Link</label>
+          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.link')}}</label>
           <input 
                 class="alertList__item-link"
                 type="url"
                 id="alertLink"
-                v-model.text="alertLink"
+                v-model="alertLink"
                 >
         </v-ons-list-item>
-      </v-ons-list>
+      </v-ons-list-->
     </div>
   </v-ons-card>
 </template>
@@ -70,15 +70,7 @@
         type: String,
         default: ''
       },
-      endDate: {
-        type: String,
-        default: ''
-      },
       labelTitle: {
-        type: String,
-        default: ''
-      },
-      alertTitle: {
         type: String,
         default: ''
       },
@@ -86,21 +78,17 @@
         type: String,
         default: ''
       },
-      alertText: {
-        type: String,
-        default: ''
-      },
       alertPhone: {
-        type: String,
-        default: ''
-      },
-      alertLink: {
         type: String,
         default: ''
       }
     },
     data () {
       return {
+        alertTitle: '',
+        alertText: '',
+        endDate: '',
+        alertLink: ''
       }
     },
     methods: {
@@ -109,6 +97,10 @@
 </script>
 
 <style scoped>
+  .title__text {
+    font-size: 20px;
+    color: black;
+  }
   .alertCard {
     border: 1px solid red;
   }

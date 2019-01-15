@@ -108,11 +108,8 @@
     methods: {
       onSave () {
         const user = {}
-       
-          user.userName = this.userName
-       
-          user.location = this.userLocation
-     
+        user.userName = this.userName
+        user.location = this.userLocation
         this.$store.dispatch('user/updatedUserInfo', user)
         console.log('Guardo los cambios')
       }
@@ -143,13 +140,13 @@
   font-size: 90%;
   font-style: italic;
   padding-top: 5px;
-  padding bottom: 5px;
+  padding-bottom: 5px;
   border: 1px solid green;
 }
 .profileList__item-input{
   padding-left: 10px;
   padding-top: 5px;
-  padding bottom: 3px;
+  padding-bottom: 3px;
   border: 1px solid blue;
 }
 .profileList__item-input[type="email"]{

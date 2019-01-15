@@ -13,11 +13,17 @@ export default {
     reset: 'Reset'
   },
   alertConfirmPassword: {
-    alertText: 'We have sent you an email to confirm the password',
-    buttonText: 'Ok'
+    alertText: 'We have sent you an email to confirm the password'
   },
   alerts: {
     phoneButton: 'phone',
     linkButton: 'link'
+  },
+  alertScript: {
+    pageTitle: 'Mi Alert!',
+    title: 'Title',
+    text: 'Text',
+    end: 'End',
+    link: 'Link'
   }
 }

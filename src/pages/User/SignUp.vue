@@ -318,9 +318,6 @@
     margin-right: auto;
     width: 80%;
   };
-  .signUp__button {
-    
-  }
   .list-item__icon {
     size: 25px;
   }
@@ -354,8 +351,6 @@
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
-  }
-  .privacy__text {
   }
   .privacy__text-link {
     color: rebeccapurple;
