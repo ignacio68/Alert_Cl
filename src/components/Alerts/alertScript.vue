@@ -16,7 +16,7 @@
     </div>
 
     <div class="content">
-      <!--v-ons-list class="alertList">
+      <v-ons-list class="alertList">
         <v-ons-list-item class="alertList__item">
           <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.title')}}</label>
           <input 
@@ -53,7 +53,7 @@
                 v-model="alertLink"
                 >
         </v-ons-list-item>
-      </v-ons-list-->
+      </v-ons-list>
     </div>
   </v-ons-card>
 </template>

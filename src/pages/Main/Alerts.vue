@@ -3,7 +3,7 @@
     <div class="container">
       <h1>{{ $t('lang.pages.alerts.main.text')}}</h1>
       <!-- Alerts list -->
-      <!--v-ons-list class="alertsList">
+      <v-ons-list class="alertsList">
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="alertsList__item"
@@ -22,7 +22,7 @@
             >
           </alert-message>
         </v-ons-list-item>
-      </v-ons-list-->
+      </v-ons-list>
     </div>
 
     <v-ons-alert-dialog 
@@ -49,6 +49,7 @@
         >
         </v-ons-icon>
     </v-ons-fab>
+
   </v-ons-page>
 </template>
 
