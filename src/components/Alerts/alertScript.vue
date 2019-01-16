@@ -91,7 +91,42 @@
         alertLink: ''
       }
     },
+    computed: {
+    	/**
+    	* Comprueba si el formulario es válido
+    	* Fase 1: adaptarlo a nuestras necesidades
+    	*
+      * formIsValid () {
+      *   return this.title !== '' &&
+      *     this.location !== '' &&
+      *     this.imageUrl !== '' &&
+      *     this.description !== ''
+      * }
+      */
+    },
     methods: {
+    	/**
+    	* Este método hay que incluirlo en el padre
+    	* sirve para crear la alerta cuando se hace click en OK
+    	* también hay que aclarar los campos rellenado
+    	*/
+    	onCreateAlert () {
+    		if (!this.formIsValid) {
+    			return
+    		}
+    		if (!this.image) {
+    			return
+    		}
+    		// Almacenamos los datos de la alerta
+    		const alertData = {
+    			title: this.alertTitle,
+    			text: this.alertText,
+    			endDate: this.endDate,
+    			link: this.alertLink
+    		}
+        this.$store.dispatch('alerts/createAlert', alertData)
+        // this.$router.push('/meetups')
+    	}
     }
   }
 </script>

@@ -107,10 +107,21 @@ firebase.auth().onAuthStateChanged(user => {
         console.log('main.js created()')
         if (user) {
           this.$store.dispatch('user/autoSignIn', user)
+          /**
+          * Recuperamos los datos del usuario
+          */
+          //this.$store.dispatch('user/fetchUserData')
           console.log('El usuario es: ' + user.email)
         } else {
           console.log('No existe user')
         }
+        /** 
+        * Cargamos las alertas
+          1ª Fase: cargamos todas las que hay en la base de datos
+          2ª Fase: sólo las que están activas
+          3ª Fase: las suscritas por el usuario
+        */
+        this.$store.dispatch('alerts/loadAlerts')
       }
     })
   }

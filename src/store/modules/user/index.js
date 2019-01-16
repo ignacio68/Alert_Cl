@@ -62,6 +62,7 @@ export default {
             console.log('Estoy dentro de createUserWithEmailAndPassword')
             console.log(firebaseUser)
             commit('shared/setLoading', false, { root: true })
+            commit('shared/clearError', null, { root: true })
             commit('shared/setActionPass', true, { root: true })
             const newUser = {
               // Añadimos los datos del nuevo usuario

@@ -14,9 +14,11 @@ export default {
     }
   },
   mutations: {
+    /* Carga las alertas en el objeto loadedAlerts del State */
     setLoadedAlerts (state, alerts) {
       state.loadedAlerts = alerts
     },
+    /* Añade una alerta nueva al objeto loadedAlerts en el State */
     createAlert (state, alert) {
       state.loadedAlerts.push(alert)
     }
@@ -30,6 +32,7 @@ export default {
     */
     loadAlerts ({commit}) {
       commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       firebase.database().ref('alerts').once('value')
         .then((data) => {
           const alerts = [] // utilizar un objeto {}
@@ -51,6 +54,7 @@ export default {
           commit('shared/setLoading', false, { root: true })
         })
         .catch((error) => {
+        	commit('shared/setError', error, { root: true })
           console.log(error)
           commit('shared/setLoading', false, { root: true })
         })
