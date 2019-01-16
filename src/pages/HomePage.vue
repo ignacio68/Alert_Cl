@@ -10,7 +10,7 @@
       </v-ons-toolbar-button-->
     </the-custom-toolbar>
 
-    <v-ons-tabbar position="auto"
+    <v-ons-tabbar position="bottom"
                   swipeable
                   :tabs="tabs"
                   :index.sync="index"
