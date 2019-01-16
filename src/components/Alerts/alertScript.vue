@@ -123,7 +123,7 @@
     			text: this.alertText,
     			endDate: this.endDate,
     			link: this.alertLink
-    		}
+    	  }
         this.$store.dispatch('alerts/createAlert', alertData)
         // this.$router.push('/meetups')
     	}
