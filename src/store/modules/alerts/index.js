@@ -54,7 +54,7 @@ export default {
           commit('shared/setLoading', false, { root: true })
         })
         .catch((error) => {
-        	commit('shared/setError', error, { root: true })
+          commit('shared/setError', error, { root: true })
           console.log(error)
           commit('shared/setLoading', false, { root: true })
         })
@@ -64,15 +64,15 @@ export default {
     * Creamos la alerta
     */
     createAlert ({commit, getters}, payload) {
+      console.log('Estoy en createAlert')
+      // console.log(this.$store.user.state.user)
       const alert = {
-        creatorId: this.$store.getters['user/user.id'],
-        userIcon: payload.userIcon, // utilizar el del usuario guardado en firebase.Storage()
-        userName: payload.userName, // utilizar el del usuario
-        endDate: payload.endDate, // utilizar new Date() en milisegundos
-        alertTitle: payload.alertTitle,
-        alertText: payload.alertText,
-        alertLink: payload.alertLink,
-        alertPhone: payload.alertPhone // utilizar por defecto el guardado en Firebase
+        iD: this.$store.getters['user/user'],
+        endDate: payload.endDate || "", // utilizar new Date() en milisegundos
+        title: payload.title || "",
+        text: payload.text,
+        link: payload.link || "",
+        phone: payload.alertPhone || ""  // utilizar por defecto el guardado en Firebase
       }
       firebase.database().ref('alerts').push(alert)
         .then((data) => {

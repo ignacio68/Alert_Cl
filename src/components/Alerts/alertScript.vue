@@ -1,26 +1,28 @@
 <template>
   <v-ons-card class="alertCard">
     <div class="title">
-      <!--v-ons-row>
+      <p class="title__text">{{ $t('lang.components.alertScript.pageTitle')}}</p>
+    </div>
+
+    <div class="content">
+    	<v-ons-row>
         <v-ons-col width="21%">
           <img
-              :src="userIcon"
-              class="alertCard__userIcon"
+            :src="userIcon"
+            :alt="altIcon"
+            class="alertCard__userIcon"
           >
         </v-ons-col>
         <v-ons-col>
           <h3 class="alertCard__userName">{{ userName }}</h3>
         </v-ons-col>
-      </v-ons-row-->
-      <p class="title__text">{{ $t('lang.components.alertScript.pageTitle')}}</p>
-    </div>
-
-    <div class="content">
+      </v-ons-row>
       <v-ons-list class="alertList">
         <v-ons-list-item class="alertList__item">
           <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.title')}}</label>
-          <input 
+          <input                
                 class="alertList__item-title"
+                name="alertTitle"
                 type="text"
                 id="alertTitle"
                 v-model="alertTitle"
@@ -30,24 +32,31 @@
           <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.text')}}</label>
           <textarea 
                 class="alertList__item-text"
+                name="alertName"
                 type="text"
                 id="alertText"
                 v-model="alertText"
+                rows="3"
+                maxlength="256"
+                required
                 ></textarea>
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
           <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.end')}}</label>
           <input 
                 class="alertList__item-endDate"
+                name="endDate"
                 type="date"
                 id="endDate"
                 v-model="endDate"
+                required
                 >
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
           <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.link')}}</label>
           <input 
                 class="alertList__item-link"
+                name="alertLink"
                 type="url"
                 id="alertLink"
                 v-model="alertLink"
@@ -64,18 +73,17 @@
     props: {
       userIcon: {
         type: String,
+        required: true,
+        default: ''
+      },
+      altIcon: {
+        type: String,
+        required: true,
         default: ''
       },
       userName: {
         type: String,
-        default: ''
-      },
-      labelTitle: {
-        type: String,
-        default: ''
-      },
-      labelText: {
-        type: String,
+        required: true,
         default: ''
       },
       alertPhone: {
@@ -94,29 +102,23 @@
     computed: {
     	/**
     	* Comprueba si el formulario es válido
-    	* Fase 1: adaptarlo a nuestras necesidades
-    	*
-      * formIsValid () {
-      *   return this.title !== '' &&
-      *     this.location !== '' &&
-      *     this.imageUrl !== '' &&
-      *     this.description !== ''
-      * }
-      */
+    	*/
+       formIsValid () {
+        // return this.alertText !== '' &&  this.endDate !== ''
+        return this.alertText !== ''
+      }
     },
     methods: {
     	/**
-    	* Este método hay que incluirlo en el padre
+    	* Este método hay que llamarlo desde el padre,
     	* sirve para crear la alerta cuando se hace click en OK
-    	* también hay que aclarar los campos rellenado
+    	* 
     	*/
     	onCreateAlert () {
     		if (!this.formIsValid) {
-    			return
+    		  return
     		}
-    		if (!this.image) {
-    			return
-    		}
+    		console.log('Estoy en onCreateAlert')    		
     		// Almacenamos los datos de la alerta
     		const alertData = {
     			title: this.alertTitle,
@@ -124,8 +126,15 @@
     			endDate: this.endDate,
     			link: this.alertLink
     	  }
+    	  console.log(alertData)
         this.$store.dispatch('alerts/createAlert', alertData)
+        // Reseteamos los campos de la alerta
+        this.alertTitle = ""
+        this.alertText = ""
+        this.endDate = ""
+        this.alertLink = ""
         // this.$router.push('/meetups')
+        this.$emit('onCreateAlert')
     	}
     }
   }

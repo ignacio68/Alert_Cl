@@ -29,11 +29,17 @@
       modifier="rowfooter"
       :visible.sync="isAlertVisible"
       >
-      <alert-script>
+      <alert-script
+        :userIcon="userIcon"
+        :altIcon="userName + ' icon'"
+        :userName="userName"
+        ref="scriptAlert"
+      >
       </alert-script>
       <template slot="footer">
         <v-ons-alert-dialog-button @click.prevent="isAlertVisible = false">Cancel</v-ons-alert-dialog-button>
-        <v-ons-alert-dialog-button @click.prevent="isAlertVisible = false">Ok</v-ons-alert-dialog-button>
+        <!--v-ons-alert-dialog-button @click.prevent="createAlert">Ok</v-ons-alert-dialog-button-->
+         <v-ons-alert-dialog-button @click.prevent="createAlert">Ok</v-ons-alert-dialog-button>
       </template>
     </v-ons-alert-dialog>
 
@@ -84,7 +90,9 @@
             alertLink: 'https://www.atleticodemadrid.com/entradas'
           }
         },
-        isAlertVisible: false
+        isAlertVisible: false,
+        userIcon: 'src/assets/Real-Madrid-logo-256.png',
+        userName: 'Real Madrid'
       }
     },
     methods: {
@@ -94,6 +102,11 @@
       toLink (link) {
         console.log('link to: ' + link)
         window.location.href = link
+      },
+      createAlert () {
+      	this.isAlertVisible = false
+      	// Llamamos al evento del componente alertScript
+      	this.$refs.scriptAlert.onCreateAlert()
       }
     }
   }
