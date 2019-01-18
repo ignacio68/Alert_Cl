@@ -12,7 +12,9 @@ import 'onsenui/css/onsen-css-components.css'
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import firebaseConfig from './components/Firebase/firebaseConfig'
 // const fb = require('./components/Firebase/firebaseConfig')
 

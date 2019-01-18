@@ -5,7 +5,7 @@
     </div>
 
     <div class="content">
-    	<v-ons-row>
+      <v-ons-row>
         <v-ons-col width="21%">
           <img
             :src="userIcon"
@@ -100,42 +100,41 @@
       }
     },
     computed: {
-    	/**
-    	* Comprueba si el formulario es válido
-    	*/
-       formIsValid () {
-        // return this.alertText !== '' &&  this.endDate !== ''
-        return this.alertText !== ''
+      /**
+      * Comprueba si el formulario es válido
+      */
+      formIsValid () {
+        return this.alertTttle !== '' || this.alertText !== ''
       }
     },
     methods: {
-    	/**
-    	* Este método hay que llamarlo desde el padre,
-    	* sirve para crear la alerta cuando se hace click en OK
-    	* 
-    	*/
-    	onCreateAlert () {
-    		if (!this.formIsValid) {
-    		  return
-    		}
-    		console.log('Estoy en onCreateAlert')    		
-    		// Almacenamos los datos de la alerta
-    		const alertData = {
-    			title: this.alertTitle,
-    			text: this.alertText,
-    			endDate: this.endDate,
-    			link: this.alertLink
-    	  }
-    	  console.log(alertData)
+      /**
+      * Este método hay que llamarlo desde el padre,
+      * sirve para crear la alerta cuando se hace click en OK
+      *
+      */
+      onCreateAlert () {
+        if (!this.formIsValid) {
+          return
+        }
+        console.log('Estoy en onCreateAlert')
+        // Almacenamos los datos de la alerta
+        const alertData = {
+          title: this.alertTitle,
+          text: this.alertText,
+          endDate: this.endDate,
+          link: this.alertLink
+        }
+        console.log(alertData)
         this.$store.dispatch('alerts/createAlert', alertData)
         // Reseteamos los campos de la alerta
-        this.alertTitle = ""
-        this.alertText = ""
-        this.endDate = ""
-        this.alertLink = ""
+        this.alertTitle = ''
+        this.alertText = ''
+        this.endDate = ''
+        this.alertLink = ''
         // this.$router.push('/meetups')
         this.$emit('onCreateAlert')
-    	}
+      }
     }
   }
 </script>

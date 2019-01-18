@@ -1,6 +1,6 @@
-import * as firebase from 'firebase'
-
-// import 'firebase/auth'
+// import * as firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 import HomePage from '../../../pages/HomePage'
 import SignUp from '../../../pages/User/SignUp'

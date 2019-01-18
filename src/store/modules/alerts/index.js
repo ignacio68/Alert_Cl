@@ -1,6 +1,6 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 
-// import 'firebase/database'
+import 'firebase/database'
 
 export default {
   strict: process.env.NODE_ENV !== 'production',
@@ -65,17 +65,20 @@ export default {
     */
     createAlert ({commit, getters}, payload) {
       console.log('Estoy en createAlert')
+      commit('shared/setLoading', true, { root: true })
+      commit('shared/clearError', null, { root: true })
       // console.log(this.$store.user.state.user)
       const alert = {
-        iD: this.$store.getters['user/user'],
-        endDate: payload.endDate || "", // utilizar new Date() en milisegundos
-        title: payload.title || "",
+        // iD: this.$store.getters['user/user'],
+        endDate: payload.endDate || '', // utilizar new Date() en milisegundos
+        title: payload.title || '',
         text: payload.text,
-        link: payload.link || "",
-        phone: payload.alertPhone || ""  // utilizar por defecto el guardado en Firebase
+        link: payload.link || '',
+        phone: payload.alertPhone || ''  // utilizar por defecto el guardado en Firebase
       }
       firebase.database().ref('alerts').push(alert)
         .then((data) => {
+          commit('shared/setLoading', false, { root: true })
           // key = data.key
           // return key
           commit('createAlert', alert)
@@ -89,6 +92,8 @@ export default {
           console.log(alert)
         }) */
         .catch((error) => {
+          commit('shared/setLoading', false, { root: true })
+          commit('shared/setError', error, { root: true })
           console.log(error)
         })
     }

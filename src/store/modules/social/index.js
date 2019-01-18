@@ -1,6 +1,6 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 
-// import 'firebase/auth'
+import 'firebase/auth'
 
 export default {
   strict: process.env.NODE_ENV !== 'production',

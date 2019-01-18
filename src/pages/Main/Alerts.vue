@@ -104,9 +104,9 @@
         window.location.href = link
       },
       createAlert () {
-      	this.isAlertVisible = false
-      	// Llamamos al evento del componente alertScript
-      	this.$refs.scriptAlert.onCreateAlert()
+        this.isAlertVisible = false
+        // Llamamos al evento del componente alertScript
+        this.$refs.scriptAlert.onCreateAlert()
       }
     }
   }
