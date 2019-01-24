@@ -30,6 +30,7 @@
             :userIcon="alert.userIcon"
             :altIcon="alert.userName + ' icon'"
             :userName="alert.userName"
+            :startDate="alert.startDate"
             :endDate="alert.endDate"
             :alertTitle="alert.alertTitle"
             :alertText="alert.alertText"
@@ -51,6 +52,7 @@
         :userIcon="userIcon"
         :altIcon="userName + ' icon'"
         :userName="userName"
+        :startDate="newStartDate"
         ref="scriptAlert"
       >
       </alert-script>
@@ -110,7 +112,8 @@
         },
         isAlertVisible: false,
         userIcon: 'src/assets/Real-Madrid-logo-256.png',
-        userName: 'Real Madrid'
+        userName: 'Real Madrid',
+        newStartDate: ''
       }
     },
     computed: {
@@ -129,6 +132,8 @@
       createAlert () {
         this.isAlertVisible = false
         // Llamamos al evento del componente alertScript
+        this.newStartDate = new Date()
+        console.log(this.startDate)
         this.$refs.scriptAlert.onCreateAlert()
       }
     }

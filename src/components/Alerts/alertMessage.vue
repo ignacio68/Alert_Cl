@@ -7,7 +7,12 @@
     <div class="content">
 
       <v-ons-row>
-          <h4 class="alertCard__countDown">{{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}</h4>
+          <!-- h4 class="alertCard__countDown">{{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}</h4 -->
+          <countdown class="alertCard__countDown"
+            :startTime="alertStartTime"
+            :endTime="alertEndTime"
+            :trans="leyendas"
+          ></countdown>
       </v-ons-row>
 
       <v-ons-row>
@@ -62,8 +67,12 @@
 </template>
 
 <script>
+  import countdown from './countdown'
   export default {
     name: 'alert-message',
+    components: {
+      countdown
+    },
     props: {
       userIcon: {
         type: String,
@@ -74,6 +83,10 @@
         default: ''
       },
       userName: {
+        type: String,
+        default: ''
+      },
+      startDate: {
         type: String,
         default: ''
       },
@@ -100,21 +113,26 @@
     },
     data () {
       return {
-        startDate: '',
         interval: '',
-        days: '',
-        hours: '',
-        minutes: '',
-        seconds: ''
+        leyendas: {
+          day: 'D',
+          hours: 'H',
+          minutes: 'M',
+          seconds: 'S'
+        }
+
       }
     },
     mounted () {
-      this.startDate = new Date()
-      // Actualizamos cada segundo
-      this.timerCount(this.startDate, this.endDate)
-      this.interval = setInterval(() => {
-        this.timerCount(this.startDate, this.endDate)
-      }, 1000)
+
+    },
+    computed: {
+      alertStartTime () {
+        return this.startDate
+      },
+      alertEndTime () {
+        return this.endDate
+      }
     },
     methods: {
       onPhoneClick () {
@@ -122,16 +140,6 @@
       },
       onLinkClick () {
         this.$emit('linkButtonEvent')
-      },
-      timerCount (startDate, endDate) {
-        let timeRemaining = Math.floor((this.endDate - this.starDate) / 1000)
-
-        if (timeRemaining >= 0) {
-          this.days = Math.floor(timeRemaining / 86400)
-          this.hours = Math.floor(timeRemaining / 3600)
-          this.minutes = Math.floor(timeRemaining / 60)
-          this.seconds = Math.floor(timeRemaining)
-        }
       }
     }
   }

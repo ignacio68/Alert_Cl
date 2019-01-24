@@ -89,6 +89,10 @@
       alertPhone: {
         type: String,
         default: ''
+      },
+      startDate: {
+        type: String,
+        default: ''
       }
     },
     data () {
@@ -122,6 +126,7 @@
         const alertData = {
           title: this.alertTitle,
           text: this.alertText,
+          startDate: this.startDate,
           endDate: this.endDate,
           link: this.alertLink
         }
