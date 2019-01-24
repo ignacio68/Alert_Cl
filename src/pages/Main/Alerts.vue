@@ -4,6 +4,24 @@
       <h1>{{ $t('lang.pages.alerts.main.text')}}</h1>
       <!-- Alerts list -->
       <v-ons-list class="alertsList">
+        <!-- v-ons-list-item
+          :modifier="md ? 'nodivider' : ''"
+          class="alertsList__item"
+          v-for="(alert) in alerts" :key="alert.id">
+          <alert-message
+            :userIcon="alert.userIcon"
+            :altIcon="alert.userName + ' icon'"
+            :userName="alert.userName"
+            :endDate="alert.endDate"
+            :alertTitle="alert.alertTitle"
+            :alertText="alert.alertText"
+            :phoneButton="$t('lang.components.alerts.phoneButton')"
+            :linkButton="$t('lang.components.alerts.linkButton')"
+            @phoneButtonEvent="toPhone(alert.alertPhone)"
+            @linkButtonEvent="toLink(alert.alertLink)"
+            >
+          </alert-message>
+        </v-ons-list-item -->
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="alertsList__item"
@@ -70,7 +88,7 @@
     },
     data () {
       return {
-        alerts: {
+        alerts_old: {
           RealMadrid: {
             userIcon: 'src/assets/Real-Madrid-logo-256.png',
             userName: 'Real Madrid',
@@ -93,6 +111,11 @@
         isAlertVisible: false,
         userIcon: 'src/assets/Real-Madrid-logo-256.png',
         userName: 'Real Madrid'
+      }
+    },
+    computed: {
+      alerts () {
+        return this.$store.getters['alerts/loadedAlerts']
       }
     },
     methods: {

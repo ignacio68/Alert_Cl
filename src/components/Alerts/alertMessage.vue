@@ -78,7 +78,7 @@
         default: ''
       },
       endDate: {
-        type: Number,
+        type: String,
         default: ''
       },
       alertTitle: {

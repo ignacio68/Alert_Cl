@@ -1,5 +1,4 @@
 import firebase from 'firebase/app'
-
 import 'firebase/auth'
 
 export default {
@@ -26,9 +25,6 @@ export default {
     errorMessage: ''
   },
   getters: {
-    socialButtons (state) {
-      return state.socialButtons
-    }
   },
   mutations: {
      /**

@@ -76,7 +76,7 @@ firebase.auth().onAuthStateChanged(user => {
       store,
       render: h => h(AppNavigator),
       beforeCreate () {
-        console.log('main.js beforeCreate()')
+        console.log('main.js:beforeCreate()')
         /** this.$ons.ready(() => {
             }) */
 

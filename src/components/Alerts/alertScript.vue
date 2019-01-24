@@ -126,6 +126,7 @@
           link: this.alertLink
         }
         console.log(alertData)
+        // Escribimos la alerta en la base de datos de Firebase
         this.$store.dispatch('alerts/createAlert', alertData)
         // Reseteamos los campos de la alerta
         this.alertTitle = ''
