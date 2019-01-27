@@ -4,7 +4,7 @@
       <h1>{{ $t('lang.pages.alerts.main.text')}}</h1>
       <!-- Alerts list -->
       <v-ons-list class="alertsList">
-        <!-- v-ons-list-item
+        <!--v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="alertsList__item"
           v-for="(alert) in alerts" :key="alert.id">
@@ -21,7 +21,7 @@
             @linkButtonEvent="toLink(alert.alertLink)"
             >
           </alert-message>
-        </v-ons-list-item -->
+        </v-ons-list-item-->
         <v-ons-list-item
           :modifier="md ? 'nodivider' : ''"
           class="alertsList__item"
@@ -58,7 +58,6 @@
       </alert-script>
       <template slot="footer">
         <v-ons-alert-dialog-button @click.prevent="isAlertVisible = false">Cancel</v-ons-alert-dialog-button>
-        <!--v-ons-alert-dialog-button @click.prevent="createAlert">Ok</v-ons-alert-dialog-button-->
          <v-ons-alert-dialog-button @click.prevent="createAlert">Ok</v-ons-alert-dialog-button>
       </template>
     </v-ons-alert-dialog>
@@ -113,7 +112,7 @@
         isAlertVisible: false,
         userIcon: 'src/assets/Real-Madrid-logo-256.png',
         userName: 'Real Madrid',
-        newStartDate: ''
+        newStartDate: 0
       }
     },
     computed: {
@@ -131,9 +130,8 @@
       },
       createAlert () {
         this.isAlertVisible = false
-        // Llamamos al evento del componente alertScript
-        this.newStartDate = new Date()
-        console.log(this.startDate)
+        this.newStartDate = Date.now() // No pasa newStartDate como Prop
+        console.log('Estoy en methods.createAlert y newStartDate es: ' + this.newStartDate)
         this.$refs.scriptAlert.onCreateAlert()
       }
     }

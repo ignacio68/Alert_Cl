@@ -29,7 +29,7 @@
                 >
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.text')}}</label>
+          <label for="alertName" class="alertList__item-label">{{ $t('lang.components.alertScript.text')}}</label>
           <textarea 
                 class="alertList__item-text"
                 name="alertName"
@@ -37,23 +37,33 @@
                 id="alertText"
                 v-model="alertText"
                 rows="3"
-                maxlength="256"
+                maxlength="128"
                 required
                 ></textarea>
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.end')}}</label>
-          <input 
+          <label for="endDate" class="alertList__item-label">{{ $t('lang.components.alertScript.end')}}</label>
+          <!--input 
                 class="alertList__item-endDate"
                 name="endDate"
                 type="date"
                 id="endDate"
                 v-model="endDate"
                 required
-                >
+                -->
+          <v-ons-select 
+            class="alertList__item-endDate"
+            name="endDate"
+            v-model="endDate"
+            required
+          >
+            <option v-for="option in options" :value="option.value">
+              {{ option.text }}
+            </option>
+          </v-ons-select >
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
-          <label for="alertTitle" class="alertList__item-label">{{ $t('lang.components.alertScript.link')}}</label>
+          <label for="alertLink" class="alertList__item-label">{{ $t('lang.components.alertScript.link')}}</label>
           <input 
                 class="alertList__item-link"
                 name="alertLink"
@@ -91,29 +101,51 @@
         default: ''
       },
       startDate: {
-        type: String,
-        default: ''
+        type: Number
       }
     },
     data () {
       return {
         alertTitle: '',
         alertText: '',
-        endDate: '',
-        alertLink: ''
+        endDate: 0,
+        finalDate: 0,
+        alertLink: '',
+        options: [
+          { text: '5 minutos', value: 300000 },
+          { text: '15 minutos', value: 900000 },
+          { text: '30 minutos', value: 1800000 },
+          { text: '45 minutos', value: 2700000 },
+          { text: '1 hora', value: 3600000 },
+          { text: '2 horas', value: 7200000 },
+          { text: '3 horas', value: 10800000 },
+          { text: '4 horas', value: 14400000 },
+          { text: '5 horas', value: 18000000 },
+          { text: '6 horas', value: 21600000 }
+        ]
       }
     },
     computed: {
       /**
       * Comprueba si el formulario es válido
+      * los campos de título o texto deben de tener contenido
       */
       formIsValid () {
-        return this.alertTttle !== '' || this.alertText !== ''
+        return this.alertTitle !== '' || this.alertText !== ''
+      },
+      /**
+      * Resetea los campos de la alerta
+      */
+      resetAlert () {
+        this.alertTitle = ''
+        this.alertText = ''
+        this.endDate = 0
+        this.alertLink = ''
       }
     },
     methods: {
       /**
-      * Este método hay que llamarlo desde el padre,
+      * Este método hay que llamarlo desde el pad
       * sirve para crear la alerta cuando se hace click en OK
       *
       */
@@ -123,23 +155,22 @@
         }
         console.log('Estoy en onCreateAlert')
         // Almacenamos los datos de la alerta
+        // let parseEndDate = endDate.getTime()
+        this.finalDate = this.startDate + this.endDate
         const alertData = {
           title: this.alertTitle,
           text: this.alertText,
           startDate: this.startDate,
-          endDate: this.endDate,
+          endDate: this.finalDate,
           link: this.alertLink
         }
         console.log(alertData)
         // Escribimos la alerta en la base de datos de Firebase
         this.$store.dispatch('alerts/createAlert', alertData)
-        // Reseteamos los campos de la alerta
-        this.alertTitle = ''
-        this.alertText = ''
-        this.endDate = ''
-        this.alertLink = ''
         // this.$router.push('/meetups')
         this.$emit('onCreateAlert')
+        // Reseteamos los campos de la alerta
+        return this.resetAlert()
       }
     }
   }

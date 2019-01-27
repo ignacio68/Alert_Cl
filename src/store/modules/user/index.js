@@ -11,7 +11,10 @@ export default {
   namespaced: true,
   state: {
     user: null, // el usuario inicial siempre está vacio
-    /* Creamos el objeto ActionCodeSettings que proporciona instrucciones a Firebase */
+    /**
+    * Creamos el objeto ActionCodeSettings que proporciona instrucciones a Firebase
+    * para comunicarse por email con el usuario
+    */
     actionCodeSettings: {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.

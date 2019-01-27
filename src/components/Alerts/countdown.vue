@@ -25,8 +25,12 @@
   export default {
     name: 'countdown',
     props: {
-      startTime: '',
-      endTime: '',
+      startDate: {
+        type: Number
+      },
+      endDate: {
+        type: Number
+      },
       trans: ''
     },
     data () {

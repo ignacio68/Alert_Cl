@@ -29,6 +29,9 @@ export default {
     /* Añade una alerta nueva al objeto loadedAlerts en el State */
     createAlert (state, alert) {
       state.loadedAlerts.push(alert)
+    },
+    addStartDate (state, date) {
+      console.log('Añadimos la fecha de inicio a la alerta')
     }
   },
   actions: {
@@ -42,6 +45,7 @@ export default {
       // console.log(this.$store.user.state.user)
       const alert = {
         // creatorId: this.$store.getters['user/user'],
+        startDate: alertData.startDate || '', // utilizar new Date() en milisegundos
         endDate: alertData.endDate || '', // utilizar new Date() en milisegundos
         title: alertData.title || '',
         text: alertData.text,
