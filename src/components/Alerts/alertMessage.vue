@@ -87,10 +87,12 @@
         default: ''
       },
       startDate: {
-        type: Number
+        type: Number,
+        default: 0
       },
       endDate: {
-        type: Number
+        type: Number,
+        default: 0
       },
       alertTitle: {
         type: String,

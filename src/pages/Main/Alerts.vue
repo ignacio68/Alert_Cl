@@ -130,7 +130,7 @@
       },
       createAlert () {
         this.isAlertVisible = false
-        this.newStartDate = Date.now() // No pasa newStartDate como Prop
+        this.newStartDate = Date.now() // SOLUCIONAR: No pasa newStartDate como Prop
         console.log('Estoy en methods.createAlert y newStartDate es: ' + this.newStartDate)
         this.$refs.scriptAlert.onCreateAlert()
       }

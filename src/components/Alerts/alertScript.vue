@@ -101,7 +101,8 @@
         default: ''
       },
       startDate: {
-        type: Number
+        type: Number,
+        default: 0
       }
     },
     data () {
@@ -153,7 +154,7 @@
         if (!this.formIsValid) {
           return
         }
-        console.log('Estoy en onCreateAlert')
+        console.log('Estoy en onCreateAlert. startDate= ' + this.startDate)
         // Almacenamos los datos de la alerta
         // let parseEndDate = endDate.getTime()
         this.finalDate = this.startDate + this.endDate
