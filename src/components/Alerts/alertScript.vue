@@ -148,6 +148,7 @@
         console.log('Estoy en onCreateAlert. startDate= ' + this.startDate)
         // Almacenamos los datos de la alerta
         // let parseEndDate = endDate.getTime()
+        
         // this.finalDate = this.startDate + this.endDate
         const alertData = {
           title: this.alertTitle,

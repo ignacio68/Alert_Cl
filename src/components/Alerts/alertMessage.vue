@@ -119,7 +119,6 @@
           minutes: 'M',
           seconds: 'S'
         }
-
       }
     },
     mounted () {
