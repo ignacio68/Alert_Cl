@@ -43,18 +43,10 @@
         </v-ons-list-item>
         <v-ons-list-item class="alertList__item">
           <label for="endDate" class="alertList__item-label">{{ $t('lang.components.alertScript.end')}}</label>
-          <!--input 
-                class="alertList__item-endDate"
-                name="endDate"
-                type="date"
-                id="endDate"
-                v-model="endDate"
-                required
-                -->
           <v-ons-select 
             class="alertList__item-endDate"
             name="endDate"
-            v-model="endDate"
+            v-model="alertEndDate"
             required
           >
             <option v-for="option in options" :value="option.value">
@@ -99,20 +91,16 @@
       alertPhone: {
         type: String,
         default: ''
-      },
-      startDate: {
-        type: Number,
-        default: 0
       }
     },
     data () {
       return {
         alertTitle: '',
         alertText: '',
-        endDate: 0,
-        finalDate: 0,
+        alertEndDate: 0,
         alertLink: '',
         options: [
+          { text: '10 segundos', value: 10000 },
           { text: '5 minutos', value: 300000 },
           { text: '15 minutos', value: 900000 },
           { text: '30 minutos', value: 1800000 },
@@ -125,6 +113,9 @@
           { text: '6 horas', value: 21600000 }
         ]
       }
+    },
+    mounted () {
+      console.log('montado alertScript.vue')
     },
     computed: {
       /**
@@ -157,12 +148,11 @@
         console.log('Estoy en onCreateAlert. startDate= ' + this.startDate)
         // Almacenamos los datos de la alerta
         // let parseEndDate = endDate.getTime()
-        this.finalDate = this.startDate + this.endDate
+        // this.finalDate = this.startDate + this.endDate
         const alertData = {
           title: this.alertTitle,
           text: this.alertText,
-          startDate: this.startDate,
-          endDate: this.finalDate,
+          endDate: this.alertEndDate,
           link: this.alertLink
         }
         console.log(alertData)
@@ -170,8 +160,9 @@
         this.$store.dispatch('alerts/createAlert', alertData)
         // this.$router.push('/meetups')
         this.$emit('onCreateAlert')
+        // ¡¡¡¡DA ERROR!!!!
         // Reseteamos los campos de la alerta
-        return this.resetAlert()
+        // return this.resetAlert()
       }
     }
   }

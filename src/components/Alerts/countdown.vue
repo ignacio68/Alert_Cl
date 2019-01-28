@@ -25,13 +25,11 @@
   export default {
     name: 'countdown',
     props: {
-      startDate: {
-        type: Number,
-        default: 0
-      },
+      /* startDate: {
+        type: Number
+      }, */
       endDate: {
-        type: Number,
-        default: 0
+        type: Number
       },
       trans: ''
     },
@@ -43,31 +41,43 @@
         seconds: '',
         statusText: '',
         statusType: '',
-        wordString: {}
+        wordString: {},
+        startTimer: '',
+        endTimer: '',
+        interval: ''
       }
     },
-    created () {
-      this.wordString = this.trans
-    },
     mounted () {
-      // this.startTime = new Date()
+      console.log('montado countdown.vue')
       // Actualizamos cada segundo
-      console.log('La hora de comienzo es: ' + this.startTime)
-      this.timerCount(this.startTime, this.endTime)
+      this.startTimer = Date.now()
+      this.endTimer = this.startTimer + this.endDate
+      console.log('mounted.startTimer es: ' + this.startTimer)
+      console.log('mounted.endTimer es: ' + this.endTimer)
+      this.timerCount(this.startTimer, this.endTimer)
       this.interval = setInterval(() => {
-        this.timerCount(this.startTime, this.endTime)
+        this.timerCount(this.startTimer, this.endTimer)
       }, 1000)
     },
     methods: {
-      timerCount (startDate, endDate) {
-        const timeRemaining = Math.floor((this.endTime - this.starTime) / 1000)
-
+      timerCount (start, end) {
+        console.log('timerCount.start es: ' + start)
+        console.log('timerCount.end es: ' + end)
+        let now = Date.now()
+        let timeRemaining = Math.floor((end - now) / 1000)
+        console.log('timeRemaining es: ' + timeRemaining)
         if (timeRemaining >= 0) {
-          this.days = Math.floor(timeRemaining / 86400)
-          this.hours = Math.floor(timeRemaining / 3600)
-          this.minutes = Math.floor(timeRemaining / 60)
-          this.seconds = Math.floor(timeRemaining)
+          this.calcTime(timeRemaining)
+        } else {
+          // cambiar el style del mensaje y terminar el cálculo
+          return
         }
+      },
+      calcTime (dist) {
+        // this.days = Math.floor(dist / 86400)
+        this.hours = Math.floor(dist / 3600)
+        this.minutes = Math.floor(dist / 60)
+        this.seconds = Math.floor(dist)
       }
     }
   }

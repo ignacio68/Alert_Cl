@@ -45,12 +45,11 @@ export default {
       // console.log(this.$store.user.state.user)
       const alert = {
         // creatorId: this.$store.getters['user/user'],
-        startDate: alertData.startDate || '', // utilizar new Date() en milisegundos
-        endDate: alertData.endDate || '', // utilizar new Date() en milisegundos
-        title: alertData.title || '',
+        endDate: alertData.endDate,
+        title: alertData.title,
         text: alertData.text,
-        link: alertData.link || '',
-        phone: alertData.alertPhone || ''  // utilizar por defecto el guardado en Firebase
+        link: alertData.link,
+        phone: alertData.alertPhone || '' // utilizar por defecto el guardado en Firebase
       }
       let key
       // Genera una nueva alerta en la base de datos
@@ -60,6 +59,12 @@ export default {
           key = data.key
           return key
         })
+        // Actualizamos con la fecha de inicio de la alerta
+        .then(key => {
+          const emissionDate = new Date()
+          return firebase.database().ref('alerts').child(key).update({startDate: emissionDate})
+        })
+        // Añadimos la alerta a la base de datos
         .then(() => {
           commit('createAlert', {
             ...alert,
@@ -95,6 +100,7 @@ export default {
               creatorId: obj[key].creatorId,
               userIcon: obj[key].userIcon,
               userName: obj[key].userName,
+              startDate: obj[key].startDate,
               endDate: obj[key].endDate,
               alertTitle: obj[key].title,
               alertText: obj[key].text,
