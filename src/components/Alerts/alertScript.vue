@@ -101,6 +101,7 @@
         alertLink: '',
         options: [
           { text: '10 segundos', value: 10000 },
+          { text: '1 minuto', value: 60000 },
           { text: '5 minutos', value: 300000 },
           { text: '15 minutos', value: 900000 },
           { text: '30 minutos', value: 1800000 },

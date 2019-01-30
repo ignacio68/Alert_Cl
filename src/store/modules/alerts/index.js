@@ -58,8 +58,8 @@ export default {
         })
         // Actualizamos con la fecha de inicio de la alerta
         .then(key => {
-          const emissionDate = new Date().toISOString()
-          return firebase.database().ref('alerts').child(key).update({startDate: emissionDate})
+          const startDate = Date.now()
+          return firebase.database().ref('alerts').child(key).update({startDate: startDate})
         })
         // Añadimos el resto de la alerta a la base de datos
         .then(() => {

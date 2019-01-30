@@ -6,9 +6,8 @@
 import 'onsenui/css/onsenui.css'
 import 'onsenui/css/onsen-css-components.css'
 
-/**
- * Import Dependency
- */
+// Import Dependency
+
 import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 
@@ -18,9 +17,14 @@ import 'firebase/auth'
 import firebaseConfig from './components/Firebase/firebaseConfig'
 // const fb = require('./components/Firebase/firebaseConfig')
 
+// import store from Vuex
 import { store } from './store'
 
+// import languages
 import i18n from './locales/index'
+
+// import Timer
+import VueTimers from 'vue-timers'
 
 /* Cuando se utiliza ESM
 
@@ -43,18 +47,22 @@ import 'onsenui/esm/elements/ons-alert-dialog-button'
 import AppNavigator from './AppNavigator'
 
 /**
- * Import Component (.vue)
+ * Import Components
  */
-import ThePreloader from './components/Shared/ThePreloader'
-import TheCustomtoolbar from './components/Shared/TheCustomToolbar'
+import ThePreloader from './components/Shared/ThePreloader' // NOTA: Revisar su uso (a eliminar)
+import TheCustomtoolbar from './components/Shared/TheCustomToolbar' // NOTA: Rediseñar
 // import AlertCmp from './components/Shared/Alert'
 
 /**
  * Global Config
  */
 Vue.config.productionTip = false
-// Vue.use(Vuex)
+
+// Load Onsen
 Vue.use(VueOnsen)
+
+// Load  Vue-Timer
+Vue.use(VueTimers)
 
 /**
  * Register components globally

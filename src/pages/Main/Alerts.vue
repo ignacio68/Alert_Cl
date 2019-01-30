@@ -12,6 +12,7 @@
             :userIcon="alert.userIcon"
             :altIcon="alert.userName + ' icon'"
             :userName="alert.userName"
+            :referenceDate="referenceDate"
             :startDate="alert.startDate"
             :endDate="alert.endDate"
             :alertTitle="alert.alertTitle"
@@ -68,6 +69,13 @@
       alertMessage,
       alertScript
     },
+    timers: {
+      loadDate: {
+        time: 1000,
+        autostart: true,
+        repeat: true
+      }
+    },
     data () {
       return {
         alerts_old: {
@@ -92,7 +100,8 @@
         },
         isAlertVisible: false,
         userIcon: 'src/assets/Real-Madrid-logo-256.png',
-        userName: 'Real Madrid'
+        userName: 'Real Madrid',
+        referenceDate: ''
       }
     },
     mounted () {
@@ -114,6 +123,11 @@
       createAlert () {
         this.isAlertVisible = false
         this.$refs.scriptAlert.onCreateAlert()
+      },
+      // Establece la fecha de referencia según la configuración del timer
+      loadDate () {
+        this.referenceDate = Date.now()
+        console.log('La fecha de referencia es:' + this.referenceDate)
       }
     }
   }

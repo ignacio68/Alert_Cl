@@ -6,12 +6,14 @@
 
     <div class="content">
       <v-ons-row>
-        <p class="alertCard__emissionAlert">{{ startDate }}</p>
+        <p class="alertCard__emissionAlert">{{ shortDate }}</p>
       </v-ons-row>
       <v-ons-row>
           <!-- h4 class="alertCard__countDown">{{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}</h4 -->
           <countdown class="alertCard__countDown"
-            :endDate="alertEndTime"
+            :referenceDate="referenceDate"
+            :endDate="alertEndDate"
+            :startDate="startDate"
             :trans="leyendas"
           ></countdown>
       </v-ons-row>
@@ -87,8 +89,11 @@
         type: String,
         default: ''
       },
+      referenceDate: {
+        type: Number
+      },
       startDate: {
-        type: String || Date
+        type: Number
       },
       endDate: {
         type: String || Number
@@ -125,15 +130,17 @@
       console.log('montado alertMessage.vue')
     },
     computed: {
-      alertEndTime () {
-        const intEndDate = parseInt(this.endDate, 10)
-        console.log('Estoy en alertEndTime y numberEndDate es: ' + intEndDate)
-        return intEndDate
-      },
+      // Establece la fecha de emisión de la alerta
       shortDate () {
-        const shortDateFormat = this.startDate.toDateString()
+        const shortDateFormat = new Date(this.startDate).toDateString()
         return shortDateFormat
       },
+      // Convierte la fecha de término de la alarma a un entero
+      alertEndDate () {
+        const intEndDate = parseInt(this.endDate, 10)
+        console.log('Estoy en alertEndDate y intEndDate es: ' + intEndDate)
+        return intEndDate
+      }
     },
     methods: {
       onPhoneClick () {
