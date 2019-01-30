@@ -59,6 +59,10 @@
         this.timerCount(this.startTimer, this.endTimer)
       }, 1000)
     },
+    beforeDestroy () {
+      clearInterval(this.interval)
+      console.log('Limpio el intervalo')
+    },
     methods: {
       timerCount (start, end) {
         console.log('timerCount.start es: ' + start)
