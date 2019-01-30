@@ -29,9 +29,6 @@ export default {
     /* Añade una alerta nueva al objeto loadedAlerts en el State */
     createAlert (state, alert) {
       state.loadedAlerts.push(alert)
-    },
-    addStartDate (state, date) {
-      console.log('Añadimos la fecha de inicio a la alerta')
     }
   },
   actions: {
@@ -61,10 +58,10 @@ export default {
         })
         // Actualizamos con la fecha de inicio de la alerta
         .then(key => {
-          const emissionDate = new Date()
+          const emissionDate = new Date().toISOString()
           return firebase.database().ref('alerts').child(key).update({startDate: emissionDate})
         })
-        // Añadimos la alerta a la base de datos
+        // Añadimos el resto de la alerta a la base de datos
         .then(() => {
           commit('createAlert', {
             ...alert,
@@ -108,7 +105,7 @@ export default {
               alertPhone: obj[key].phone
             })
           }
-          commit('setLoadedAlerts', alerts) // comprobar que funciona "this"
+          commit('setLoadedAlerts', alerts)
           commit('shared/setLoading', false, { root: true })
         })
         .catch((error) => {

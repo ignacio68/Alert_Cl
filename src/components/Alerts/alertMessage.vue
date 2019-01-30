@@ -129,7 +129,11 @@
         const intEndDate = parseInt(this.endDate, 10)
         console.log('Estoy en alertEndTime y numberEndDate es: ' + intEndDate)
         return intEndDate
-      }
+      },
+      shortDate () {
+        const shortDateFormat = this.startDate.toDateString()
+        return shortDateFormat
+      },
     },
     methods: {
       onPhoneClick () {
@@ -146,6 +150,9 @@
   .alertCard {
     border: 1px solid red;
   }
+  .alertCard__emissionAlert {
+    border: 1px solid pink
+  }
   .alertCard__countDown {
     text-align: right;
     font-size: 1em;
@@ -155,14 +162,14 @@
   .alertCard__userIcon {
     height: 50px;
     width: 50px;
-    border: 1px solid blue;
+    border: 1px solid orange;
   }
   .alertCard__userName {
     padding-left: 5px;
     text-align: left;
     font-weight: bold;
     color: black;
-    border: 1px solid green;
+    border: 1px solid lime;
   }
   .alertCard-buttons {
     float: right;
